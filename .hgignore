@@ -1,0 +1,10 @@
+syntax: glob
+MainActivity/
+.metadata/
+simple-crop-image-lib/bin/
+AllFine/bin/
+android-support-v7-appcompat/bin/
+CircularImageView/bin/
+google-play-services_lib/bin/
+LibrarySlidingMenu/bin/
+QuickAction/bin/

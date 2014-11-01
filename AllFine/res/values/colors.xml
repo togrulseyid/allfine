@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="color_background_sliding_menu">#e8e8ec</color>
+    <color name="color_background_actoinbar">#6857c9</color>
+    <color name="color_background_actoinbar_red">#685ff9</color>
+
+    
+    
+    <!-- TRASH -->
+    
+    <color name="side_navigation_background">#303030</color>
+    <color name="side_navigation_background_with_opacity_alpha">#443d3d3d</color>
+    <color name="side_navigation_background_with_opacity_alpha_2">#8832353a</color>
+    <color name="side_navigation_edittext_background">#4f4f4f</color>
+    <color name="background_action_bar">#42abed</color>
+    <color name="background_twitter">#55acee</color>
+    <color name="background_action_bar_light">#88caf4</color>
+    <!-- Default Colors -->
+    <color name="listViewCacheColorHint">#00000000</color>
+    <!-- 59b5ef -->
+    <color name="side_navigation_outside_background">#7000</color>
+    <color name="side_navigation_list_divider_color">#4f4f4f</color>
+    <color name="side_navigation_item_text_color">#f3f3f3</color>
+    <color name="side_navigation_item_text_color_with_op">#f3f3f3</color>
+    <color name="friends_fragments_background">#f9fafc</color>
+    <color name="friends_fragment_contact_tab_above_background">#d8ebef</color>
+    <color name="friends_fragments_number_text_color">#3b9ed7</color>
+    <color name="slidingmenu_list_pressed">#3f9dda</color>
+    <color name="slidingMenuListViewCacheColorHint">#00000000</color>
+    <color name="slidingMenuCenterColor">#11000000</color>
+    <color name="slidingMenuEndColor">#33440000</color>
+    <color name="slidingMenuStartColor">#00000000</color>
+    <color name="slidingMenuviewProfileText">#999a9e</color>
+    <color name="slidingMenuTextViewMenuTitle">#999a9e</color>
+    <color name="textViewCardFromFriendsColor">#949fab</color>
+    <color name="edittext_user_profile_inviter_background_color">#f1f2f3</color>
+    <color name="edittext_user_profile_inviter_background_color_2">#e1e2e3</color>
+    <color name="viewCardViewBackgroungColor">#f2f2f2</color>
+    <color name="viewCardViewBackgroungColor2">#f2f2f2</color>
+    <color name="listViewCashOutFragmentMoneyTabListDividerColor">#19000000</color>
+    <color name="roundedImageViewfragmentFriendsTabContactListPhotoBorderColor">#2f9ee5</color>
+    <color name="roundedImageViewFragmentFriendsTabFriendPhotoBorderColor">#2f9ee5</color>
+    <color name="relativeLayoutCardFragmentManadsCardNumberBackgroundColor">#3f9dd9</color>
+    <color name="textViewUserProfileListViewTimeTextColor">#515255</color>
+    <color name="drawableBlueButtonSolidColor">#449def</color>
+    <color name="drawableBlueButtonStrokeColor">#2f6699</color>
+    <color name="drawableButtonSelectorSolidColor">#ececee</color>
+    <color name="drawableButtonSelectorGradientColor">#e5e5e5</color>
+    <color name="relative_layout_idle_activity_footer_background">#e5e5e5</color>
+    <color name="disabled_button_background_color">#aeaeae</color>
+    <color name="tab_unselected">#42abed</color>
+    <color name="tab_selected">#FFFFFF</color>
+    <color name="tab_unselected_focused">#7dc8f8</color>
+    <color name="tab_selected_focused">#7dc8f8</color>
+    <color name="tab_unselected_pressed">#7dc8f8</color>
+    <color name="tab_selected_pressed">#7dc8f8</color>
+    <color name="include_ringing_activity_yes_no_no_pressed_color">#676463</color>
+    <color name="include_ringing_activity_yes_no_no_hover_color">#44403f</color>
+    <color name="include_ringing_activity_yes_no_yes_pressed_color">#87bcde</color>
+    <color name="include_ringing_activity_yes_no_yes_hover_color">#42abed</color>
+    <color name="text_color_cashout_fragment_red">#B50D0D</color>
+    <color name="text_color_cashout_fragment_green">#3DA319</color>
+    <color name="text_color_cashout_fragment_black">#1E1B1B</color>
+    <color name="color_white_list_item_channels_followers">#90FFFFFF</color>
+    <color name="color_black_list_item_channels_followers">#85000000</color>
+    <color name="color_black_list_item_channels_followers_light">#efefef</color>
+    <color name="color_dark_black_list_item_channels_followers">#85000000</color>
+    <color name="color_fragment_chanelfeed_background">#f0eeef</color>
+
+    <!-- CHANNEL COLORS -->
+    <!-- <color name="channel_interests">#ff5500</color> -->
+    <!-- <color name="channel_cinema">#ff5500</color> -->
+    <!-- <color name="channel_events">#ff5500</color> -->
+    <!-- <color name="channel_campaign">#ff5500</color> -->
+
+
+    <!-- channel_interests -->
+    <color name="category_news">#EF3038</color>
+    <color name="category_business_finance">#177245</color>
+    <color name="category_science_tech">#8B0000</color>
+    <color name="category_sports">#556B2F</color>
+    <color name="category_food_drink">#00416A</color>
+    <color name="category_music">#013220</color>
+    <color name="category_art_design">#B8860B</color>
+    <color name="category_health_beauty">#536878</color>
+    <color name="category_travel">#008B8B</color>
+    <color name="category_automobile">#893F45</color>
+    <color name="category_home_garden">#FF3800</color>
+    <color name="category_crafts_hobbies">#8C92AC</color>
+    <color name="category_children">#002E63</color>
+    <color name="category_fashion">#965A3E</color>
+    <color name="category_lifestyle">#D2691E</color>
+    <color name="category_game_app">#7F1734</color>
+    <color name="category_funny">#9FA91F</color>
+    <color name="category_baku_2015">#0047AB</color>
+
+    <!-- channel_cinema -->
+    <color name="category_action">#6D9BC3</color>
+    <color name="category_aventure">#DE3163</color>
+    <color name="category_animation">#2F847C</color>
+    <color name="category_biography">#007BA7</color>
+    <color name="category_comedy">#703642</color>
+    <color name="category_crime">#960018</color>
+    <color name="category_documentary">#C41E3A</color>
+    <color name="category_drama">#E4717A</color>
+    <color name="category_family">#592720</color>
+    <color name="category_fantasy">#C19A6B</color>
+    <color name="category_history">#E30022</color>
+    <color name="category_horror">#006B3C</color>
+    <color name="category_musical">#536872</color>
+    <color name="category_mystery">#ED872D</color>
+    <color name="category_romance">#36454F</color>
+    <color name="category_sci_fi">#A8516E</color>
+    <color name="category_thriller">#D2691E</color>
+    <color name="category_war">#E34234</color>
+    <color name="category_western">#E4D00A</color>
+
+    <!-- channel_events -->
+    <color name="category_party">#006A4E</color>
+    <color name="category_consert">#CB4154</color>
+    <color name="category_exhibition">#1DACD6</color>
+    <color name="category_theatre">#C32148</color>
+    <color name="category_conference">#A52A2A</color>
+    <color name="category_traning">#1B4D3E</color>
+    <color name="category_tournament">#CC5500</color>
+
+    <!-- channel_campaign -->
+    <color name="category_automobile_bike">#B284BE</color>
+    <color name="category_books">#5D8AA8</color>
+    <color name="category_entertainment">#72A0C1</color>
+    <color name="category_follower_gift">#AF002A</color>
+    <color name="category_fitness_beauty">#E32636</color>
+    <color name="category_clothing">#C46210</color>
+    <color name="category_repair_and_construction">#E52B50</color>
+    <color name="category_internet_mobile_operators">#AB274F</color>
+    <color name="category_electronics">#3B7A57</color>
+    <color name="category_computer">#FFBF00</color>
+    <color name="category_mobile_phones">#FF7E00</color>
+    <color name="category_bank_insurance">#FF033E</color>
+    <color name="category_furniture">#665D1E</color>
+    <color name="category_online_shopping">#841B2D</color>
+    <color name="category_perfumery_cosmetics">#008000</color>
+    <color name="category_restaurant_cafe">#3B444B</color>
+    <color name="category_supermarket">#8F9779</color>
+    <color name="category_education">#87A96B</color>
+    <color name="category_medicine">#006A4E</color>
+    <color name="category_tourism">#967117</color>
+    <color name="category_children_2">#126180</color>
+</resources>

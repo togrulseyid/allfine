@@ -1,0 +1,22 @@
+<resources>
+
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:actionBarStyle">@style/AllFineCustomActionBar</item>
+        <item name="actionBarStyle">@style/AllFineCustomActionBar</item>
+    </style>
+
+    <!-- ActionBar styles -->
+    <style name="AllFineCustomActionBar" parent="@style/Widget.AppCompat.Light.ActionBar">
+        <item name="android:background">@color/color_background_actoinbar</item>
+        <item name="android:titleTextStyle">@style/AllFineCustomActionBarTitleText</item>
+        <item name="titleTextStyle">@style/AllFineCustomActionBarTitleText</item>
+        <item name="background">@color/color_background_actoinbar</item>
+        <item name="android:icon">@drawable/ic_actionbar_home</item>
+        <item name="icon">@drawable/ic_actionbar_home</item>
+    </style>
+
+    <style name="AllFineCustomActionBarTitleText" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+</resources>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">AllFine</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Buttons -->
+    <string name="button_text_sign_in">Sign In</string>
+    <string name="button_text_sign_up">Sign Up</string>
+
+    <!-- EditTexts -->
+    <string name="edittext_hint_number_or_username">Number or Username</string>
+
+    <!-- Activities -->
+    <string name="title_activity_start">Start</string>
+    <string name="title_activity_sign_in">Sign In</string>
+    <string name="title_activity_sign_up">Sign Up</string>
+
+    <!-- JUNK -->
+    <!-- User Profile list data -->
+    <string name="text_view_user_profile_activity_text">Activity</string>
+    <string name="text_view_user_profile_activity_data_type_first"><![CDATA[<b><font color="#42abed">%1$s</font></b><br />\n]]><![CDATA[<b>%2$s</b>]]> from your spending added to your balance.</string>
+    <string name="text_view_user_profile_activity_data_type_second"><![CDATA[<b><font color="#42abed">%1$s</font></b>\n]]><![CDATA[<b>%2$s</b>]]> registered with your invite and become your friend. </string>
+    <string name="text_view_user_profile_activity_data_type_third"><![CDATA[<b><font color="#42abed">%1$s</font></b><br />\n]]><![CDATA[<b>%2$s</b>]]> points converted to <![CDATA[<b>%3$s</b>]]> operator minutes.</string>
+
+    <!-- Push notification -->
+    <string name="pattern_balance_notification_money_point">You gain %1$s money and %2$s point</string>
+    <string name="pattern_balance_notification_money">You earned %1$s money</string>
+    <string name="pattern_balance_notification_point">You earned %1$s points</string>
+    <string name="notification_title_balance">Manads</string>
+    <string name="text_view_friends">Friends</string>
+    <string name="text_view_money">Money</string>
+    <string name="text_view_points">Points</string>
+    <string name="message_listview_below_activity_no_activity">You have no Activity yet!</string>
+    <string name="title_activity_activity_update_app">Update Application</string>
+
+</resources>
