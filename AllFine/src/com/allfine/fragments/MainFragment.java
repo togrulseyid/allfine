@@ -1,8 +1,12 @@
 package com.allfine.fragments;
 
+import java.util.ArrayList;
+
+import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -15,7 +19,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.allfine.R;
+import com.allfine.adapters.MainFragmentBaseAdapter;
+import com.allfine.models.UserEventsHistoryModel;
+import com.allfine.models.UserEventsHistoryModelList;
+import com.allfine.models.core.CoreModel;
 import com.allfine.models.core.UserModel;
+import com.allfine.operations.HistoryOperations;
 import com.allfine.operations.Utility;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.mikhaellopez.circularimageview.CircularImageView;
@@ -37,6 +46,8 @@ public class MainFragment extends Fragment {
 	private CircularImageView circularImageViewFragmentMainProfilePhoto;
 	private RelativeLayout complexViewUserCover;
 	private ListView listView;
+	private MainFragmentBaseAdapter adapter;
+	private ArrayList<UserEventsHistoryModel> historyModels;
 
 	public MainFragment(SlidingMenu slidingMenu, UserModel user) {
 		this.slidingMenu = slidingMenu;
@@ -48,6 +59,8 @@ public class MainFragment extends Fragment {
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_main, container,
 				false);
+
+		MakeFakeContacts.make();
 
 		Log.d("userD", "" + user);
 
@@ -68,10 +81,14 @@ public class MainFragment extends Fragment {
 
 		imageButtonMenuOpener.setOnClickListener(new MyOnClickListener());
 
-		
+		historyModels = new ArrayList<UserEventsHistoryModel>();
+		adapter = new MainFragmentBaseAdapter(historyModels);
+		listView.setAdapter(adapter);
+
 		fillUserInfo(user);
-		
-		
+
+		new UserEventsHistory(getActivity()).execute();
+
 		return rootView;
 	}
 
@@ -98,7 +115,7 @@ public class MainFragment extends Fragment {
 					.into(circularImageViewFragmentMainProfilePhoto);
 		}
 		if (user.getCover() != null) {
-			Log.d("testA","getCover" + user.getCover());
+			Log.d("testA", "getCover" + user.getCover());
 			Picasso.with(getActivity()).load(user.getCover())
 					.error(R.drawable.profile_cover_image1)
 					.placeholder(R.drawable.profile_cover_image1)
@@ -149,5 +166,33 @@ public class MainFragment extends Fragment {
 
 	}
 
-	
+	private class UserEventsHistory extends
+			AsyncTask<CoreModel, Void, UserEventsHistoryModelList> {
+		private Activity activity;
+
+		public UserEventsHistory(Activity activity) {
+			this.activity = activity;
+		}
+
+		@Override
+		protected UserEventsHistoryModelList doInBackground(CoreModel... params) {
+			HistoryOperations historyOperations = new HistoryOperations(
+					activity);
+			return historyOperations.getUserEventsHistory();
+		}
+
+		@Override
+		protected void onPostExecute(UserEventsHistoryModelList result) {
+			super.onPostExecute(result);
+
+			if (result != null) {
+				for (UserEventsHistoryModel eventsHistoryModel : result
+						.getUserEventsHistoryModels()) {
+					historyModels.add(eventsHistoryModel);
+				}
+
+				adapter.notifyDataSetChanged();
+			}
+		}
+	}
 }

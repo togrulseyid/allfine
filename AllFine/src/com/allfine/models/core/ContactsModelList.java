@@ -3,21 +3,19 @@ package com.allfine.models.core;
 import java.util.ArrayList;
 
 public class ContactsModelList extends CoreModel {
-	ArrayList<ContactNumbersModel> contactNumbersModels;
+	ArrayList<ContactNumbersModel> numbersModels;
 
-	public ArrayList<ContactNumbersModel> getContactNumbersModels() {
-		return contactNumbersModels;
+	public ArrayList<ContactNumbersModel> getNumbersModels() {
+		return numbersModels;
 	}
 
-	public void setContactNumbersModels(
-			ArrayList<ContactNumbersModel> contactNumbersModels) {
-		this.contactNumbersModels = contactNumbersModels;
+	public void setNumbersModels(ArrayList<ContactNumbersModel> numbersModels) {
+		this.numbersModels = numbersModels;
 	}
 
 	@Override
 	public String toString() {
-		return "ContactsModelList [contactNumbersModels="
-				+ contactNumbersModels + "]";
+		return "ContactsModelList [numbersModels=" + numbersModels + "]";
 	}
 
 }

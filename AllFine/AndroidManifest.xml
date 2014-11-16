@@ -85,8 +85,16 @@
         <service android:name=".services.GcmIntentService" />
 
         <activity
-            android:name="com.allfine.activities.ActivityUpdateApp"
+            android:name=".activities.ActivityUpdateApp"
             android:label="@string/title_activity_activity_update_app" >
+        </activity>
+        <activity
+            android:name=".activities.SettingsActivity"
+            android:label="@string/title_activity_settings" >
+        </activity>
+        <activity
+            android:name="com.allfine.activities.AddFriendActivity"
+            android:label="@string/title_activity_add_friend" >
         </activity>
     </application>
 

@@ -84,4 +84,5 @@ public class MainActivitySlideMenuAdapter extends BaseAdapter {
 	private static class ViewHolder {
 		public ImageView imageViewFriendProfile;
 	}
+
 }

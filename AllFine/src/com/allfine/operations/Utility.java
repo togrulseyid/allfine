@@ -309,31 +309,6 @@ public class Utility {
 		return years;
 	}
 
-	public boolean clearAdsContent(int adsId, Context context, int dirSelection) {
-
-		File dir = null;
-
-		if (dirSelection == BusinessConstants.CLEAR_ADS) {
-			dir = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES
-					+ File.separator + adsDirectory + File.separator + adsId);
-		} else if (dirSelection == BusinessConstants.CLEAR_CORE) {
-			dir = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-		}
-
-		if (dir.exists() && dir.isDirectory()) {
-			if (recycledFiles == null) {
-				recycledFiles = new ArrayList<File>();
-			}
-			deleteDirectory(dir);
-			for (int i = recycledFiles.size() - 1; i >= 0; i--) {
-				recycledFiles.get(i).delete();
-			}
-		}
-
-		recycledFiles = null;
-
-		return true;
-	}
 
 	private void deleteDirectory(File rootFile) {
 		if (rootFile.exists()) {

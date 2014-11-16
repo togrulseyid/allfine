@@ -4,6 +4,7 @@ import java.util.Date;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -11,14 +12,17 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.allfine.R;
 import com.allfine.adapters.MainActivitySlideMenuAdapter;
+import com.allfine.constants.BusinessConstants;
 import com.allfine.fragments.MainFragment;
 import com.allfine.models.core.EventsModel;
 import com.allfine.models.core.UserModel;
@@ -26,6 +30,7 @@ import com.allfine.operations.NetworkOperations;
 import com.allfine.operations.Utility;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnOpenedListener;
+import com.mikhaellopez.circularimageview.CircularImageView;
 import com.togrulseyid.quickaction.library.QuickAction;
 
 public class MainActivity extends ActionBarActivity {
@@ -37,7 +42,7 @@ public class MainActivity extends ActionBarActivity {
 
 	// Menu
 	private QuickAction customQuickAction;
-	private ListView listView;
+	private ListView listViewMenu;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,21 +54,37 @@ public class MainActivity extends ActionBarActivity {
 
 		makeMenu();
 
-		listView = (ListView) findViewById(R.id.listViewListSlidingMenuFriendsProfiles);
+		listViewMenu = (ListView) findViewById(R.id.listViewListSlidingMenuFriendsProfiles);
 
 		MainActivitySlideMenuAdapter menuAdapter = new MainActivitySlideMenuAdapter(
 				this, user.getFriends());
-		listView.setAdapter(menuAdapter);
 
-		listView.setOnItemClickListener(new MyOnItemClickListener(user));
+		if (user.getFriends().size() < BusinessConstants.MAX_USER_FRIEND) {
+
+			View footerView = getLayoutInflater().inflate(
+					R.layout.footer_add_friend_layout, null);
+
+			listViewMenu.addFooterView(footerView, null, true);
+
+			footerView.findViewById(R.id.imageButtonMainActivityAddFriend)
+					.setOnClickListener(new MyOnClickListener());
+
+			Log.d("testA", "added footer");
+		}
+
+		listViewMenu.setAdapter(menuAdapter);
+
+		listViewMenu.setOnItemClickListener(new MyOnItemClickListener(user));
+		listViewMenu
+				.setOnItemLongClickListener(new MyOnItemLongClickListener());
 
 		@SuppressLint("InflateParams")
 		RelativeLayout customLayout = (RelativeLayout) getLayoutInflater()
 				.inflate(R.layout.popup_reached_layout, null);
-		
+
 		customQuickAction = new QuickAction(this, R.style.PopupAnimation,
-				R.drawable.ic_notification_menu_edge, R.drawable.popup_background,
-				customLayout);
+		// R.drawable.ic_notification_menu_edge,
+				R.drawable.popup_background, customLayout);
 
 		if (savedInstanceState == null) {
 			getSupportFragmentManager().beginTransaction()
@@ -82,8 +103,10 @@ public class MainActivity extends ActionBarActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.action_settings:
-			Toast.makeText(getApplicationContext(), "Naqaracuqa ? :)",
-					Toast.LENGTH_SHORT).show();
+			Toast.makeText(activity, "Naqaracuqa? :)", Toast.LENGTH_SHORT)
+					.show();
+			Intent intent = new Intent(activity, SettingsActivity.class);
+			startActivity(intent);
 			break;
 
 		case android.R.id.home:
@@ -148,6 +171,14 @@ public class MainActivity extends ActionBarActivity {
 			Log.d("testA", result.toString());
 
 			if (result != null) {
+				// TODO: Make User Friend Image Border Color Different
+				CircularImageView firendsPhoto = (CircularImageView) view
+						.findViewById(R.id.circularImageViewLISlidingMenuFriend);
+
+				firendsPhoto.setBorderColor(getResources().getColor(
+						R.color.color_all_fine_main_color));
+				Log.d("testA", "firendsPhoto color change");
+
 				customQuickAction.show(view);
 			}
 		}
@@ -175,4 +206,59 @@ public class MainActivity extends ActionBarActivity {
 
 	}
 
+	private class MyOnItemLongClickListener implements OnItemLongClickListener {
+
+		@Override
+		public boolean onItemLongClick(AdapterView<?> adapterView, View view,
+				int position, long id) {
+
+			Log.d("testA", "position: " + position);
+
+			RelativeLayout customLayout = (RelativeLayout) getLayoutInflater()
+					.inflate(R.layout.popup_friend_settings_layout, null);
+
+			customLayout.findViewById(R.id.imageViewPopUpFrinedSettingsRemove)
+					.setOnClickListener(new MyOnClickListener());
+			customLayout.findViewById(R.id.imageViewPopUpFrinedSettingsEdit)
+					.setOnClickListener(new MyOnClickListener());
+
+			// TODO: show friends settings
+			customQuickAction = new QuickAction(activity,
+					R.style.PopupAnimation, R.drawable.popup_background,
+					customLayout);
+			customQuickAction.show(view);
+
+			return false;
+		}
+
+	}
+
+	private class MyOnClickListener implements OnClickListener {
+
+		@Override
+		public void onClick(View v) {
+			switch (v.getId()) {
+			case R.id.imageViewPopUpFrinedSettingsRemove:
+				Toast.makeText(activity, "remove", Toast.LENGTH_SHORT).show();
+				break;
+
+			case R.id.imageViewPopUpFrinedSettingsEdit:
+				Toast.makeText(activity, "edit", Toast.LENGTH_SHORT).show();
+				break;
+
+			case R.id.imageButtonMainActivityAddFriend:
+				
+				Toast.makeText(activity, "Add Friend", Toast.LENGTH_SHORT)
+						.show();
+				Intent intent = new Intent(activity, AddFriendActivity.class);
+				startActivity(intent);
+				
+				break;
+
+			default:
+				break;
+			}
+		}
+
+	}
 }

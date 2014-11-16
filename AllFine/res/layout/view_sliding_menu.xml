@@ -9,7 +9,11 @@
         android:id="@+id/listViewListSlidingMenuFriendsProfiles"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/color_background_sliding_menu"
+        android:divider="@color/color_background_sliding_menu"
         android:dividerHeight="@dimen/circularImageViewSlidemenuHeaderUserPhotoBorder"
+        android:longClickable="true"
+        android:padding="10dp"
         android:scrollbars="none" >
     </ListView>
 

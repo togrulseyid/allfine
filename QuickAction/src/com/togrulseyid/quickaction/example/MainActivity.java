@@ -22,14 +22,14 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_layout);
 
-        defaultQuickAction = new QuickAction(this, R.style.PopupAnimation, R.style.DefaultTextStyle,
-                R.drawable.icon_arrow_up, R.drawable.popup_background);
-        defaultQuickAction.setMaxHeightResource(R.dimen.popup_max_height);
-
-        @SuppressLint("InflateParams") RelativeLayout customLayout =
-                (RelativeLayout) getLayoutInflater().inflate(R.layout.popup_custom_layout, null);
-        customQuickAction = new QuickAction(this, R.style.PopupAnimation, R.drawable.icon_arrow_up,
-                R.drawable.popup_background, customLayout);
+//        defaultQuickAction = new QuickAction(this, R.style.PopupAnimation, R.style.DefaultTextStyle,
+//                R.drawable.icon_arrow_up, R.drawable.popup_background);
+//        defaultQuickAction.setMaxHeightResource(R.dimen.popup_max_height);
+//
+//        @SuppressLint("InflateParams") RelativeLayout customLayout =
+//                (RelativeLayout) getLayoutInflater().inflate(R.layout.popup_custom_layout, null);
+//        customQuickAction = new QuickAction(this, R.style.PopupAnimation, R.drawable.icon_arrow_up,
+//                R.drawable.popup_background, customLayout);
 
         insertExampleData();
     }
