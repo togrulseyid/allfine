@@ -1,35 +1,50 @@
 package com.allfine.activities;
 
-import com.allfine.R;
-import com.allfine.R.id;
-import com.allfine.R.layout;
-import com.allfine.R.menu;
+import java.util.ArrayList;
 
-import android.support.v7.app.ActionBarActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import com.allfine.R;
+import com.allfine.models.core.ContactNumbersModel;
+import com.allfine.operations.Utility;
 
 public class ActivityUpdateApp extends ActionBarActivity {
 
+	private ArrayList<ContactNumbersModel> alContacts;
+	private TextView textView;
+
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_activity_update_app);
+
+		
+		startActivity(new Intent(this, ContactsSynchronizationActivity.class));
+		finish();
+		
+//		long time = System.currentTimeMillis();
+//		alContacts = Utility.getContacts(this);
+//		if (alContacts != null)
+//			textView = (TextView) findViewById(R.id.textViewXXXX);
+//		textView.setText(alContacts.toString());
+//		Log.d("testTime","time: " +( time - System.currentTimeMillis()));
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.activity_update_app, menu);
 		return true;
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
 			return true;

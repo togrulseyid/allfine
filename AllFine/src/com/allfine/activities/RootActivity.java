@@ -14,7 +14,7 @@ import android.widget.ImageView;
 
 import com.allfine.R;
 import com.allfine.constants.BusinessConstants;
-import com.allfine.constants.MessageConstants;
+import com.allfine.enums.MessagesEnum;
 import com.allfine.models.core.CoreModel;
 import com.allfine.operations.NetworkOperations;
 import com.allfine.operations.Utility;
@@ -152,7 +152,7 @@ public class RootActivity extends Activity {
 				Log.d("rootingActivity", "" + rootingActivity);
 				if (result != null
 						&& result.getMessageId() != null
-						&& result.getMessageId() == MessageConstants.APP_VERSION_INCORRECT) {
+						&& result.getMessageId() == MessagesEnum.MI_APP_VERSION_INCORRECT.getId()) {
 					rootingActivity = getResources().getString(
 							R.string._ROOTING_FORCE_UPDATE_ACTIVITY);
 				}

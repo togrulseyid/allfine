@@ -6,6 +6,7 @@ public class ContactNumbersModel {
 
 	private String firstName;
 	private String lastName;
+	private String displayName;
 	private ArrayList<String> numbers;
 
 	public String getFirstName() {
@@ -35,7 +36,16 @@ public class ContactNumbersModel {
 	@Override
 	public String toString() {
 		return "ContactNumbersModel [firstName=" + firstName + ", lastName="
-				+ lastName + ", numbers=" + numbers + "]";
+				+ lastName + ", displayName=" + getDisplayName() + ", numbers="
+				+ numbers + "]";
+	}
+
+	public String getDisplayName() {
+		return displayName;
+	}
+
+	public void setDisplayName(String displayName) {
+		this.displayName = displayName;
 	}
 
 }

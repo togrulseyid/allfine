@@ -1,18 +1,11 @@
 package com.allfine.operations;
 
-import java.math.BigDecimal;
-
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.content.res.Resources;
-import android.util.Log;
 
 import com.allfine.R;
-import com.allfine.constants.BusinessConstants;
-import com.allfine.constants.MessageConstants;
 import com.allfine.models.core.CoreModel;
-import com.allfine.models.core.UserModel;
 
 public class SPProvider {
 

@@ -29,6 +29,7 @@ import org.apache.http.params.HttpParams;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -37,14 +38,18 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.Signature;
+import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.ContactsContract;
+import android.provider.ContactsContract.Contacts;
 import android.telephony.TelephonyManager;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -54,6 +59,7 @@ import com.allfine.R;
 import com.allfine.activities.MainActivity;
 import com.allfine.activities.RootActivity;
 import com.allfine.constants.BusinessConstants;
+import com.allfine.models.core.ContactNumbersModel;
 import com.allfine.models.core.FriendModel;
 import com.allfine.models.core.UserModel;
 import com.google.android.gms.common.ConnectionResult;
@@ -308,7 +314,6 @@ public class Utility {
 
 		return years;
 	}
-
 
 	private void deleteDirectory(File rootFile) {
 		if (rootFile.exists()) {
@@ -606,19 +611,16 @@ public class Utility {
 		SharedPreferences preference = context.getSharedPreferences(
 				context.getString(R.string._SP_ALL_FINE), Context.MODE_PRIVATE);
 		Editor edit = preference.edit();
-		
-		
+
 		// Put Entire Model to Preference
 		ObjectConvertor<UserModel> userModelConvertor = new ObjectConvertor<UserModel>();
 		try {
 			edit.putString(context.getString(R.string._SP_USER_MODEL),
-					userModelConvertor.getClassString(result))
-					.commit();
+					userModelConvertor.getClassString(result)).commit();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		
+
 		edit.putInt(context.getString(R.string._SP_USER_ID), result.getUserId())
 				.commit();
 
@@ -799,6 +801,74 @@ public class Utility {
 			// should never happen
 			throw new RuntimeException("Could not get package name: " + e);
 		}
+	}
+
+	public static ArrayList<ContactNumbersModel> getContacts(Activity activity) {
+		ArrayList<ContactNumbersModel> contactNumbersModels = null;
+
+		ContentResolver cr = activity.getContentResolver(); // Activity/Application
+		// android.content.Context
+		Cursor cursor = cr.query(ContactsContract.Contacts.CONTENT_URI, null,
+				null, null, null);
+
+		if (cursor.moveToFirst()) {
+			contactNumbersModels = new ArrayList<ContactNumbersModel>();
+			do {
+				String id = cursor.getString(cursor
+						.getColumnIndex(ContactsContract.Contacts._ID));
+
+				if (Integer
+						.parseInt(cursor.getString(cursor
+								.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))) > 0) {
+					
+					//public final Cursor query (Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) 
+					Cursor pCur = cr.query(
+							ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+							null,
+							ContactsContract.CommonDataKinds.Phone.CONTACT_ID
+									+ " = ?",
+							new String[] { id },
+							null);
+					
+					while (pCur.moveToNext()) {
+						String contactNumber = pCur
+								.getString(pCur
+										.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+
+						String contactDisplayName = pCur
+								.getString(pCur
+										.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+						
+						
+						
+						
+						String contactName = pCur
+								.getString(pCur
+										.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DATA2));
+						
+						String contactLastName=
+										 pCur
+								.getString(pCur
+										.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DATA3));
+						
+						ContactNumbersModel number = new ContactNumbersModel();
+						number.setDisplayName(contactDisplayName);
+						number.setFirstName(contactName);
+						number.setLastName(contactLastName);
+							ArrayList<String> numbers = new ArrayList<String>();
+							numbers.add(contactNumber);
+						number.setNumbers(numbers);
+						
+						contactNumbersModels.add(number);
+						break;
+					}
+					pCur.close();
+				}
+
+			} while (cursor.moveToNext());
+		}
+
+		return contactNumbersModels;
 	}
 
 }

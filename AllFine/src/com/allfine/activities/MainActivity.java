@@ -44,6 +44,7 @@ public class MainActivity extends ActionBarActivity {
 	private QuickAction customQuickAction;
 	private ListView listViewMenu;
 
+	@SuppressLint("InflateParams")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -56,8 +57,7 @@ public class MainActivity extends ActionBarActivity {
 
 		listViewMenu = (ListView) findViewById(R.id.listViewListSlidingMenuFriendsProfiles);
 
-		MainActivitySlideMenuAdapter menuAdapter = new MainActivitySlideMenuAdapter(
-				this, user.getFriends());
+		menuAdapter = new MainActivitySlideMenuAdapter(this, user.getFriends());
 
 		if (user.getFriends().size() < BusinessConstants.MAX_USER_FRIEND) {
 
@@ -77,14 +77,6 @@ public class MainActivity extends ActionBarActivity {
 		listViewMenu.setOnItemClickListener(new MyOnItemClickListener(user));
 		listViewMenu
 				.setOnItemLongClickListener(new MyOnItemLongClickListener());
-
-		@SuppressLint("InflateParams")
-		RelativeLayout customLayout = (RelativeLayout) getLayoutInflater()
-				.inflate(R.layout.popup_reached_layout, null);
-
-		customQuickAction = new QuickAction(this, R.style.PopupAnimation,
-		// R.drawable.ic_notification_menu_edge,
-				R.drawable.popup_background, customLayout);
 
 		if (savedInstanceState == null) {
 			getSupportFragmentManager().beginTransaction()
@@ -164,6 +156,7 @@ public class MainActivity extends ActionBarActivity {
 			return networkOperations.sendEvent(params[0]);
 		}
 
+		@SuppressLint("InflateParams")
 		@Override
 		protected void onPostExecute(EventsModel result) {
 			super.onPostExecute(result);
@@ -177,7 +170,15 @@ public class MainActivity extends ActionBarActivity {
 
 				firendsPhoto.setBorderColor(getResources().getColor(
 						R.color.color_all_fine_main_color));
+				
 				Log.d("testA", "firendsPhoto color change");
+
+				RelativeLayout customLayout = (RelativeLayout) getLayoutInflater()
+						.inflate(R.layout.popup_reached_layout, null);
+
+				customQuickAction = new QuickAction(activity,
+						R.style.PopupAnimation, R.drawable.popup_background,
+						customLayout);
 
 				customQuickAction.show(view);
 			}
@@ -208,6 +209,7 @@ public class MainActivity extends ActionBarActivity {
 
 	private class MyOnItemLongClickListener implements OnItemLongClickListener {
 
+		@SuppressLint("InflateParams")
 		@Override
 		public boolean onItemLongClick(AdapterView<?> adapterView, View view,
 				int position, long id) {
@@ -247,12 +249,12 @@ public class MainActivity extends ActionBarActivity {
 				break;
 
 			case R.id.imageButtonMainActivityAddFriend:
-				
+
 				Toast.makeText(activity, "Add Friend", Toast.LENGTH_SHORT)
 						.show();
 				Intent intent = new Intent(activity, AddFriendActivity.class);
 				startActivity(intent);
-				
+
 				break;
 
 			default:

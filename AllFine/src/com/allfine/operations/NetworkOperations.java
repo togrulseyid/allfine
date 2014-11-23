@@ -19,15 +19,15 @@ import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 
 import com.allfine.constants.BusinessConstants;
-import com.allfine.constants.MessageConstants;
 import com.allfine.constants.UrlConstants;
-import com.allfine.models.ActionInfoModelArrayList;
-import com.allfine.models.CityModelArrayList;
+import com.allfine.enums.MessagesEnum;
 import com.allfine.models.GCMInfoModel;
+import com.allfine.models.core.ContactsModelList;
 import com.allfine.models.core.CoreModel;
 import com.allfine.models.core.EventsModel;
 import com.allfine.models.core.UserModel;
@@ -117,9 +117,9 @@ public class NetworkOperations {
 	// UserModel userModel = new UserModel();
 	//
 	// if (!Utility.checkNetwork(context)) {
-	// userModel.setMessageId(MessageConstants.NO_NETWORK_CONNECTION);
+	// userModel.setMessageId(MessagesEnum.MI_NO_NETWORK_CONNECTION.getId());
 	// } else if (!Utility.checkInternetConnection()) {
-	// userModel.setMessageId(MessageConstants.NO_INTERNET_CONNECTION);
+	// userModel.setMessageId(MessagesEnum.MI_NO_INTERNET_CONNECTION.getId());
 	// } else {
 	// try {
 	//
@@ -141,9 +141,9 @@ public class NetworkOperations {
 	// return userModel;
 	//
 	// } catch (ClientProtocolException ex) {
-	// userModel.setMessageId(MessageConstants.EXCEPTION_ERROR);
+	// userModel.setMessageId(MessagesEnum.MI_EXCEPTION_ERROR.getId());
 	// } catch (IOException ex) {
-	// userModel.setMessageId(MessageConstants.EXCEPTION_ERROR);
+	// userModel.setMessageId(MessagesEnum.MI_EXCEPTION_ERROR.getId());
 	// }
 	// }
 	//
@@ -158,9 +158,9 @@ public class NetworkOperations {
 	// UserModel userModel = new UserModel();
 	//
 	// if (!Utility.checkNetwork(context)) {
-	// userModel.setMessageId(MessageConstants.NO_NETWORK_CONNECTION);
+	// userModel.setMessageId(MessagesEnum.MI_NO_NETWORK_CONNECTION.getId());
 	// } else if (!Utility.checkInternetConnection()) {
-	// userModel.setMessageId(MessageConstants.NO_INTERNET_CONNECTION);
+	// userModel.setMessageId(MessagesEnum.MI_NO_INTERNET_CONNECTION.getId());
 	// } else {
 	// try {
 	//
@@ -208,9 +208,9 @@ public class NetworkOperations {
 	// context);
 	//
 	// if (!Utility.checkNetwork(context)) {
-	// model.setMessageId(MessageConstants.NO_NETWORK_CONNECTION);
+	// model.setMessageId(MessagesEnum.MI_NO_NETWORK_CONNECTION.getId());
 	// } else if (!Utility.checkInternetConnection()) {
-	// model.setMessageId(MessageConstants.NO_INTERNET_CONNECTION);
+	// model.setMessageId(MessagesEnum.MI_NO_INTERNET_CONNECTION.getId());
 	// } else {
 	// try {
 	//
@@ -231,9 +231,9 @@ public class NetworkOperations {
 	// return model;
 	//
 	// } catch (ClientProtocolException ex) {
-	// model.setMessageId(MessageConstants.SERVER_CONNECTION_PROBLEM);
+	// model.setMessageId(MessagesEnum.MI_SERVER_CONNECTION_PROBLEM.getId());
 	// } catch (IOException ex) {
-	// model.setMessageId(MessageConstants.SERVER_CONNECTION_PROBLEM);
+	// model.setMessageId(MessagesEnum.MI_SERVER_CONNECTION_PROBLEM.getId());
 	// }
 	// }
 	//
@@ -247,9 +247,9 @@ public class NetworkOperations {
 	// context);
 	//
 	// if (!Utility.checkNetwork(context)) {
-	// model.setMessageId(MessageConstants.NO_NETWORK_CONNECTION);
+	// model.setMessageId(MessagesEnum.MI_NO_NETWORK_CONNECTION.getId());
 	// } else if (!Utility.checkInternetConnection()) {
-	// model.setMessageId(MessageConstants.NO_INTERNET_CONNECTION);
+	// model.setMessageId(MessagesEnum.MI_NO_INTERNET_CONNECTION.getId());
 	// } else {
 	// try {
 	//
@@ -269,9 +269,9 @@ public class NetworkOperations {
 	// return model;
 	//
 	// } catch (ClientProtocolException ex) {
-	// model.setMessageId(MessageConstants.SERVER_CONNECTION_PROBLEM);
+	// model.setMessageId(MessagesEnum.MI_SERVER_CONNECTION_PROBLEM.getId());
 	// } catch (IOException ex) {
-	// model.setMessageId(MessageConstants.SERVER_CONNECTION_PROBLEM);
+	// model.setMessageId(MessagesEnum.MI_SERVER_CONNECTION_PROBLEM.getId());
 	// }
 	// }
 	//
@@ -286,9 +286,9 @@ public class NetworkOperations {
 	// UserModel userModel = new UserModel();
 	//
 	// if (!Utility.checkNetwork(context)) {
-	// userModel.setMessageId(MessageConstants.NO_NETWORK_CONNECTION);
+	// userModel.setMessageId(MessagesEnum.MI_NO_NETWORK_CONNECTION.getId());
 	// } else if (!Utility.checkInternetConnection()) {
-	// userModel.setMessageId(MessageConstants.NO_INTERNET_CONNECTION);
+	// userModel.setMessageId(MessagesEnum.MI_NO_INTERNET_CONNECTION.getId());
 	// } else {
 	// try {
 	//
@@ -310,103 +310,109 @@ public class NetworkOperations {
 	// return userModel;
 	//
 	// } catch (ClientProtocolException ex) {
-	// userModel.setMessageId(MessageConstants.EXCEPTION_ERROR);
+	// userModel.setMessageId(MessagesEnum.MI_EXCEPTION_ERROR.getId());
 	// } catch (IOException ex) {
-	// userModel.setMessageId(MessageConstants.EXCEPTION_ERROR);
+	// userModel.setMessageId(MessagesEnum.MI_EXCEPTION_ERROR.getId());
 	// }
 	// }
 	//
 	// return userModel;
 	// }
 
-	public UserModel saveUserProfileData(UserModel model) {
+	// public UserModel saveUserProfileData(UserModel model) {
+	//
+	// model = (UserModel) SPProvider.initializeObject(model, context);
+	//
+	// UserModel userModel = new UserModel();
+	//
+	// if (!Utility.checkNetwork(context)) {
+	//
+	// userModel.setMessageId(MessagesEnum.MI_NO_NETWORK_CONNECTION.getId());
+	// } else if (!Utility.checkInternetConnection()) {
+	// userModel.setMessageId(MessagesEnum.MI_NO_INTERNET_CONNECTION.getId());
+	// } else {
+	// try {
+	//
+	// ObjectConvertor<UserModel> objectConvertorModel = new
+	// ObjectConvertor<UserModel>();
+	//
+	// String result = postAndResponseString(
+	// objectConvertorModel.getClassString(model),
+	// convertHttps(Utility.decrypt(
+	// UrlConstants.URL_SAVE_PROFILE_DATA,
+	// Utility.getAppSignature(context))),
+	// BusinessConstants.CONNECTION_TIMEOUT,
+	// BusinessConstants.BUSINESS_DATA_TIMEOUT);
+	//
+	// ObjectConvertor<UserModel> objectConvertorUserModel = new
+	// ObjectConvertor<UserModel>();
+	// userModel = objectConvertorUserModel.getClassObject(result,
+	// UserModel.class);
+	//
+	// return userModel;
+	//
+	// } catch (ClientProtocolException ex) {
+	//
+	// userModel.setMessageId(MessagesEnum.MI_EXCEPTION_ERROR.getId());
+	// } catch (IOException ex) {
+	// userModel.setMessageId(MessagesEnum.MI_EXCEPTION_ERROR.getId());
+	// }
+	// }
+	//
+	// return userModel;
+	// }
 
-		model = (UserModel) SPProvider.initializeObject(model, context);
-
-		UserModel userModel = new UserModel();
-
-		if (!Utility.checkNetwork(context)) {
-			userModel.setMessageId(MessageConstants.NO_NETWORK_CONNECTION);
-		} else if (!Utility.checkInternetConnection()) {
-			userModel.setMessageId(MessageConstants.NO_INTERNET_CONNECTION);
-		} else {
-			try {
-
-				ObjectConvertor<UserModel> objectConvertorModel = new ObjectConvertor<UserModel>();
-
-				String result = postAndResponseString(
-						objectConvertorModel.getClassString(model),
-						convertHttps(Utility.decrypt(
-								UrlConstants.URL_SAVE_PROFILE_DATA,
-								Utility.getAppSignature(context))),
-						BusinessConstants.CONNECTION_TIMEOUT,
-						BusinessConstants.BUSINESS_DATA_TIMEOUT);
-
-				ObjectConvertor<UserModel> objectConvertorUserModel = new ObjectConvertor<UserModel>();
-				userModel = objectConvertorUserModel.getClassObject(result,
-						UserModel.class);
-
-				return userModel;
-
-			} catch (ClientProtocolException ex) {
-				userModel.setMessageId(MessageConstants.EXCEPTION_ERROR);
-			} catch (IOException ex) {
-				userModel.setMessageId(MessageConstants.EXCEPTION_ERROR);
-			}
-		}
-
-		return userModel;
-	}
-
-	public UserModel updateUserProfileData(CoreModel model) {
-
-		model = (CoreModel) SPProvider.initializeObject(model, context);
-
-		UserModel userModel = new UserModel();
-
-		if (!Utility.checkNetwork(context)) {
-			userModel.setMessageId(MessageConstants.NO_NETWORK_CONNECTION);
-		} else if (!Utility.checkInternetConnection()) {
-			userModel.setMessageId(MessageConstants.NO_INTERNET_CONNECTION);
-		} else {
-			try {
-
-				ObjectConvertor<CoreModel> objectConvertorModel = new ObjectConvertor<CoreModel>();
-
-				String result = postAndResponseString(
-						objectConvertorModel.getClassString(model),
-						Utility.decrypt(UrlConstants.URL_PROFILE_BY_TOKEN,
-								Utility.getAppSignature(context)),
-						BusinessConstants.CONNECTION_TIMEOUT,
-						BusinessConstants.BUSINESS_DATA_TIMEOUT);
-
-				Log.d("testTTT", "" + result.toString());
-				ObjectConvertor<UserModel> objectConvertorUserModel = new ObjectConvertor<UserModel>();
-				userModel = objectConvertorUserModel.getClassObject(result,
-						UserModel.class);
-
-				userModel.setMessageId(MessageConstants.SUCCESSFUL);
-
-				return userModel;
-
-			} catch (ClientProtocolException ex) {
-				userModel.setMessageId(MessageConstants.EXCEPTION_ERROR);
-			} catch (IOException ex) {
-				userModel.setMessageId(MessageConstants.EXCEPTION_ERROR);
-			}
-		}
-
-		return userModel;
-	}
+	// public UserModel updateUserProfileData(CoreModel model) {
+	//
+	// model = (CoreModel) SPProvider.initializeObject(model, context);
+	//
+	// UserModel userModel = new UserModel();
+	//
+	// if (!Utility.checkNetwork(context)) {
+	// userModel.setMessageId(MessagesEnum.MI_NO_NETWORK_CONNECTION.getId());
+	// } else if (!Utility.checkInternetConnection()) {
+	// userModel.setMessageId(MessagesEnum.MI_NO_INTERNET_CONNECTION.getId());
+	// } else {
+	// try {
+	//
+	// ObjectConvertor<CoreModel> objectConvertorModel = new
+	// ObjectConvertor<CoreModel>();
+	//
+	// String result = postAndResponseString(
+	// objectConvertorModel.getClassString(model),
+	// Utility.decrypt(UrlConstants.URL_PROFILE_BY_TOKEN,
+	// Utility.getAppSignature(context)),
+	// BusinessConstants.CONNECTION_TIMEOUT,
+	// BusinessConstants.BUSINESS_DATA_TIMEOUT);
+	//
+	// Log.d("testTTT", "" + result.toString());
+	// ObjectConvertor<UserModel> objectConvertorUserModel = new
+	// ObjectConvertor<UserModel>();
+	// userModel = objectConvertorUserModel.getClassObject(result,
+	// UserModel.class);
+	//
+	// userModel.setMessageId(MessagesEnum.MI_SUCCESSFUL.getId());
+	//
+	// return userModel;
+	//
+	// } catch (ClientProtocolException ex) {
+	// userModel.setMessageId(MessagesEnum.MI_EXCEPTION_ERROR.getId());
+	// } catch (IOException ex) {
+	// userModel.setMessageId(MessagesEnum.MI_EXCEPTION_ERROR.getId());
+	// }
+	// }
+	//
+	// return userModel;
+	// }
 
 	public CoreModel checkAppVersion(CoreModel model) {
 
 		model = (CoreModel) SPProvider.initializeObject(model, context);
 
 		if (!Utility.checkNetwork(context)) {
-			model.setMessageId(MessageConstants.NO_NETWORK_CONNECTION);
+			model.setMessageId(MessagesEnum.MI_NO_NETWORK_CONNECTION.getId());
 		} else if (!Utility.checkInternetConnection()) {
-			model.setMessageId(MessageConstants.NO_INTERNET_CONNECTION);
+			model.setMessageId(MessagesEnum.MI_NO_INTERNET_CONNECTION.getId());
 		} else {
 			try {
 
@@ -424,9 +430,9 @@ public class NetworkOperations {
 				return model;
 
 			} catch (ClientProtocolException ex) {
-				model.setMessageId(MessageConstants.EXCEPTION_ERROR);
+				model.setMessageId(MessagesEnum.MI_EXCEPTION_ERROR.getId());
 			} catch (IOException ex) {
-				model.setMessageId(MessageConstants.EXCEPTION_ERROR);
+				model.setMessageId(MessagesEnum.MI_EXCEPTION_ERROR.getId());
 			}
 		}
 
@@ -434,42 +440,44 @@ public class NetworkOperations {
 	}
 
 	// Friend User Profile Activity Model
-//	public UserModel getFriendUserProfileActivityModel(CoreModel model) {
-//
-//		model = (CoreModel) SPProvider.initializeObject(model, context);
-//
-//		UserModel userModel = new UserModel();
-//
-//		if (!Utility.checkNetwork(context)) {
-//			userModel.setMessageId(MessageConstants.NO_NETWORK_CONNECTION);
-//		} else if (!Utility.checkInternetConnection()) {
-//			userModel.setMessageId(MessageConstants.NO_INTERNET_CONNECTION);
-//		} else {
-//			try {
-//
-//				ObjectConvertor<CoreModel> objectConvertorModel = new ObjectConvertor<CoreModel>();
-//
-//				String result = postAndResponseString(
-//						objectConvertorModel.getClassString(model),
-//						convertHttps(Utility.decrypt(
-//								UrlConstants.URL_ACTIVITY_FRIEND_USER_PROFILE,
-//								Utility.getAppSignature(context))),
-//						BusinessConstants.CONNECTION_TIMEOUT,
-//						BusinessConstants.BUSINESS_DATA_TIMEOUT);
-//
-//				ObjectConvertor<UserModel> objectConvertorUserModel = new ObjectConvertor<UserModel>();
-//				userModel = objectConvertorUserModel.getClassObject(result,
-//						UserModel.class);
-//
-//			} catch (ClientProtocolException ex) {
-//				userModel.setMessageId(MessageConstants.UN_SUCCESSFUL);
-//			} catch (IOException ex) {
-//				userModel.setMessageId(MessageConstants.UN_SUCCESSFUL);
-//			}
-//		}
-//
-//		return userModel;
-//	}
+	// public UserModel getFriendUserProfileActivityModel(CoreModel model) {
+	//
+	// model = (CoreModel) SPProvider.initializeObject(model, context);
+	//
+	// UserModel userModel = new UserModel();
+	//
+	// if (!Utility.checkNetwork(context)) {
+	// userModel.setMessageId(MessagesEnum.MI_NO_NETWORK_CONNECTION.getId());
+	// } else if (!Utility.checkInternetConnection()) {
+	// userModel.setMessageId(MessagesEnum.MI_NO_INTERNET_CONNECTION.getId());
+	// } else {
+	// try {
+	//
+	// ObjectConvertor<CoreModel> objectConvertorModel = new
+	// ObjectConvertor<CoreModel>();
+	//
+	// String result = postAndResponseString(
+	// objectConvertorModel.getClassString(model),
+	// convertHttps(Utility.decrypt(
+	// UrlConstants.URL_ACTIVITY_FRIEND_USER_PROFILE,
+	// Utility.getAppSignature(context))),
+	// BusinessConstants.CONNECTION_TIMEOUT,
+	// BusinessConstants.BUSINESS_DATA_TIMEOUT);
+	//
+	// ObjectConvertor<UserModel> objectConvertorUserModel = new
+	// ObjectConvertor<UserModel>();
+	// userModel = objectConvertorUserModel.getClassObject(result,
+	// UserModel.class);
+	//
+	// } catch (ClientProtocolException ex) {
+	// userModel.setMessageId(MessageConstants.UN_SUCCESSFUL);
+	// } catch (IOException ex) {
+	// userModel.setMessageId(MessageConstants.UN_SUCCESSFUL);
+	// }
+	// }
+	//
+	// return userModel;
+	// }
 
 	// FRIENDS USER PROFILE ACTIVITY LIST
 	// public ActivityModelArrayList getFriendUserProfileActivityList(CoreModel
@@ -482,10 +490,10 @@ public class NetworkOperations {
 	//
 	// if (!Utility.checkNetwork(context)) {
 	// activitymodelarraylist
-	// .setMessageId(MessageConstants.NO_NETWORK_CONNECTION);
+	// .setMessageId(MessagesEnum.MI_NO_NETWORK_CONNECTION.getId());
 	// } else if (!Utility.checkInternetConnection()) {
 	// activitymodelarraylist
-	// .setMessageId(MessageConstants.NO_INTERNET_CONNECTION);
+	// .setMessageId(MessagesEnum.MI_NO_INTERNET_CONNECTION.getId());
 	// } else {
 	// try {
 	//
@@ -526,10 +534,10 @@ public class NetworkOperations {
 	//
 	// if (!Utility.checkNetwork(context)) {
 	// activitymodelarraylist
-	// .setMessageId(MessageConstants.NO_NETWORK_CONNECTION);
+	// .setMessageId(MessagesEnum.MI_NO_NETWORK_CONNECTION.getId());
 	// } else if (!Utility.checkInternetConnection()) {
 	// activitymodelarraylist
-	// .setMessageId(MessageConstants.NO_INTERNET_CONNECTION);
+	// .setMessageId(MessagesEnum.MI_NO_INTERNET_CONNECTION.getId());
 	// } else {
 	// try {
 	//
@@ -572,10 +580,10 @@ public class NetworkOperations {
 	//
 	// if (!Utility.checkNetwork(context)) {
 	// activitymodelarraylist
-	// .setMessageId(MessageConstants.NO_NETWORK_CONNECTION);
+	// .setMessageId(MessagesEnum.MI_NO_NETWORK_CONNECTION.getId());
 	// } else if (!Utility.checkInternetConnection()) {
 	// activitymodelarraylist
-	// .setMessageId(MessageConstants.NO_INTERNET_CONNECTION);
+	// .setMessageId(MessagesEnum.MI_NO_INTERNET_CONNECTION.getId());
 	// } else {
 	// try {
 	//
@@ -616,10 +624,10 @@ public class NetworkOperations {
 	//
 	// if (!Utility.checkNetwork(context)) {
 	// activitymodelarraylist
-	// .setMessageId(MessageConstants.NO_NETWORK_CONNECTION);
+	// .setMessageId(MessagesEnum.MI_NO_NETWORK_CONNECTION.getId());
 	// } else if (!Utility.checkInternetConnection()) {
 	// activitymodelarraylist
-	// .setMessageId(MessageConstants.NO_INTERNET_CONNECTION);
+	// .setMessageId(MessagesEnum.MI_NO_INTERNET_CONNECTION.getId());
 	// } else {
 	// try {
 	//
@@ -660,10 +668,10 @@ public class NetworkOperations {
 	//
 	// if (!Utility.checkNetwork(context)) {
 	// ratingPointModelArrayList
-	// .setMessageId(MessageConstants.NO_NETWORK_CONNECTION);
+	// .setMessageId(MessagesEnum.MI_NO_NETWORK_CONNECTION.getId());
 	// } else if (!Utility.checkInternetConnection()) {
 	// ratingPointModelArrayList
-	// .setMessageId(MessageConstants.NO_INTERNET_CONNECTION);
+	// .setMessageId(MessagesEnum.MI_NO_INTERNET_CONNECTION.getId());
 	// } else {
 	// try {
 	//
@@ -705,10 +713,10 @@ public class NetworkOperations {
 	//
 	// if (!Utility.checkNetwork(context)) {
 	// ratingPointModelArrayList
-	// .setMessageId(MessageConstants.NO_NETWORK_CONNECTION);
+	// .setMessageId(MessagesEnum.MI_NO_NETWORK_CONNECTION.getId());
 	// } else if (!Utility.checkInternetConnection()) {
 	// ratingPointModelArrayList
-	// .setMessageId(MessageConstants.NO_INTERNET_CONNECTION);
+	// .setMessageId(MessagesEnum.MI_NO_INTERNET_CONNECTION.getId());
 	// } else {
 	// try {
 	//
@@ -748,10 +756,10 @@ public class NetworkOperations {
 	//
 	// if (!Utility.checkNetwork(context)) {
 	// ratingPointModelArrayList
-	// .setMessageId(MessageConstants.NO_NETWORK_CONNECTION);
+	// .setMessageId(MessagesEnum.MI_NO_NETWORK_CONNECTION.getId());
 	// } else if (!Utility.checkInternetConnection()) {
 	// ratingPointModelArrayList
-	// .setMessageId(MessageConstants.NO_INTERNET_CONNECTION);
+	// .setMessageId(MessagesEnum.MI_NO_INTERNET_CONNECTION.getId());
 	// } else {
 	// try {
 	// ObjectConvertor<PagingModel> objectConvertorModel = new
@@ -770,16 +778,16 @@ public class NetworkOperations {
 	// .getClassObject(result, RatingPointModelArrayList.class);
 	//
 	// ratingPointModelArrayList
-	// .setMessageId(MessageConstants.SUCCESSFUL);
+	// .setMessageId(MessagesEnum.MI_SUCCESSFUL.getId());
 	//
 	// return ratingPointModelArrayList;
 	//
 	// } catch (ClientProtocolException ex) {
 	// ratingPointModelArrayList
-	// .setMessageId(MessageConstants.EXCEPTION_ERROR);
+	// .setMessageId(MessagesEnum.MI_EXCEPTION_ERROR.getId());
 	// } catch (IOException ex) {
 	// ratingPointModelArrayList
-	// .setMessageId(MessageConstants.EXCEPTION_ERROR);
+	// .setMessageId(MessagesEnum.MI_EXCEPTION_ERROR.getId());
 	// }
 	// }
 	//
@@ -892,10 +900,10 @@ public class NetworkOperations {
 	//
 	// if (!Utility.checkNetwork(context)) {
 	// ratingPointModelArrayList
-	// .setMessageId(MessageConstants.NO_NETWORK_CONNECTION);
+	// .setMessageId(MessagesEnum.MI_NO_NETWORK_CONNECTION.getId());
 	// } else if (!Utility.checkInternetConnection()) {
 	// ratingPointModelArrayList
-	// .setMessageId(MessageConstants.NO_INTERNET_CONNECTION);
+	// .setMessageId(MessagesEnum.MI_NO_INTERNET_CONNECTION.getId());
 	// } else {
 	// try {
 	//
@@ -938,10 +946,10 @@ public class NetworkOperations {
 	//
 	// if (!Utility.checkNetwork(context)) {
 	// ratingInviteModelArrayList
-	// .setMessageId(MessageConstants.NO_NETWORK_CONNECTION);
+	// .setMessageId(MessagesEnum.MI_NO_NETWORK_CONNECTION.getId());
 	// } else if (!Utility.checkInternetConnection()) {
 	// ratingInviteModelArrayList
-	// .setMessageId(MessageConstants.NO_INTERNET_CONNECTION);
+	// .setMessageId(MessagesEnum.MI_NO_INTERNET_CONNECTION.getId());
 	// } else {
 	// try {
 	// ObjectConvertor<PagingModel> objectConvertorModel = new
@@ -970,45 +978,47 @@ public class NetworkOperations {
 	// return ratingInviteModelArrayList;
 	// }
 
-	public CityModelArrayList getCities(CoreModel model) {
-
-		model = (CoreModel) SPProvider.initializeObject(model, context);
-		CityModelArrayList cityModelArrayList = new CityModelArrayList();
-
-		if (!Utility.checkNetwork(context)) {
-			cityModelArrayList
-					.setMessageId(MessageConstants.NO_NETWORK_CONNECTION);
-		} else if (!Utility.checkInternetConnection()) {
-			cityModelArrayList
-					.setMessageId(MessageConstants.NO_INTERNET_CONNECTION);
-		} else {
-			try {
-
-				ObjectConvertor<CoreModel> objectConvertorModel = new ObjectConvertor<CoreModel>();
-
-				String result = postAndResponseString(
-						objectConvertorModel.getClassString(model),
-						convertHttps(Utility.decrypt(
-								UrlConstants.URL_LOAD_CITIES,
-								Utility.getAppSignature(context))),
-						BusinessConstants.CONNECTION_TIMEOUT,
-						BusinessConstants.BUSINESS_DATA_TIMEOUT);
-
-				ObjectConvertor<CityModelArrayList> objectConvertorUserModel = new ObjectConvertor<CityModelArrayList>();
-				cityModelArrayList = objectConvertorUserModel.getClassObject(
-						result, CityModelArrayList.class);
-
-				return cityModelArrayList;
-
-			} catch (ClientProtocolException ex) {
-				model.setMessageId(MessageConstants.EXCEPTION_ERROR);
-			} catch (IOException ex) {
-				model.setMessageId(MessageConstants.EXCEPTION_ERROR);
-			}
-		}
-
-		return cityModelArrayList;
-	}
+	// public CityModelArrayList getCities(CoreModel model) {
+	//
+	// model = (CoreModel) SPProvider.initializeObject(model, context);
+	// CityModelArrayList cityModelArrayList = new CityModelArrayList();
+	//
+	// if (!Utility.checkNetwork(context)) {
+	// cityModelArrayList
+	// .setMessageId(MessagesEnum.MI_NO_NETWORK_CONNECTION.getId());
+	// } else if (!Utility.checkInternetConnection()) {
+	// cityModelArrayList
+	// .setMessageId(MessagesEnum.MI_NO_INTERNET_CONNECTION.getId());
+	// } else {
+	// try {
+	//
+	// ObjectConvertor<CoreModel> objectConvertorModel = new
+	// ObjectConvertor<CoreModel>();
+	//
+	// String result = postAndResponseString(
+	// objectConvertorModel.getClassString(model),
+	// convertHttps(Utility.decrypt(
+	// UrlConstants.URL_LOAD_CITIES,
+	// Utility.getAppSignature(context))),
+	// BusinessConstants.CONNECTION_TIMEOUT,
+	// BusinessConstants.BUSINESS_DATA_TIMEOUT);
+	//
+	// ObjectConvertor<CityModelArrayList> objectConvertorUserModel = new
+	// ObjectConvertor<CityModelArrayList>();
+	// cityModelArrayList = objectConvertorUserModel.getClassObject(
+	// result, CityModelArrayList.class);
+	//
+	// return cityModelArrayList;
+	//
+	// } catch (ClientProtocolException ex) {
+	// model.setMessageId(MessagesEnum.MI_EXCEPTION_ERROR.getId());
+	// } catch (IOException ex) {
+	// model.setMessageId(MessagesEnum.MI_EXCEPTION_ERROR.getId());
+	// }
+	// }
+	//
+	// return cityModelArrayList;
+	// }
 
 	// public NewsFeedModelArrayList getNewsFeedPaging(PagingModel pagingModel)
 	// {
@@ -1019,9 +1029,9 @@ public class NetworkOperations {
 	// NewsFeedModelArrayList model = new NewsFeedModelArrayList();
 	//
 	// if (!Utility.checkNetwork(context)) {
-	// model.setMessageId(MessageConstants.NO_NETWORK_CONNECTION);
+	// model.setMessageId(MessagesEnum.MI_NO_NETWORK_CONNECTION.getId());
 	// } else if (!Utility.checkInternetConnection()) {
-	// model.setMessageId(MessageConstants.NO_INTERNET_CONNECTION);
+	// model.setMessageId(MessagesEnum.MI_NO_INTERNET_CONNECTION.getId());
 	// } else {
 	// try {
 	//
@@ -1045,9 +1055,9 @@ public class NetworkOperations {
 	// return model;
 	//
 	// } catch (ClientProtocolException ex) {
-	// model.setMessageId(MessageConstants.EXCEPTION_ERROR);
+	// model.setMessageId(MessagesEnum.MI_EXCEPTION_ERROR.getId());
 	// } catch (IOException ex) {
-	// model.setMessageId(MessageConstants.EXCEPTION_ERROR);
+	// model.setMessageId(MessagesEnum.MI_EXCEPTION_ERROR.getId());
 	// }
 	// }
 	//
@@ -1060,9 +1070,9 @@ public class NetworkOperations {
 	// NewsFeedModelArrayList model = new NewsFeedModelArrayList();
 	//
 	// if (!Utility.checkNetwork(context)) {
-	// model.setMessageId(MessageConstants.NO_NETWORK_CONNECTION);
+	// model.setMessageId(MessagesEnum.MI_NO_NETWORK_CONNECTION.getId());
 	// } else if (!Utility.checkInternetConnection()) {
-	// model.setMessageId(MessageConstants.NO_INTERNET_CONNECTION);
+	// model.setMessageId(MessagesEnum.MI_NO_INTERNET_CONNECTION.getId());
 	// } else {
 	// try {
 	//
@@ -1085,66 +1095,67 @@ public class NetworkOperations {
 	// return model;
 	//
 	// } catch (ClientProtocolException ex) {
-	// model.setMessageId(MessageConstants.EXCEPTION_ERROR);
+	// model.setMessageId(MessagesEnum.MI_EXCEPTION_ERROR.getId());
 	// } catch (IOException ex) {
-	// model.setMessageId(MessageConstants.EXCEPTION_ERROR);
+	// model.setMessageId(MessagesEnum.MI_EXCEPTION_ERROR.getId());
 	// }
 	// }
 	//
 	// return model;
 	// }
 
-	public CoreModel uploadActionInfoModelArrayList(
-			ActionInfoModelArrayList modelList) {
-
-		modelList = (ActionInfoModelArrayList) SPProvider.initializeObject(
-				modelList, context);
-
-		CoreModel coreModel = new CoreModel();
-
-		if (!Utility.checkNetwork(context)) {
-			coreModel.setMessageId(MessageConstants.NO_NETWORK_CONNECTION);
-		} else if (!Utility.checkInternetConnection()) {
-			coreModel.setMessageId(MessageConstants.NO_INTERNET_CONNECTION);
-		} else {
-			try {
-
-				ObjectConvertor<ActionInfoModelArrayList> objectConvertorModel = new ObjectConvertor<ActionInfoModelArrayList>();
-
-				String result = postAndResponseString(
-						objectConvertorModel.getClassString(modelList),
-						convertHttps(Utility.decrypt(
-								UrlConstants.URL_UPLOAD_ACTION_INFO,
-								Utility.getAppSignature(context))),
-						BusinessConstants.CONNECTION_TIMEOUT,
-						BusinessConstants.BUSINESS_DATA_TIMEOUT);
-
-				ObjectConvertor<CoreModel> objectConvertorUserModel = new ObjectConvertor<CoreModel>();
-				coreModel = objectConvertorUserModel.getClassObject(result,
-						CoreModel.class);
-
-				return coreModel;
-
-			} catch (ClientProtocolException ex) {
-				coreModel.setMessageId(MessageConstants.EXCEPTION_ERROR);
-			} catch (IOException ex) {
-				coreModel.setMessageId(MessageConstants.EXCEPTION_ERROR);
-			}
-		}
-
-		return coreModel;
-
-	}
-
+	// public CoreModel uploadActionInfoModelArrayList(ActionInfoModelArrayList
+	// modelList) {
+	//
+	// modelList = (ActionInfoModelArrayList) SPProvider.initializeObject(
+	// modelList, context);
+	//
+	// CoreModel coreModel = new CoreModel();
+	//
+	// if (!Utility.checkNetwork(context)) {
+	// coreModel.setMessageId(MessagesEnum.MI_NO_NETWORK_CONNECTION.getId());
+	// } else if (!Utility.checkInternetConnection()) {
+	// coreModel.setMessageId(MessagesEnum.MI_NO_INTERNET_CONNECTION.getId());
+	// } else {
+	// try {
+	//
+	// ObjectConvertor<ActionInfoModelArrayList> objectConvertorModel = new
+	// ObjectConvertor<ActionInfoModelArrayList>();
+	//
+	// String result = postAndResponseString(
+	// objectConvertorModel.getClassString(modelList),
+	// convertHttps(Utility.decrypt(
+	// UrlConstants.URL_UPLOAD_ACTION_INFO,
+	// Utility.getAppSignature(context))),
+	// BusinessConstants.CONNECTION_TIMEOUT,
+	// BusinessConstants.BUSINESS_DATA_TIMEOUT);
+	//
+	// ObjectConvertor<CoreModel> objectConvertorUserModel = new
+	// ObjectConvertor<CoreModel>();
+	// coreModel = objectConvertorUserModel.getClassObject(result,
+	// CoreModel.class);
+	//
+	// return coreModel;
+	//
+	// } catch (ClientProtocolException ex) {
+	// coreModel.setMessageId(MessagesEnum.MI_EXCEPTION_ERROR.getId());
+	// } catch (IOException ex) {
+	// coreModel.setMessageId(MessagesEnum.MI_EXCEPTION_ERROR.getId());
+	// }
+	// }
+	//
+	// return coreModel;
+	//
+	// }
 
 	public UserModel getUser(UserModel model) {
-		
+
 		model = (UserModel) SPProvider.initializeObject(model, context);
-		
+
 		if (!Utility.checkNetwork(context)) {
-			model.setMessageId(MessageConstants.NO_NETWORK_CONNECTION);
+			model.setMessageId(MessagesEnum.MI_NO_NETWORK_CONNECTION.getId());
 		} else if (!Utility.checkInternetConnection()) {
-			model.setMessageId(MessageConstants.NO_INTERNET_CONNECTION);
+			model.setMessageId(MessagesEnum.MI_NO_INTERNET_CONNECTION.getId());
 		} else {
 
 			try {
@@ -1159,23 +1170,25 @@ public class NetworkOperations {
 				model = objectConvertor.getClassObject(result, UserModel.class);
 				return model;
 			} catch (ClientProtocolException ex) {
-				model.setMessageId(MessageConstants.SERVER_CONNECTION_PROBLEM);
+				model.setMessageId(MessagesEnum.MI_SERVER_CONNECTION_PROBLEM
+						.getId());
 			} catch (IOException ex) {
-				model.setMessageId(MessageConstants.SERVER_CONNECTION_PROBLEM);
+				model.setMessageId(MessagesEnum.MI_SERVER_CONNECTION_PROBLEM
+						.getId());
 			}
-		
+
 		}
 		return model;
 	}
 
 	public EventsModel sendEvent(EventsModel model) {
-		
+
 		model = (EventsModel) SPProvider.initializeObject(model, context);
-		
+
 		if (!Utility.checkNetwork(context)) {
-			model.setMessageId(MessageConstants.NO_NETWORK_CONNECTION);
+			model.setMessageId(MessagesEnum.MI_NO_NETWORK_CONNECTION.getId());
 		} else if (!Utility.checkInternetConnection()) {
-			model.setMessageId(MessageConstants.NO_INTERNET_CONNECTION);
+			model.setMessageId(MessagesEnum.MI_NO_INTERNET_CONNECTION.getId());
 		} else {
 
 			try {
@@ -1187,15 +1200,18 @@ public class NetworkOperations {
 						BusinessConstants.CONNECTION_TIMEOUT,
 						BusinessConstants.BUSINESS_DATA_TIMEOUT);
 
-//				Log.d("result",result);
-				model = objectConvertor.getClassObject(result, EventsModel.class);
+				// Log.d("result",result);
+				model = objectConvertor.getClassObject(result,
+						EventsModel.class);
 				return model;
 			} catch (ClientProtocolException ex) {
-				model.setMessageId(MessageConstants.SERVER_CONNECTION_PROBLEM);
+				model.setMessageId(MessagesEnum.MI_SERVER_CONNECTION_PROBLEM
+						.getId());
 			} catch (IOException ex) {
-				model.setMessageId(MessageConstants.SERVER_CONNECTION_PROBLEM);
+				model.setMessageId(MessagesEnum.MI_SERVER_CONNECTION_PROBLEM
+						.getId());
 			}
-		
+
 		}
 		return model;
 	}
@@ -1205,4 +1221,41 @@ public class NetworkOperations {
 		return null;
 	}
 
+	public ContactsModelList sendContactsAndGetUsers(Activity context,
+			ContactsModelList model) {
+		model = (ContactsModelList) SPProvider.initializeObject(model, context);
+
+		if (!Utility.checkNetwork(context)) {
+			model.setMessageId(MessagesEnum.MI_NO_NETWORK_CONNECTION.getId());
+		} else if (!Utility.checkInternetConnection()) {
+			model.setMessageId(MessagesEnum.MI_NO_INTERNET_CONNECTION.getId());
+		} else {
+			try {
+
+				ObjectConvertor<ContactsModelList> objectConvertorModel = new ObjectConvertor<ContactsModelList>();
+
+				String result = postAndResponseString(
+						objectConvertorModel.getClassString(model),
+						convertHttps(Utility.decrypt(
+								UrlConstants.URL_SEND_GET_CONTACT_LIST,
+								Utility.getAppSignature(context))),
+						BusinessConstants.CONNECTION_TIMEOUT,
+						BusinessConstants.BUSINESS_DATA_TIMEOUT);
+
+				ObjectConvertor<ContactsModelList> objectConvertorUserModel = new ObjectConvertor<ContactsModelList>();
+				model = objectConvertorUserModel.getClassObject(result,
+						ContactsModelList.class);
+
+				return model;
+
+			} catch (ClientProtocolException ex) {
+				model.setMessageId(MessagesEnum.MI_EXCEPTION_ERROR.getId());
+			} catch (IOException ex) {
+				model.setMessageId(MessagesEnum.MI_EXCEPTION_ERROR.getId());
+			}
+		}
+
+		return model;
+
+	}
 }

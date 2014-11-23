@@ -7,8 +7,8 @@
 
     <com.mikhaellopez.circularimageview.CircularImageView
         android:id="@+id/circularImageViewLISlidingMenuFriend"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="@dimen/default_menu_item_dimen"
+        android:layout_height="@dimen/default_menu_item_dimen"
         android:layout_gravity="left"
         android:src="@drawable/profile_imran" />
 

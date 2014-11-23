@@ -5,6 +5,9 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
 
     <!-- SLIDING MENU -->
+    <dimen name="default_menu_item_dimen">60dp</dimen>
+
+    <!-- SLIDING MENU -->
 
     <dimen name="dimen_slidingmenu_offset">220dp</dimen>
     <dimen name="dimen_list_padding">10dp</dimen>
@@ -270,5 +273,9 @@
     <!-- Ringing Activity -->
     <dimen name="complex_view_call_view_padding">22dp</dimen>
     <dimen name="complex_view_call_textview_text_size">24sp</dimen>
+
+    <!-- ContactList -->
+    <dimen name="padding">16dp</dimen>
+    <dimen name="listview_item_padding">16dp</dimen>
 
 </resources>

@@ -1215,6 +1215,10 @@ containing a value of this type.
         public static final int abc_config_allowActionMenuItemTextWithIcon=0x7f060004;
         public static final int abc_config_showMenuShortcutsWhenKeyboardPresent=0x7f060003;
         public static final int abc_split_action_bar_is_narrow=0x7f060002;
+        /**  Default is to use a single pane layout 
+ On devices with a smallest width of 600dp or more, switch to a two-pane layout.
+         */
+        public static final int has_two_panes=0x7f060006;
     }
     public static final class color {
         public static final int abc_search_url_text_holo=0x7f07008b;
@@ -1382,7 +1386,7 @@ containing a value of this type.
         public static final int viewCardViewBackgroungColor2=0x7f07002c;
     }
     public static final class dimen {
-        public static final int ListViewFragmentFriendsTabsMarginBottom=0x7f08008c;
+        public static final int ListViewFragmentFriendsTabsMarginBottom=0x7f08008d;
         /**  Default height of an action bar. 
  Default height of an action bar. 
  Default height of an action bar. 
@@ -1468,14 +1472,14 @@ containing a value of this type.
         public static final int abc_search_view_text_min_width=0x7f08000c;
         /**  Action Bar 
          */
-        public static final int action_bar_tab_text_size=0x7f080026;
+        public static final int action_bar_tab_text_size=0x7f080027;
         /**  Register Activity 
          */
-        public static final int activityRegisterMarginBottom=0x7f08007b;
-        public static final int activityStartTextSize=0x7f080028;
+        public static final int activityRegisterMarginBottom=0x7f08007c;
+        public static final int activityStartTextSize=0x7f080029;
         /**  Activation Activity 
          */
-        public static final int activity_activation_text_view_phone_number_size=0x7f0800d1;
+        public static final int activity_activation_text_view_phone_number_size=0x7f0800d2;
         /**  Default screen margins, per the Android Design guidelines. 
 
          Example customization of dimensions originally defined in res/values/dimens.xml
@@ -1492,67 +1496,70 @@ containing a value of this type.
     
          */
         public static final int activity_horizontal_margin=0x7f080015;
-        public static final int activity_horizontal_margin_half=0x7f08001e;
-        public static final int activity_horizontal_spacing_margin_half=0x7f08001f;
+        public static final int activity_horizontal_margin_half=0x7f08001f;
+        public static final int activity_horizontal_spacing_margin_half=0x7f080020;
         /**  Start Activity 
          */
-        public static final int activity_start_linear_layout_bottom_margin=0x7f080027;
-        public static final int activity_update_app_title_size=0x7f0800cf;
+        public static final int activity_start_linear_layout_bottom_margin=0x7f080028;
+        public static final int activity_update_app_title_size=0x7f0800d0;
         /**  Update Activity Values 
          */
-        public static final int activity_update_button_style_paddings=0x7f0800cc;
-        public static final int activity_update_button_style_text_size=0x7f0800cd;
-        public static final int activity_update_default_space_between_elements=0x7f0800d0;
-        public static final int activity_update_text_view_app_version_info_size=0x7f0800ce;
+        public static final int activity_update_button_style_paddings=0x7f0800cd;
+        public static final int activity_update_button_style_text_size=0x7f0800ce;
+        public static final int activity_update_default_space_between_elements=0x7f0800d1;
+        public static final int activity_update_text_view_app_version_info_size=0x7f0800cf;
         /**  10 
  User information Details 
          */
-        public static final int activity_user_info_details_default_margin_between_elements=0x7f0800b7;
-        public static final int activity_vertical_horizontal_margin_half=0x7f080020;
+        public static final int activity_user_info_details_default_margin_between_elements=0x7f0800b8;
+        public static final int activity_vertical_horizontal_margin_half=0x7f080021;
         public static final int activity_vertical_margin=0x7f080016;
         /**  Changepassword Dialog 
          */
-        public static final int buttonDialogChangePasswordForgotMarginTop=0x7f080079;
-        public static final int buttonDialogChangePasswordForgotTextSize=0x7f08007a;
-        public static final int buttonFragmentCashoutTabMoneySubmitMargins=0x7f080080;
-        public static final int buttonLoginActivityForgotPassword=0x7f080077;
-        public static final int buttonLoginActivityForgotPasswordMarginTop=0x7f080078;
-        public static final int button_activity_user_info_details_button_text_size=0x7f0800ba;
-        public static final int button_activity_user_info_details_social_divider_height=0x7f0800be;
-        public static final int button_activity_user_info_details_social_divider_text_size=0x7f0800bd;
-        public static final int button_activity_user_info_details_social_margin=0x7f0800bf;
-        public static final int button_activity_user_info_details_twitter_button_padding=0x7f0800b9;
-        public static final int button_activity_user_info_details_twitter_connect_margin_top=0x7f0800bc;
-        public static final int button_activity_user_info_details_twitter_connect_padding=0x7f0800bb;
-        public static final int button_idle_activity_action_margin=0x7f0800b2;
-        public static final int button_idle_activity_action_margin_bottom=0x7f0800b1;
-        public static final int button_idle_activity_action_margin_top=0x7f0800b3;
-        public static final int button_idle_activity_action_padding_left=0x7f0800ac;
-        public static final int button_idle_activity_action_padding_right=0x7f0800ad;
-        public static final int button_idle_activity_action_text_size=0x7f0800ab;
-        public static final int button_newsfeed_fragment_action_margin_top=0x7f0800b4;
-        public static final int buttonlinearlayoutFragmentFriendsTabsInviteFriendsMargin=0x7f080089;
+        public static final int buttonDialogChangePasswordForgotMarginTop=0x7f08007a;
+        public static final int buttonDialogChangePasswordForgotTextSize=0x7f08007b;
+        public static final int buttonFragmentCashoutTabMoneySubmitMargins=0x7f080081;
+        public static final int buttonLoginActivityForgotPassword=0x7f080078;
+        public static final int buttonLoginActivityForgotPasswordMarginTop=0x7f080079;
+        public static final int button_activity_user_info_details_button_text_size=0x7f0800bb;
+        public static final int button_activity_user_info_details_social_divider_height=0x7f0800bf;
+        public static final int button_activity_user_info_details_social_divider_text_size=0x7f0800be;
+        public static final int button_activity_user_info_details_social_margin=0x7f0800c0;
+        public static final int button_activity_user_info_details_twitter_button_padding=0x7f0800ba;
+        public static final int button_activity_user_info_details_twitter_connect_margin_top=0x7f0800bd;
+        public static final int button_activity_user_info_details_twitter_connect_padding=0x7f0800bc;
+        public static final int button_idle_activity_action_margin=0x7f0800b3;
+        public static final int button_idle_activity_action_margin_bottom=0x7f0800b2;
+        public static final int button_idle_activity_action_margin_top=0x7f0800b4;
+        public static final int button_idle_activity_action_padding_left=0x7f0800ad;
+        public static final int button_idle_activity_action_padding_right=0x7f0800ae;
+        public static final int button_idle_activity_action_text_size=0x7f0800ac;
+        public static final int button_newsfeed_fragment_action_margin_top=0x7f0800b5;
+        public static final int buttonlinearlayoutFragmentFriendsTabsInviteFriendsMargin=0x7f08008a;
         /**  CashOut 
          */
-        public static final int cashOutFragmentMoneyTabMarginBottom=0x7f08007d;
-        public static final int cashOutFragmentMoneyTabMarginTop=0x7f08007e;
-        public static final int checkBoxActivityUserInfoDetailsFemaleMarginLeft=0x7f080070;
-        public static final int checkBoxActivityUserInfoDetailsSexItemsPadding=0x7f08006f;
-        public static final int checkBoxActivityUserInfoDetailsSexPadding=0x7f08006e;
-        public static final int checkBoxfragmentFriendsTabFacebookCheckBoxMarginLeft=0x7f08008e;
-        public static final int checkBoxfragmentFriendsTabFacebookCheckBoxPadding=0x7f08008d;
-        public static final int circularImageViewFragmentUserProfileAvatarMarginBottom=0x7f080067;
-        public static final int circularImageViewFragmentUserProfileAvatarMarginLeft=0x7f080068;
-        public static final int circularImageViewFragmentUserProfileAvatarWidthHeight=0x7f080066;
-        public static final int circularImageViewSlidemenuHeaderUserPhotoBorder=0x7f080045;
-        public static final int complexViewSettingsAdscallSwitchPadding=0x7f080098;
-        public static final int complex_view_call_textview_text_size=0x7f0800d3;
+        public static final int cashOutFragmentMoneyTabMarginBottom=0x7f08007e;
+        public static final int cashOutFragmentMoneyTabMarginTop=0x7f08007f;
+        public static final int checkBoxActivityUserInfoDetailsFemaleMarginLeft=0x7f080071;
+        public static final int checkBoxActivityUserInfoDetailsSexItemsPadding=0x7f080070;
+        public static final int checkBoxActivityUserInfoDetailsSexPadding=0x7f08006f;
+        public static final int checkBoxfragmentFriendsTabFacebookCheckBoxMarginLeft=0x7f08008f;
+        public static final int checkBoxfragmentFriendsTabFacebookCheckBoxPadding=0x7f08008e;
+        public static final int circularImageViewFragmentUserProfileAvatarMarginBottom=0x7f080068;
+        public static final int circularImageViewFragmentUserProfileAvatarMarginLeft=0x7f080069;
+        public static final int circularImageViewFragmentUserProfileAvatarWidthHeight=0x7f080067;
+        public static final int circularImageViewSlidemenuHeaderUserPhotoBorder=0x7f080046;
+        public static final int complexViewSettingsAdscallSwitchPadding=0x7f080099;
+        public static final int complex_view_call_textview_text_size=0x7f0800d4;
         /**  Ringing Activity 
          */
-        public static final int complex_view_call_view_padding=0x7f0800d2;
+        public static final int complex_view_call_view_padding=0x7f0800d3;
         /**  Default Padding and Margins for elements 
          */
-        public static final int defaultSpaceBetweenElements=0x7f080029;
+        public static final int defaultSpaceBetweenElements=0x7f08002a;
+        /**  SLIDING MENU 
+         */
+        public static final int default_menu_item_dimen=0x7f080018;
         /**  The platform's desired fixed height for a dialog along the major axis
          (the screen is in portrait). This may be either a fraction or a dimension.
  The platform's desired fixed height for a dialog along the major axis
@@ -1585,186 +1592,193 @@ containing a value of this type.
          (the screen is in portrait). This may be either a fraction or a dimension.
          */
         public static final int dialog_fixed_width_minor=0x7f080012;
-        public static final int dimen_list_padding=0x7f080019;
-        public static final int dimen_listview_divider_height=0x7f08001d;
-        public static final int dimen_shadow_width=0x7f08001a;
+        public static final int dimen_list_padding=0x7f08001a;
+        public static final int dimen_listview_divider_height=0x7f08001e;
+        public static final int dimen_shadow_width=0x7f08001b;
         /**  SLIDING MENU 
          */
-        public static final int dimen_slidingmenu_offset=0x7f080018;
+        public static final int dimen_slidingmenu_offset=0x7f080019;
         /**  TextView 
          */
-        public static final int dimen_textview_main_fragment_fullname=0x7f08001b;
-        public static final int dimen_textview_main_fragment_number_email=0x7f08001c;
-        public static final int drawableBlueButtonCornersRadius=0x7f0800a3;
-        public static final int drawableBlueButtonCornersRadius2=0x7f0800a4;
+        public static final int dimen_textview_main_fragment_fullname=0x7f08001c;
+        public static final int dimen_textview_main_fragment_number_email=0x7f08001d;
+        public static final int drawableBlueButtonCornersRadius=0x7f0800a4;
+        public static final int drawableBlueButtonCornersRadius2=0x7f0800a5;
         /**  Drawable Folder XML files Dimensions 
  blue_button.xml 
          */
-        public static final int drawableBlueButtonPadding=0x7f0800a2;
-        public static final int drawableBlueButtonStrokeWidth=0x7f0800a5;
+        public static final int drawableBlueButtonPadding=0x7f0800a3;
+        public static final int drawableBlueButtonStrokeWidth=0x7f0800a6;
         /**  ButtonSelectors 
          */
-        public static final int drawableButtonSelectorCorners=0x7f0800a6;
-        public static final int editTextPhoneNumberMarginLeft=0x7f08009a;
-        public static final int editTextfragmentCashoutTabMoneyMarginLeft=0x7f080081;
+        public static final int drawableButtonSelectorCorners=0x7f0800a7;
+        public static final int editTextPhoneNumberMarginLeft=0x7f08009b;
+        public static final int editTextfragmentCashoutTabMoneyMarginLeft=0x7f080082;
         /**  10 idi 
          */
-        public static final int five_dp=0x7f080021;
+        public static final int five_dp=0x7f080022;
         /**  Friends Fragment 
          */
-        public static final int fragmentFriendsTabContactListMargins=0x7f080084;
-        public static final int fragmentFriendsTabFriendListItemmargins=0x7f08008f;
-        public static final int fragment_cashout_money_tab_bottom_up_texts=0x7f08002b;
-        public static final int fragment_cashout_money_tab_bottom_up_title_text_size=0x7f08002c;
-        public static final int fragment_manads_card_balance_text=0x7f080030;
-        public static final int fragment_manads_card_balance_value=0x7f08002d;
-        public static final int fragment_manads_card_from_friends=0x7f08002f;
-        public static final int fragment_manads_card_total_money_values=0x7f08002e;
-        public static final int fragment_settings_arrow_padding_right=0x7f08009b;
-        public static final int fragment_settings_divider_layout_marginTop=0x7f08009d;
-        public static final int fragment_settings_divider_view_height=0x7f08009c;
-        public static final int friendsFragmentNameTextSize=0x7f080088;
-        public static final int friendsFragmentUsernameTextSize=0x7f080087;
-        public static final int friends_fragment_profile_img_max_heigh=0x7f080086;
-        public static final int friends_fragment_profile_img_max_width=0x7f080085;
-        public static final int imageViewFragmentUserProfileActivityIconHeight=0x7f080069;
-        public static final int imageViewFragmentUserProfileActivityIconPaddingLeft=0x7f08006a;
-        public static final int imageViewManadsCardCalladsIcon=0x7f08004b;
-        public static final int imageViewManadsCardExplorerTotalPointsIcon=0x7f08004c;
-        public static final int linearLayoutFragmentNewsFeedMainFirstMargin=0x7f0800c8;
-        public static final int linearLayoutFragmentNewsFeedMainFirstMargin2=0x7f0800c9;
-        public static final int linearLayoutFragmentuserProfileActivityHeight=0x7f08005f;
-        public static final int linearLayoutMarginLeft=0x7f08005a;
-        public static final int linearLayoutUserProfileGeolocationMarginBottom=0x7f080055;
-        public static final int linearLayoutUserProfileGeolocationMarginLeft=0x7f080056;
-        public static final int linearLayoutUserProfileGeolocationMarginRight=0x7f080057;
+        public static final int fragmentFriendsTabContactListMargins=0x7f080085;
+        public static final int fragmentFriendsTabFriendListItemmargins=0x7f080090;
+        public static final int fragment_cashout_money_tab_bottom_up_texts=0x7f08002c;
+        public static final int fragment_cashout_money_tab_bottom_up_title_text_size=0x7f08002d;
+        public static final int fragment_manads_card_balance_text=0x7f080031;
+        public static final int fragment_manads_card_balance_value=0x7f08002e;
+        public static final int fragment_manads_card_from_friends=0x7f080030;
+        public static final int fragment_manads_card_total_money_values=0x7f08002f;
+        public static final int fragment_settings_arrow_padding_right=0x7f08009c;
+        public static final int fragment_settings_divider_layout_marginTop=0x7f08009e;
+        public static final int fragment_settings_divider_view_height=0x7f08009d;
+        public static final int friendsFragmentNameTextSize=0x7f080089;
+        public static final int friendsFragmentUsernameTextSize=0x7f080088;
+        public static final int friends_fragment_profile_img_max_heigh=0x7f080087;
+        public static final int friends_fragment_profile_img_max_width=0x7f080086;
+        public static final int imageViewFragmentUserProfileActivityIconHeight=0x7f08006a;
+        public static final int imageViewFragmentUserProfileActivityIconPaddingLeft=0x7f08006b;
+        public static final int imageViewManadsCardCalladsIcon=0x7f08004c;
+        public static final int imageViewManadsCardExplorerTotalPointsIcon=0x7f08004d;
+        public static final int linearLayoutFragmentNewsFeedMainFirstMargin=0x7f0800c9;
+        public static final int linearLayoutFragmentNewsFeedMainFirstMargin2=0x7f0800ca;
+        public static final int linearLayoutFragmentuserProfileActivityHeight=0x7f080060;
+        public static final int linearLayoutMarginLeft=0x7f08005b;
+        public static final int linearLayoutUserProfileGeolocationMarginBottom=0x7f080056;
+        public static final int linearLayoutUserProfileGeolocationMarginLeft=0x7f080057;
+        public static final int linearLayoutUserProfileGeolocationMarginRight=0x7f080058;
         /**  User profile 
          */
-        public static final int linearLayoutUserProfileMainInformationHeight=0x7f080054;
-        public static final int linearLayoutmarginBottom=0x7f080059;
-        public static final int linearlayoutFragmentFriendsTabsAbovePaddings=0x7f08008a;
-        public static final int linearlayoutFragmentFriendsTabsCheckBoxDrawablePadding=0x7f08008b;
-        public static final int listViewCashOutFragmentMoneyTabListDivider=0x7f08007f;
-        public static final int listViewDividerHeightNewsFeedFragmentList=0x7f0800c1;
-        public static final int listViewUserProfileActivityDividerHeight=0x7f08006c;
-        public static final int list_item_height=0x7f080025;
-        public static final int list_item_margin_from_sides=0x7f080024;
-        public static final int main_activity_profile_max_heigh=0x7f080023;
-        public static final int main_activity_profile_max_width=0x7f080022;
+        public static final int linearLayoutUserProfileMainInformationHeight=0x7f080055;
+        public static final int linearLayoutmarginBottom=0x7f08005a;
+        public static final int linearlayoutFragmentFriendsTabsAbovePaddings=0x7f08008b;
+        public static final int linearlayoutFragmentFriendsTabsCheckBoxDrawablePadding=0x7f08008c;
+        public static final int listViewCashOutFragmentMoneyTabListDivider=0x7f080080;
+        public static final int listViewDividerHeightNewsFeedFragmentList=0x7f0800c2;
+        public static final int listViewUserProfileActivityDividerHeight=0x7f08006d;
+        public static final int list_item_height=0x7f080026;
+        public static final int list_item_margin_from_sides=0x7f080025;
+        public static final int listview_item_padding=0x7f0800d6;
+        public static final int main_activity_profile_max_heigh=0x7f080024;
+        public static final int main_activity_profile_max_width=0x7f080023;
         /**  Button Style Values 
          */
-        public static final int manads_button_style_paddings=0x7f0800ca;
-        public static final int manads_button_style_text_size=0x7f0800cb;
+        public static final int manads_button_style_paddings=0x7f0800cb;
+        public static final int manads_button_style_text_size=0x7f0800cc;
+        /**  ContactList 
+ On devices with much larger screen sizes, such as a 10" tablet like Nexus 10, bump up the
+         common padding value to add some extra white space which makes the layouts feel more
+         suitable for the larger screen. 
+         */
+        public static final int padding=0x7f0800d5;
         public static final int popup_max_height=0x7f080017;
-        public static final int relativeLayoutUserProfileListViewMainLayoutPaddingsAndMargins=0x7f080074;
-        public static final int relative_layout_idle_activity_header_bottom_view=0x7f0800b0;
+        public static final int relativeLayoutUserProfileListViewMainLayoutPaddingsAndMargins=0x7f080075;
+        public static final int relative_layout_idle_activity_header_bottom_view=0x7f0800b1;
         /**  Activity Idle 
          */
-        public static final int relative_layout_idle_activity_header_padding=0x7f0800a7;
-        public static final int relative_layout_idle_activity_header_padding_left=0x7f0800a8;
-        public static final int relative_layout_idle_activity_header_padding_right=0x7f0800a9;
-        public static final int slidingMenuAdapterMainPaddingLeft=0x7f080041;
-        public static final int slidingMenuAdapterMainPaddingRight=0x7f080042;
-        public static final int slidingMenuAdapterMainPaddingTop=0x7f080043;
-        public static final int slidingMenuAdapterMenuIconMarginLeft=0x7f080040;
-        public static final int slidingMenuAdapterPaddingBottom=0x7f080044;
-        public static final int slidingMenuFooterMainMarginLeft=0x7f08003c;
-        public static final int slidingMenuFooterMainPaddingBottom=0x7f08003b;
-        public static final int slidingMenuFooterMainPaddingRight=0x7f08003e;
+        public static final int relative_layout_idle_activity_header_padding=0x7f0800a8;
+        public static final int relative_layout_idle_activity_header_padding_left=0x7f0800a9;
+        public static final int relative_layout_idle_activity_header_padding_right=0x7f0800aa;
+        public static final int slidingMenuAdapterMainPaddingLeft=0x7f080042;
+        public static final int slidingMenuAdapterMainPaddingRight=0x7f080043;
+        public static final int slidingMenuAdapterMainPaddingTop=0x7f080044;
+        public static final int slidingMenuAdapterMenuIconMarginLeft=0x7f080041;
+        public static final int slidingMenuAdapterPaddingBottom=0x7f080045;
+        public static final int slidingMenuFooterMainMarginLeft=0x7f08003d;
+        public static final int slidingMenuFooterMainPaddingBottom=0x7f08003c;
+        public static final int slidingMenuFooterMainPaddingRight=0x7f08003f;
         /**  Sliding Menu Footer 
          */
-        public static final int slidingMenuFooterMainPaddingTop=0x7f08003a;
-        public static final int slidingMenuFooterMainRelativeLayoutPaddingTop=0x7f080046;
-        public static final int slidingMenuFooterPaddingBottom=0x7f08003f;
-        public static final int slidingMenuFooterPaddingLeft=0x7f08003d;
-        public static final int slidingMenuHeaderMainCircularImageView=0x7f080038;
+        public static final int slidingMenuFooterMainPaddingTop=0x7f08003b;
+        public static final int slidingMenuFooterMainRelativeLayoutPaddingTop=0x7f080047;
+        public static final int slidingMenuFooterPaddingBottom=0x7f080040;
+        public static final int slidingMenuFooterPaddingLeft=0x7f08003e;
+        public static final int slidingMenuHeaderMainCircularImageView=0x7f080039;
         /**  Sliding Menu Header 
          */
-        public static final int slidingMenuHeaderMainPaddingBottom=0x7f080035;
-        public static final int slidingMenuHeaderMainPaddingLeft=0x7f080036;
-        public static final int slidingMenuHeaderMainPaddingRight=0x7f080039;
-        public static final int slidingMenuHeaderMainPaddingTop=0x7f080037;
-        public static final int sliding_menu_item_logout_margin_top=0x7f080034;
-        public static final int sliding_menu_item_logout_padding_top=0x7f080033;
+        public static final int slidingMenuHeaderMainPaddingBottom=0x7f080036;
+        public static final int slidingMenuHeaderMainPaddingLeft=0x7f080037;
+        public static final int slidingMenuHeaderMainPaddingRight=0x7f08003a;
+        public static final int slidingMenuHeaderMainPaddingTop=0x7f080038;
+        public static final int sliding_menu_item_logout_margin_top=0x7f080035;
+        public static final int sliding_menu_item_logout_padding_top=0x7f080034;
         /**  Sliding Menu Items 
          */
-        public static final int sliding_menu_text_size=0x7f080031;
-        public static final int sliding_menu_view_profile_text_size=0x7f080032;
-        public static final int spinnerCountryCodesMarginLeft=0x7f0800a0;
-        public static final int spinnerCountryCodesMarginTop=0x7f0800a1;
+        public static final int sliding_menu_text_size=0x7f080032;
+        public static final int sliding_menu_view_profile_text_size=0x7f080033;
+        public static final int spinnerCountryCodesMarginLeft=0x7f0800a1;
+        public static final int spinnerCountryCodesMarginTop=0x7f0800a2;
         /**  Include Phone Numbers 
          */
-        public static final int spinnerCountryCodesPaddings=0x7f08009f;
-        public static final int spinnerFragmentCashoutTabMoneyTypesPaddingBottom=0x7f080082;
-        public static final int spinnerFragmentCashoutTabMoneyTypesPaddingTop=0x7f080083;
-        public static final int spinner_activity_user_info_details_countries_margin_right=0x7f0800b8;
-        public static final int textViewCardFragmentExplorerPendingPointsSize=0x7f08004d;
-        public static final int textViewCardFragmentExplorerTotalPointsSize=0x7f08004e;
-        public static final int textViewCardFromFriends=0x7f080048;
-        public static final int textViewCardMainMargin=0x7f080050;
-        public static final int textViewCardMainMarginLeft=0x7f08004f;
-        public static final int textViewCardMainMarginTopTriangle=0x7f080051;
+        public static final int spinnerCountryCodesPaddings=0x7f0800a0;
+        public static final int spinnerFragmentCashoutTabMoneyTypesPaddingBottom=0x7f080083;
+        public static final int spinnerFragmentCashoutTabMoneyTypesPaddingTop=0x7f080084;
+        public static final int spinner_activity_user_info_details_countries_margin_right=0x7f0800b9;
+        public static final int textViewCardFragmentExplorerPendingPointsSize=0x7f08004e;
+        public static final int textViewCardFragmentExplorerTotalPointsSize=0x7f08004f;
+        public static final int textViewCardFromFriends=0x7f080049;
+        public static final int textViewCardMainMargin=0x7f080051;
+        public static final int textViewCardMainMarginLeft=0x7f080050;
+        public static final int textViewCardMainMarginTopTriangle=0x7f080052;
         /**  Manads Card 
          */
-        public static final int textViewCardMoneyBalanceSize=0x7f080047;
-        public static final int textViewCardNumberPaddingTop=0x7f08004a;
-        public static final int textViewCardNumberValuePaddingBottom=0x7f080049;
-        public static final int textViewFragmentFriendsTabFriendListNumberTextSize=0x7f080091;
-        public static final int textViewFragmentFriendsTabFriendListPadding=0x7f080090;
-        public static final int textViewFragmentManadsCardNumberValue=0x7f080052;
-        public static final int textViewFragmentNewsFeedCounterPaddingLeft=0x7f0800c2;
-        public static final int textViewFragmentNewsFeedCounterPaddingRight=0x7f0800c3;
-        public static final int textViewFragmentNewsFeedCounterTextSize=0x7f0800c4;
-        public static final int textViewFragmentNewsFeedDetailsPaddingLeft=0x7f0800c7;
-        public static final int textViewFragmentNewsFeedDetailsPaddingTop=0x7f0800c6;
-        public static final int textViewFragmentNewsFeedDetailsTextSize=0x7f0800c5;
+        public static final int textViewCardMoneyBalanceSize=0x7f080048;
+        public static final int textViewCardNumberPaddingTop=0x7f08004b;
+        public static final int textViewCardNumberValuePaddingBottom=0x7f08004a;
+        public static final int textViewFragmentFriendsTabFriendListNumberTextSize=0x7f080092;
+        public static final int textViewFragmentFriendsTabFriendListPadding=0x7f080091;
+        public static final int textViewFragmentManadsCardNumberValue=0x7f080053;
+        public static final int textViewFragmentNewsFeedCounterPaddingLeft=0x7f0800c3;
+        public static final int textViewFragmentNewsFeedCounterPaddingRight=0x7f0800c4;
+        public static final int textViewFragmentNewsFeedCounterTextSize=0x7f0800c5;
+        public static final int textViewFragmentNewsFeedDetailsPaddingLeft=0x7f0800c8;
+        public static final int textViewFragmentNewsFeedDetailsPaddingTop=0x7f0800c7;
+        public static final int textViewFragmentNewsFeedDetailsTextSize=0x7f0800c6;
         /**  Ratings Fragment 
          */
-        public static final int textViewFragmentRatingsTabPointsFullNameTextSize=0x7f08007c;
-        public static final int textViewFragmentSettingsFieldsPaddingBottom=0x7f080096;
-        public static final int textViewFragmentSettingsFieldsPaddingLeft=0x7f080093;
-        public static final int textViewFragmentSettingsFieldsPaddingRight=0x7f080095;
-        public static final int textViewFragmentSettingsFieldsPaddingTop=0x7f080094;
+        public static final int textViewFragmentRatingsTabPointsFullNameTextSize=0x7f08007d;
+        public static final int textViewFragmentSettingsFieldsPaddingBottom=0x7f080097;
+        public static final int textViewFragmentSettingsFieldsPaddingLeft=0x7f080094;
+        public static final int textViewFragmentSettingsFieldsPaddingRight=0x7f080096;
+        public static final int textViewFragmentSettingsFieldsPaddingTop=0x7f080095;
         /**  Settings Fragment 
          */
-        public static final int textViewFragmentSettingsFieldsTextSize=0x7f080092;
-        public static final int textViewFragmentSettingsInfoSize=0x7f08009e;
-        public static final int textViewFragmentSettingsPadding=0x7f080097;
-        public static final int textViewFragmentSettingsRelativeLayoutPadding=0x7f080099;
+        public static final int textViewFragmentSettingsFieldsTextSize=0x7f080093;
+        public static final int textViewFragmentSettingsInfoSize=0x7f08009f;
+        public static final int textViewFragmentSettingsPadding=0x7f080098;
+        public static final int textViewFragmentSettingsRelativeLayoutPadding=0x7f08009a;
         /**  Log in Activity 
          */
-        public static final int textViewLoginActivityWelcomeTextSize=0x7f080075;
-        public static final int textViewPaddingLeft=0x7f080060;
-        public static final int textViewRegistrActivityConfirmTextSize=0x7f080076;
-        public static final int textViewUserProfileActivityFillInformationDetails=0x7f080071;
-        public static final int textViewUserProfileActivityTextLayoutHeight=0x7f08006b;
-        public static final int textViewUserProfileGeolocationPaddingLeft=0x7f080058;
-        public static final int textViewUserProfileListViewFieldsPaddingRight=0x7f080072;
+        public static final int textViewLoginActivityWelcomeTextSize=0x7f080076;
+        public static final int textViewPaddingLeft=0x7f080061;
+        public static final int textViewRegistrActivityConfirmTextSize=0x7f080077;
+        public static final int textViewUserProfileActivityFillInformationDetails=0x7f080072;
+        public static final int textViewUserProfileActivityTextLayoutHeight=0x7f08006c;
+        public static final int textViewUserProfileGeolocationPaddingLeft=0x7f080059;
+        public static final int textViewUserProfileListViewFieldsPaddingRight=0x7f080073;
         /**  News Feed 
          */
-        public static final int textViewUserProfileListViewNewsFeedTextSize=0x7f0800c0;
-        public static final int textViewUserProfileListViewTimeTextSize=0x7f080073;
-        public static final int textViewUserProfileNickPhone=0x7f08005b;
-        public static final int textViewUserProfileNicknamePaddingLeft=0x7f08006d;
-        public static final int textViewUserProfilePhoneNumberMarginRight=0x7f080061;
-        public static final int textViewUserProfilePhoneNumberPaddingLeft=0x7f080062;
+        public static final int textViewUserProfileListViewNewsFeedTextSize=0x7f0800c1;
+        public static final int textViewUserProfileListViewTimeTextSize=0x7f080074;
+        public static final int textViewUserProfileNickPhone=0x7f08005c;
+        public static final int textViewUserProfileNicknamePaddingLeft=0x7f08006e;
+        public static final int textViewUserProfilePhoneNumberMarginRight=0x7f080062;
+        public static final int textViewUserProfilePhoneNumberPaddingLeft=0x7f080063;
         /**  Text sizes 
          */
-        public static final int text_size_countryl_list_item=0x7f08002a;
-        public static final int text_view_idle_activity_category_name_text_size=0x7f0800aa;
-        public static final int text_view_idle_activity_your_details_more_padding=0x7f0800b5;
-        public static final int text_view_idle_activity_your_details_more_text_size=0x7f0800af;
+        public static final int text_size_countryl_list_item=0x7f08002b;
+        public static final int text_view_idle_activity_category_name_text_size=0x7f0800ab;
+        public static final int text_view_idle_activity_your_details_more_padding=0x7f0800b6;
+        public static final int text_view_idle_activity_your_details_more_text_size=0x7f0800b0;
         /**  10 
          */
-        public static final int text_view_idle_activity_your_details_padding=0x7f0800b6;
-        public static final int text_view_idle_activity_your_details_text_size=0x7f0800ae;
-        public static final int userProfileMarginBottom=0x7f08005d;
-        public static final int userProfileMarginRight=0x7f08005e;
-        public static final int userProfileMarginTop=0x7f08005c;
-        public static final int viewFragmentManadsCardViewHeigh=0x7f080053;
-        public static final int viewUserProfileLayoutHeightWidth=0x7f080065;
-        public static final int viewUserProfileMargin=0x7f080064;
-        public static final int viewUserProfileMarginLeft=0x7f080063;
+        public static final int text_view_idle_activity_your_details_padding=0x7f0800b7;
+        public static final int text_view_idle_activity_your_details_text_size=0x7f0800af;
+        public static final int userProfileMarginBottom=0x7f08005e;
+        public static final int userProfileMarginRight=0x7f08005f;
+        public static final int userProfileMarginTop=0x7f08005d;
+        public static final int viewFragmentManadsCardViewHeigh=0x7f080054;
+        public static final int viewUserProfileLayoutHeightWidth=0x7f080066;
+        public static final int viewUserProfileMargin=0x7f080065;
+        public static final int viewUserProfileMarginLeft=0x7f080064;
     }
     public static final class drawable {
         public static final int ab_bottom_solid_example=0x7f020000;
@@ -1895,43 +1909,44 @@ containing a value of this type.
         public static final int dark_shadow=0x7f02007d;
         public static final int ic_actionbar_home=0x7f02007e;
         public static final int ic_checked=0x7f02007f;
-        public static final int ic_launcher=0x7f020080;
-        public static final int ic_menu_settings=0x7f020081;
-        public static final int ic_notification_menu_edge=0x7f020082;
-        public static final int ic_plusone_medium_off_client=0x7f020083;
-        public static final int ic_plusone_small_off_client=0x7f020084;
-        public static final int ic_plusone_standard_off_client=0x7f020085;
-        public static final int ic_plusone_tall_off_client=0x7f020086;
-        public static final int ic_rotate_left=0x7f020087;
-        public static final int ic_rotate_right=0x7f020088;
-        public static final int icon=0x7f020089;
-        public static final int icon_arrow_up=0x7f02008a;
-        public static final int img_add_friend=0x7f02008b;
-        public static final int img_friend_remove=0x7f02008c;
-        public static final int img_friend_settings=0x7f02008d;
-        public static final int img_notification_menu_reached=0x7f02008e;
-        public static final int img_quick_action_notification_menu=0x7f02008f;
-        public static final int img_quick_action_notification_menu_reached=0x7f020090;
-        public static final int img_sliding_menu_toggler_right=0x7f020091;
-        public static final int indicator_autocrop=0x7f020092;
-        public static final int manads_menu_dropdown_panel_holo_light=0x7f020093;
-        public static final int manadscard_callads_icon=0x7f020094;
-        public static final int menu_dropdown_panel_example=0x7f020095;
-        public static final int menu_settings_icon=0x7f020096;
-        public static final int popup_background=0x7f020097;
-        public static final int profile_activity_icon=0x7f020098;
-        public static final int profile_cover_icon=0x7f020099;
-        public static final int profile_cover_image1=0x7f02009a;
-        public static final int profile_data_background_bg1=0x7f02009b;
-        public static final int profile_imran=0x7f02009c;
-        public static final int profile_kamran=0x7f02009d;
-        public static final int profile_togrul=0x7f02009e;
-        public static final int selector_crop_button=0x7f02009f;
-        public static final int settings_arrow_icon=0x7f0200a0;
-        public static final int shadow=0x7f0200a1;
-        public static final int shadowright=0x7f0200a2;
-        public static final int slidingmenu_shadow_right=0x7f0200a3;
-        public static final int update_app_icon=0x7f0200a4;
+        public static final int ic_contact_picture_holo_light=0x7f020080;
+        public static final int ic_launcher=0x7f020081;
+        public static final int ic_menu_settings=0x7f020082;
+        public static final int ic_notification_menu_edge=0x7f020083;
+        public static final int ic_plusone_medium_off_client=0x7f020084;
+        public static final int ic_plusone_small_off_client=0x7f020085;
+        public static final int ic_plusone_standard_off_client=0x7f020086;
+        public static final int ic_plusone_tall_off_client=0x7f020087;
+        public static final int ic_rotate_left=0x7f020088;
+        public static final int ic_rotate_right=0x7f020089;
+        public static final int icon=0x7f02008a;
+        public static final int icon_arrow_up=0x7f02008b;
+        public static final int img_add_friend=0x7f02008c;
+        public static final int img_friend_remove=0x7f02008d;
+        public static final int img_friend_settings=0x7f02008e;
+        public static final int img_notification_menu_reached=0x7f02008f;
+        public static final int img_quick_action_notification_menu=0x7f020090;
+        public static final int img_quick_action_notification_menu_reached=0x7f020091;
+        public static final int img_sliding_menu_toggler_right=0x7f020092;
+        public static final int indicator_autocrop=0x7f020093;
+        public static final int manads_menu_dropdown_panel_holo_light=0x7f020094;
+        public static final int manadscard_callads_icon=0x7f020095;
+        public static final int menu_dropdown_panel_example=0x7f020096;
+        public static final int menu_settings_icon=0x7f020097;
+        public static final int popup_background=0x7f020098;
+        public static final int profile_activity_icon=0x7f020099;
+        public static final int profile_cover_icon=0x7f02009a;
+        public static final int profile_cover_image1=0x7f02009b;
+        public static final int profile_data_background_bg1=0x7f02009c;
+        public static final int profile_imran=0x7f02009d;
+        public static final int profile_kamran=0x7f02009e;
+        public static final int profile_togrul=0x7f02009f;
+        public static final int selector_crop_button=0x7f0200a0;
+        public static final int settings_arrow_icon=0x7f0200a1;
+        public static final int shadow=0x7f0200a2;
+        public static final int shadowright=0x7f0200a3;
+        public static final int slidingmenu_shadow_right=0x7f0200a4;
+        public static final int update_app_icon=0x7f0200a5;
     }
     public static final class id {
         public static final int action_bar=0x7f050024;
@@ -1945,25 +1960,26 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f050016;
         public static final int action_menu_presenter=0x7f050017;
         public static final int action_mode_close_button=0x7f05002c;
-        public static final int action_settings=0x7f050069;
+        public static final int action_settings=0x7f05006e;
         public static final int activity_chooser_view_content=0x7f05002d;
         public static final int always=0x7f05000b;
         public static final int beginning=0x7f050011;
-        public static final int buttonSignInActivitySignIn=0x7f050048;
-        public static final int buttonStartActivitySignIn=0x7f05004a;
-        public static final int buttonStartActivitySignUp=0x7f05004b;
+        public static final int buttonSignInActivitySignIn=0x7f05004a;
+        public static final int buttonStartActivitySignIn=0x7f05004c;
+        public static final int buttonStartActivitySignUp=0x7f05004d;
         public static final int checkbox=0x7f050035;
-        public static final int circularImageViewFragmentMainProfilePhoto=0x7f050053;
-        public static final int circularImageViewLISlidingMenuFriend=0x7f050061;
+        public static final int circularImageViewAddFriendActivityBaseAdapterUserPhoto=0x7f05005e;
+        public static final int circularImageViewFragmentMainProfilePhoto=0x7f050055;
+        public static final int circularImageViewLISlidingMenuFriend=0x7f050066;
         public static final int collapseActionView=0x7f05000d;
-        public static final int complexViewUserCover=0x7f050051;
-        public static final int container=0x7f050045;
+        public static final int complexViewUserCover=0x7f050053;
+        public static final int container=0x7f050047;
         public static final int default_activity_button=0x7f050030;
         public static final int dialog=0x7f05000e;
         public static final int disableHome=0x7f050008;
-        public static final int discard=0x7f05004c;
+        public static final int discard=0x7f05004e;
         public static final int dropdown=0x7f05000f;
-        public static final int editTextignInActivityUserNameOrPhone=0x7f050047;
+        public static final int editTextignInActivityUserNameOrPhone=0x7f050049;
         public static final int edit_query=0x7f050038;
         public static final int end=0x7f050013;
         public static final int expand_activities_button=0x7f05002e;
@@ -1975,25 +1991,25 @@ containing a value of this type.
         public static final int icon=0x7f050032;
         public static final int ifRoom=0x7f05000a;
         public static final int image=0x7f05002f;
-        public static final int imageButtonFragmentMainMenuOpener=0x7f05005b;
-        public static final int imageButtonMainActivityAddFriend=0x7f050050;
-        public static final int imageView1=0x7f050066;
-        public static final int imageViewLeftIcon=0x7f05005c;
-        public static final int imageViewPopUpFrinedSettingsEdit=0x7f050062;
-        public static final int imageViewPopUpFrinedSettingsRemove=0x7f050064;
-        public static final int imageViewSeperator=0x7f050063;
-        public static final int imageViewSplashScreen=0x7f050046;
-        public static final int imageViewStatusIcon=0x7f050060;
-        public static final int imageViewUserAvatar=0x7f05005d;
+        public static final int imageButtonFragmentMainMenuOpener=0x7f05005d;
+        public static final int imageButtonMainActivityAddFriend=0x7f050052;
+        public static final int imageView1=0x7f05006b;
+        public static final int imageViewLeftIcon=0x7f050061;
+        public static final int imageViewPopUpFrinedSettingsEdit=0x7f050067;
+        public static final int imageViewPopUpFrinedSettingsRemove=0x7f050069;
+        public static final int imageViewSeperator=0x7f050068;
+        public static final int imageViewSplashScreen=0x7f050048;
+        public static final int imageViewStatusIcon=0x7f050065;
+        public static final int imageViewUserAvatar=0x7f050062;
         public static final int left=0x7f05001a;
-        public static final int linearLayout1=0x7f050049;
-        public static final int linearLayoutUserProfileActivities=0x7f050058;
-        public static final int linearLayoutUserProfileMainInformation=0x7f050052;
-        public static final int linearLayoutUserProfileMainInformationX=0x7f050054;
+        public static final int linearLayout1=0x7f05004b;
+        public static final int linearLayoutUserProfileActivities=0x7f05005a;
+        public static final int linearLayoutUserProfileMainInformation=0x7f050054;
+        public static final int linearLayoutUserProfileMainInformationX=0x7f050056;
         public static final int listMode=0x7f050001;
-        public static final int listView1=0x7f050044;
-        public static final int listViewListSlidingMenuFriendsProfiles=0x7f050068;
-        public static final int listViewMainActivityCallList=0x7f050059;
+        public static final int listViewAddFriendActivity=0x7f050046;
+        public static final int listViewListSlidingMenuFriendsProfiles=0x7f05006d;
+        public static final int listViewMainActivityCallList=0x7f05005b;
         public static final int list_item=0x7f050031;
         public static final int margin=0x7f05001c;
         public static final int middle=0x7f050012;
@@ -2004,10 +2020,11 @@ containing a value of this type.
         public static final int progress_horizontal=0x7f050019;
         public static final int radio=0x7f050037;
         public static final int right=0x7f05001b;
-        public static final int rotateLeft=0x7f05004d;
-        public static final int rotateRight=0x7f05004e;
+        public static final int rotateLeft=0x7f05004f;
+        public static final int rotateRight=0x7f050050;
         public static final int satellite=0x7f05001f;
-        public static final int save=0x7f05004f;
+        public static final int save=0x7f050051;
+        public static final int scrollView1=0x7f050044;
         public static final int search_badge=0x7f05003a;
         public static final int search_bar=0x7f050039;
         public static final int search_button=0x7f05003b;
@@ -2023,18 +2040,21 @@ containing a value of this type.
         public static final int showCustom=0x7f050007;
         public static final int showHome=0x7f050004;
         public static final int showTitle=0x7f050006;
-        public static final int slidingmenumain=0x7f050067;
+        public static final int slidingmenumain=0x7f05006c;
         public static final int split_action_bar=0x7f050026;
         public static final int submit_area=0x7f050041;
         public static final int tabMode=0x7f050002;
         public static final int terrain=0x7f050020;
-        public static final int textViewCallTime=0x7f05005f;
-        public static final int textViewMainActivityCallListNoData=0x7f05005a;
-        public static final int textViewUserFullName=0x7f05005e;
-        public static final int textViewUserProfileUserFriendsCount=0x7f050057;
-        public static final int textViewUserProfileUserFullName=0x7f050055;
-        public static final int textViewUserProfileUserPhoneNumber=0x7f050056;
-        public static final int textview=0x7f050065;
+        public static final int textViewAddFriendActivityBaseAdapterUserFullName=0x7f05005f;
+        public static final int textViewAddFriendActivityBaseAdapterUserNumber=0x7f050060;
+        public static final int textViewCallTime=0x7f050064;
+        public static final int textViewMainActivityCallListNoData=0x7f05005c;
+        public static final int textViewUserFullName=0x7f050063;
+        public static final int textViewUserProfileUserFriendsCount=0x7f050059;
+        public static final int textViewUserProfileUserFullName=0x7f050057;
+        public static final int textViewUserProfileUserPhoneNumber=0x7f050058;
+        public static final int textViewXXXX=0x7f050045;
+        public static final int textview=0x7f05006a;
         public static final int title=0x7f050033;
         public static final int top_action_bar=0x7f050028;
         public static final int up=0x7f050029;
@@ -2065,6 +2085,18 @@ containing a value of this type.
          showAsAction="ifRoom" items can fit. "always" items can override this. 
          */
         public static final int abc_max_action_buttons=0x7f090000;
+        public static final int contact_detail_info_percent=0x7f090004;
+        public static final int contact_detail_percent=0x7f090006;
+        /**  These are the default percent values that the contact photo and information should take up
+         in the ContactDetailFragment. 
+         */
+        public static final int contact_detail_photo_percent=0x7f090003;
+        /**  On devices with a smallest width of 600dp or more, the two-pane layout should allocate
+         a larger portion of the screen to the detail fragment. 
+ On devices with a smallest width of 600dp or more in portrait orientation, the two-pane
+         layout should allocate equal space to each fragment. 
+         */
+        public static final int contact_list_percent=0x7f090005;
         public static final int google_play_services_version=0x7f090001;
         public static final int num_cols=0x7f090002;
     }
@@ -2095,26 +2127,30 @@ containing a value of this type.
         public static final int abc_simple_decor=0x7f030017;
         public static final int activity_activity_update_app=0x7f030018;
         public static final int activity_add_friend=0x7f030019;
-        public static final int activity_main=0x7f03001a;
-        public static final int activity_main_layout=0x7f03001b;
-        public static final int activity_root=0x7f03001c;
-        public static final int activity_settings=0x7f03001d;
-        public static final int activity_sign_in=0x7f03001e;
-        public static final int activity_sign_up=0x7f03001f;
-        public static final int activity_start=0x7f030020;
-        public static final int cropimage=0x7f030021;
-        public static final int footer_add_friend_layout=0x7f030022;
-        public static final int fragment_main=0x7f030023;
-        public static final int list_item_call_history_main_fragment=0x7f030024;
-        public static final int list_item_sliding_menu=0x7f030025;
-        public static final int list_sliding_menu=0x7f030026;
-        public static final int main=0x7f030027;
-        public static final int popup_custom_layout=0x7f030028;
-        public static final int popup_friend_settings_layout=0x7f030029;
-        public static final int popup_reached_layout=0x7f03002a;
-        public static final int slidingmenumain=0x7f03002b;
-        public static final int support_simple_spinner_dropdown_item=0x7f03002c;
-        public static final int view_sliding_menu=0x7f03002d;
+        public static final int activity_contacts_to_server=0x7f03001a;
+        public static final int activity_main=0x7f03001b;
+        public static final int activity_main_layout=0x7f03001c;
+        public static final int activity_root=0x7f03001d;
+        public static final int activity_settings=0x7f03001e;
+        public static final int activity_sign_in=0x7f03001f;
+        public static final int activity_sign_up=0x7f030020;
+        public static final int activity_start=0x7f030021;
+        public static final int contact_list_fragment=0x7f030022;
+        public static final int contact_list_item=0x7f030023;
+        public static final int cropimage=0x7f030024;
+        public static final int footer_add_friend_layout=0x7f030025;
+        public static final int fragment_main=0x7f030026;
+        public static final int list_item_add_friend=0x7f030027;
+        public static final int list_item_call_history_main_fragment=0x7f030028;
+        public static final int list_item_sliding_menu=0x7f030029;
+        public static final int list_sliding_menu=0x7f03002a;
+        public static final int main=0x7f03002b;
+        public static final int popup_custom_layout=0x7f03002c;
+        public static final int popup_friend_settings_layout=0x7f03002d;
+        public static final int popup_reached_layout=0x7f03002e;
+        public static final int slidingmenumain=0x7f03002f;
+        public static final int support_simple_spinner_dropdown_item=0x7f030030;
+        public static final int view_sliding_menu=0x7f030031;
     }
     public static final class menu {
         public static final int activity_update_app=0x7f0d0000;
@@ -2416,6 +2452,11 @@ containing a value of this type.
          */
         public static final int abc_shareactionprovider_share_with_application=0x7f0a000b;
         public static final int action_settings=0x7f0a000f;
+        /**  COntacts List Strings 
+ Used for the AlphabetIndexer in ContactsListFragment to provide quick navigation by
+         alphabet using ListView fast scroll. 
+         */
+        public static final int alphabet=0x7f0a0122;
         public static final int app_name=0x7f0a000d;
         /**   Title for notification shown when GooglePlayServices needs to be
         enabled for a application to work. [CHAR LIMIT=70] 
@@ -2538,6 +2579,14 @@ containing a value of this type.
         public static final int ratingsFragmentNameTextSize=0x7f0a010b;
         public static final int save=0x7f0a0011;
         public static final int saving_image=0x7f0a0012;
+        /**  When using ContactsContract.Contacts#CONTENT_FILTER_URI to search contacts, a match occurs
+         when using a number of different fields, such as name, e-mail address, address, phone
+         number, etc. When a match occurs that is not the name, there is currently no way to tell
+         which other field was matched. This string is displayed in the secondary display text in
+         ContactsListFragment when a search query match occurs that is not the display name.
+         
+         */
+        public static final int search_match_other=0x7f0a0123;
         public static final int text_view_friends=0x7f0a011b;
         public static final int text_view_money=0x7f0a011c;
         public static final int text_view_points=0x7f0a011d;
@@ -2581,6 +2630,9 @@ containing a value of this type.
  Application theme. 
          */
         public static final int AppTheme=0x7f0b008c;
+        /**   Contacts List Styles  
+         */
+        public static final int ContactListView=0x7f0b0093;
         public static final int CropButton=0x7f0b008f;
         public static final int DefaultTextStyle=0x7f0b008d;
         /**  ZIBILLIK 
@@ -2789,6 +2841,18 @@ containing a value of this type.
         public static final int Widget_AppCompat_ProgressBar=0x7f0b000a;
         public static final int Widget_AppCompat_ProgressBar_Horizontal=0x7f0b0009;
         public static final int Widget_AppCompat_Spinner_DropDown_ActionBar=0x7f0b0022;
+        public static final int addressButton=0x7f0b009a;
+        /**  This style bumps up the address details font size to large on devices that have a smallest
+         width of 360dp (larger phones). 
+         */
+        public static final int addressDetail=0x7f0b0098;
+        public static final int addressHeader=0x7f0b0097;
+        public static final int contactNameTitle=0x7f0b0099;
+        public static final int listViewActivatedStyle=0x7f0b0094;
+        /**          <item name="android:background">@drawable/quickcontact_badge_small</item> 
+         */
+        public static final int quickContactBadgeStyle=0x7f0b0095;
+        public static final int searchTextHiglight=0x7f0b0096;
     }
     public static final class styleable {
         /**  ============================================ 

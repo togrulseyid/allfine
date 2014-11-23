@@ -17,7 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.allfine.R;
-import com.allfine.constants.MessageConstants;
+import com.allfine.enums.MessagesEnum;
 import com.allfine.models.core.UserModel;
 import com.allfine.operations.NetworkOperations;
 import com.allfine.operations.Utility;
@@ -145,7 +145,7 @@ public class SignInActivity extends ActionBarActivity {
 				}
 				if (result != null && result.getMessageId() != null) {
 
-					if (result.getMessageId() == MessageConstants.SUCCESSFUL) {
+					if (result.getMessageId() == MessagesEnum.MI_SUCCESSFUL.getId()) {
 						Utility.writeUserInfo(activity, result);
 
 						SharedPreferences sharedPreferences = getSharedPreferences(
@@ -173,7 +173,7 @@ public class SignInActivity extends ActionBarActivity {
 					// dialog.show(getFragmentManager(), "");
 				}
 
-			} else if (result.getMessageId() == MessageConstants.TOKEN_ERROR) {
+			} else if (result.getMessageId() == MessagesEnum.MI_TOKEN_ERROR.getId() ) {
 
 				Utility.finishForToken(activity);
 

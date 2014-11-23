@@ -6,10 +6,9 @@
 
     <ImageButton
         android:id="@+id/imageButtonMainActivityAddFriend"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:contentDescription="@string/app_name"
-        android:src="@drawable/img_add_friend" />
+        android:layout_width="@dimen/default_menu_item_dimen"
+        android:layout_height="@dimen/default_menu_item_dimen"
+        android:background="@drawable/img_add_friend"
+        android:contentDescription="@string/app_name" />
 
 </LinearLayout>
