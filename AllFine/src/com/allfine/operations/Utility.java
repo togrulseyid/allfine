@@ -46,7 +46,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.ContactsContract;
-import android.provider.ContactsContract.Contacts;
 import android.telephony.TelephonyManager;
 import android.util.Base64;
 import android.util.Log;
@@ -821,14 +820,13 @@ public class Utility {
 						.parseInt(cursor.getString(cursor
 								.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))) > 0) {
 					
-					//public final Cursor query (Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) 
 					Cursor pCur = cr.query(
-							ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
-							null,
-							ContactsContract.CommonDataKinds.Phone.CONTACT_ID
+							ContactsContract.CommonDataKinds.Phone.CONTENT_URI, //Uri uri
+							null, //String[] projection
+							ContactsContract.CommonDataKinds.Phone.CONTACT_ID //String selection
 									+ " = ?",
-							new String[] { id },
-							null);
+							new String[] { id }, //String[] selectionArgs
+							null); //String sortOrder
 					
 					while (pCur.moveToNext()) {
 						String contactNumber = pCur
@@ -840,21 +838,13 @@ public class Utility {
 										.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
 						
 						
-						
-						
-						String contactName = pCur
-								.getString(pCur
-										.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DATA2));
-						
-						String contactLastName=
-										 pCur
-								.getString(pCur
-										.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DATA3));
+//						String contactName = pCur.getString(pCur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DATA3));
+//						String contactLastName = pCur.getString(pCur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DATA3));
 						
 						ContactNumbersModel number = new ContactNumbersModel();
 						number.setDisplayName(contactDisplayName);
-						number.setFirstName(contactName);
-						number.setLastName(contactLastName);
+//						number.setFirstName(contactName);
+//						number.setLastName(contactLastName);
 							ArrayList<String> numbers = new ArrayList<String>();
 							numbers.add(contactNumber);
 						number.setNumbers(numbers);
@@ -869,6 +859,20 @@ public class Utility {
 		}
 
 		return contactNumbersModels;
+	}
+
+	public static Integer getUserId(Context context) {
+		SharedPreferences preference = context.getSharedPreferences(
+				context.getString(R.string._SP_ALL_FINE), Context.MODE_PRIVATE);
+
+		return preference.getInt(context.getString(R.string._SP_USER_ID), 0);
+	}
+	
+	public static int getImageResourceById(Activity activity,
+			Integer statusTypeId) {
+		return activity.getResources().getIdentifier(
+				"ic_user_event_history_status_" + statusTypeId, "drawable",
+				activity.getPackageName());
 	}
 
 }

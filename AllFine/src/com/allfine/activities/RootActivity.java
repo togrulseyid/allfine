@@ -25,16 +25,11 @@ public class RootActivity extends Activity {
 	private Activity activity;
 
 	private GcmGenerateAsynchTask gcmGenerateAsynchTask;
-	private GoogleCloudMessaging gcm;
-	private String regid;
-	private static final String TAG = "testGCM";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		activity = this;
-
-//		new make().execute();
 
 		// Remove title bar
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -45,7 +40,7 @@ public class RootActivity extends Activity {
 		// Initializes controls and set action and content
 		ImageView imageViewSplashScreen = (ImageView) findViewById(R.id.imageViewSplashScreen);
 
-		Picasso.with(this).load(R.drawable.background_start_activity)
+		Picasso.with(activity).load(R.drawable.background_start_activity)
 				.into(imageViewSplashScreen);
 
 	}
@@ -62,7 +57,7 @@ public class RootActivity extends Activity {
 	@Override
 	protected void onResume() {
 
-		gcmGenerateAsynchTask = new GcmGenerateAsynchTask(this);
+		gcmGenerateAsynchTask = new GcmGenerateAsynchTask(activity);
 		gcmGenerateAsynchTask.execute();
 
 		super.onResume();
@@ -150,9 +145,11 @@ public class RootActivity extends Activity {
 										R.string._ROOTING_START_ACTIVITY));
 
 				Log.d("rootingActivity", "" + rootingActivity);
+
 				if (result != null
 						&& result.getMessageId() != null
-						&& result.getMessageId() == MessagesEnum.MI_APP_VERSION_INCORRECT.getId()) {
+						&& result.getMessageId() == MessagesEnum.MI_APP_VERSION_INCORRECT
+								.getId()) {
 					rootingActivity = getResources().getString(
 							R.string._ROOTING_FORCE_UPDATE_ACTIVITY);
 				}
@@ -161,9 +158,12 @@ public class RootActivity extends Activity {
 
 				if (rootingActivity.equals(getResources().getString(
 						R.string._ROOTING_START_ACTIVITY))) {
+
 					intent = new Intent(activity, StartActivity.class);
+
 				} else if (rootingActivity.equals(getResources().getString(
 						R.string._ROOTING_MAIN_ACTIVITY))) {
+
 					Bundle bundle = new Bundle();
 					bundle.putInt(
 							getResources().getString(R.string._B_REQUEST),
@@ -188,38 +188,5 @@ public class RootActivity extends Activity {
 			}
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-//	class make extends AsyncTask<Void, Void, String>{
-//		@Override
-//		protected String doInBackground(Void... params) {
-//			GoogleCloudMessaging gcm = GoogleCloudMessaging
-//					.getInstance(getApplicationContext());
-//			String registrationId = null;
-//			try {
-//				registrationId = gcm.register("1044019515117");
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
-//			
-//			return registrationId;
-//		}
-//		
-//		@Override
-//		protected void onPostExecute(String result) {
-//			super.onPostExecute(result);
-//			
-//
-//
-//			Log.d("registrationId", "" + result);
-//			finish();
-//		}
-//	}
+
 }

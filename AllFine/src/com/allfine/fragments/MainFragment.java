@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.allfine.R;
 import com.allfine.adapters.MainFragmentBaseAdapter;
+import com.allfine.exceptions.DataBaseException;
 import com.allfine.models.UserEventsHistoryModel;
 import com.allfine.models.UserEventsHistoryModelList;
 import com.allfine.models.core.CoreModel;
@@ -47,6 +48,7 @@ public class MainFragment extends Fragment {
 	private RelativeLayout complexViewUserCover;
 	private ListView listView;
 	private MainFragmentBaseAdapter adapter;
+	//history of call
 	private ArrayList<UserEventsHistoryModel> historyModels;
 
 	public MainFragment(SlidingMenu slidingMenu, UserModel user) {
@@ -82,7 +84,7 @@ public class MainFragment extends Fragment {
 		imageButtonMenuOpener.setOnClickListener(new MyOnClickListener());
 
 		historyModels = new ArrayList<UserEventsHistoryModel>();
-		adapter = new MainFragmentBaseAdapter(historyModels);
+		adapter = new MainFragmentBaseAdapter(getActivity(), historyModels, user);
 		listView.setAdapter(adapter);
 
 		fillUserInfo(user);
@@ -115,7 +117,7 @@ public class MainFragment extends Fragment {
 					.into(circularImageViewFragmentMainProfilePhoto);
 		}
 		if (user.getCover() != null) {
-			Log.d("testA", "getCover" + user.getCover());
+			Log.d("testA", "getCover: " + user.getCover());
 			Picasso.with(getActivity()).load(user.getCover())
 					.error(R.drawable.profile_cover_image1)
 					.placeholder(R.drawable.profile_cover_image1)
@@ -178,12 +180,20 @@ public class MainFragment extends Fragment {
 		protected UserEventsHistoryModelList doInBackground(CoreModel... params) {
 			HistoryOperations historyOperations = new HistoryOperations(
 					activity);
-			return historyOperations.getUserEventsHistory();
+			try {
+				Log.d("cursor","status start");
+				return historyOperations.getUserEventsHistory();
+			} catch (DataBaseException e) {
+				Log.d("cursor", "Cursor error: " + e.getMessage());
+				e.printStackTrace();
+			}
+			return null;
 		}
 
 		@Override
 		protected void onPostExecute(UserEventsHistoryModelList result) {
 			super.onPostExecute(result);
+			Log.d("history","history: " + result);
 
 			if (result != null) {
 				for (UserEventsHistoryModel eventsHistoryModel : result
@@ -194,5 +204,10 @@ public class MainFragment extends Fragment {
 				adapter.notifyDataSetChanged();
 			}
 		}
+	}
+	
+	
+	public MainFragmentBaseAdapter getHistoryList() {
+		return adapter;
 	}
 }

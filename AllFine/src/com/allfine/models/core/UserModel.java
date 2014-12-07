@@ -2,6 +2,8 @@ package com.allfine.models.core;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 
 @SuppressWarnings("serial")
 public class UserModel extends CoreModel implements Serializable {
@@ -124,6 +126,19 @@ public class UserModel extends CoreModel implements Serializable {
 		this.cover = cover;
 	}
 
+	public FriendModel userGetFriendById(Integer userId) {
+		FriendModel friendModel;
+		Iterator<FriendModel> itr = friends.iterator();
+		while (itr.hasNext()) {
+			friendModel = (FriendModel) itr.next();
+			if (userId.equals(friendModel.getUserId())) {
+				return friendModel;
+			}
+		}
+		return null;
+	}
+	
+	
 	@Override
 	public String toString() {
 		return "UserModel [userName=" + userName + ", firtsName=" + firtsName

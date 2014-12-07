@@ -30,6 +30,7 @@ import com.allfine.models.GCMInfoModel;
 import com.allfine.models.core.ContactsModelList;
 import com.allfine.models.core.CoreModel;
 import com.allfine.models.core.EventsModel;
+import com.allfine.models.core.ExistingContactsModelList;
 import com.allfine.models.core.UserModel;
 
 public class NetworkOperations {
@@ -832,65 +833,6 @@ public class NetworkOperations {
 	// return model;
 	// }
 
-	// public boolean downloadAdsContent(String adsContent, int adsId) {
-	//
-	// boolean isSuccessfull = false;
-	//
-	// try {
-	//
-	// HttpUriRequest request = new HttpGet(adsContent);
-	// HttpClient httpClient = getClient(
-	// BusinessConstants.CONNECTION_TIMEOUT,
-	// BusinessConstants.BUSINESS_DATA_TIMEOUT);
-	// HttpResponse response = httpClient.execute(request);
-	// HttpEntity entity = response.getEntity();
-	//
-	// byte[] bytes = EntityUtils.toByteArray(entity);
-	//
-	// FileOutputStream fileOutputStream = new FileOutputStream(
-	// Utility.getOuputAdsContentFile(context, adsId));
-	//
-	// if (bytes != null && bytes.length > 0) {
-	// try {
-	//
-	// fileOutputStream.write(bytes);
-	//
-	// } catch (Exception ex) {
-	//
-	// isSuccessfull = false;
-	//
-	// } finally {
-	//
-	// fileOutputStream.flush();
-	// fileOutputStream.close();
-	//
-	// }
-	//
-	// isSuccessfull = true;
-	// }
-	// } catch (ClientProtocolException e) {
-	// isSuccessfull = false;
-	// } catch (IOException e) {
-	// isSuccessfull = false;
-	// } catch (Exception e) {
-	// isSuccessfull = false;
-	// }
-	//
-	// return isSuccessfull;
-	// }
-
-	// public TransportableList<RatingFacebookModel>
-	// getRatingFacebookModel(CoreModel coreModel) {
-	//
-	// coreModel = (CoreModel) SPProvider.initializeObject(coreModel, context);
-	// TransportableList<RatingFacebookModel> modelsT = new
-	// TransportableList<RatingFacebookModel>();
-	// ArrayList<RatingFacebookModel> models = new
-	// ArrayList<RatingFacebookModel>();
-	// modelsT.setList(models);
-	// return modelsT;
-	// }
-
 	// public RatingInviteModelArrayList getRatingInvitesModel(CoreModel
 	// coreModel) {
 	//
@@ -917,18 +859,13 @@ public class NetworkOperations {
 	// BusinessConstants.CONNECTION_TIMEOUT,
 	// BusinessConstants.BUSINESS_DATA_TIMEOUT);
 	//
-	// ObjectConvertor<RatingInviteModelArrayList> objectConvertorUserModel =
-	// new ObjectConvertor<RatingInviteModelArrayList>();
-	// ratingPointModelArrayList = objectConvertorUserModel
-	// .getClassObject(result,
-	// RatingInviteModelArrayList.class);
+	// ObjectConvertor<RatingInviteModelArrayList> objectConvertorUserModel = new ObjectConvertor<RatingInviteModelArrayList>();
+	// ratingPointModelArrayList = objectConvertorUserModel.getClassObject(result, RatingInviteModelArrayList.class);
 	//
 	// } catch (ClientProtocolException ex) {
-	// ratingPointModelArrayList
-	// .setMessageId(MessageConstants.UN_SUCCESSFUL);
+	// ratingPointModelArrayList.setMessageId(MessageConstants.UN_SUCCESSFUL);
 	// } catch (IOException ex) {
-	// ratingPointModelArrayList
-	// .setMessageId(MessageConstants.UN_SUCCESSFUL);
+	// ratingPointModelArrayList.setMessageId(MessageConstants.UN_SUCCESSFUL);
 	// }
 	// }
 	//
@@ -1221,14 +1158,17 @@ public class NetworkOperations {
 		return null;
 	}
 
-	public ContactsModelList sendContactsAndGetUsers(Activity context,
+	public ExistingContactsModelList sendContactsAndGetUsers(Activity context,
 			ContactsModelList model) {
+		
 		model = (ContactsModelList) SPProvider.initializeObject(model, context);
-
+		
+		ExistingContactsModelList existingModels = new ExistingContactsModelList();
+		
 		if (!Utility.checkNetwork(context)) {
-			model.setMessageId(MessagesEnum.MI_NO_NETWORK_CONNECTION.getId());
+			existingModels.setMessageId(MessagesEnum.MI_NO_NETWORK_CONNECTION.getId());
 		} else if (!Utility.checkInternetConnection()) {
-			model.setMessageId(MessagesEnum.MI_NO_INTERNET_CONNECTION.getId());
+			existingModels.setMessageId(MessagesEnum.MI_NO_INTERNET_CONNECTION.getId());
 		} else {
 			try {
 
@@ -1242,20 +1182,18 @@ public class NetworkOperations {
 						BusinessConstants.CONNECTION_TIMEOUT,
 						BusinessConstants.BUSINESS_DATA_TIMEOUT);
 
-				ObjectConvertor<ContactsModelList> objectConvertorUserModel = new ObjectConvertor<ContactsModelList>();
-				model = objectConvertorUserModel.getClassObject(result,
-						ContactsModelList.class);
-
-				return model;
+				ObjectConvertor<ExistingContactsModelList> objectConvertorUserModel = new ObjectConvertor<ExistingContactsModelList>();
+				existingModels = objectConvertorUserModel.getClassObject(result,
+						ExistingContactsModelList.class);
 
 			} catch (ClientProtocolException ex) {
-				model.setMessageId(MessagesEnum.MI_EXCEPTION_ERROR.getId());
+				existingModels.setMessageId(MessagesEnum.MI_EXCEPTION_ERROR.getId());
 			} catch (IOException ex) {
-				model.setMessageId(MessagesEnum.MI_EXCEPTION_ERROR.getId());
+				existingModels.setMessageId(MessagesEnum.MI_EXCEPTION_ERROR.getId());
 			}
 		}
 
-		return model;
+		return existingModels;
 
 	}
 }

@@ -12,9 +12,11 @@ import android.widget.ListView;
 
 import com.allfine.R;
 import com.allfine.adapters.AddFriendActivityBaseAdapter;
-import com.allfine.adapters.ExistingContactNumbersModel;
-import com.allfine.adapters.ExistingContactsModelList;
 import com.allfine.enums.MessagesEnum;
+import com.allfine.exceptions.DataBaseException;
+import com.allfine.models.core.ExistingContactNumbersModel;
+import com.allfine.models.core.ExistingContactsModelList;
+import com.allfine.operations.ContactOperations;
 
 public class AddFriendActivity extends ActionBarActivity {
 
@@ -69,27 +71,15 @@ public class AddFriendActivity extends ActionBarActivity {
 		@Override
 		protected ExistingContactsModelList doInBackground(Void... arg0) {
 			
-			return makeFakeData();
-			
-		}
-
-		private ExistingContactsModelList makeFakeData() {
-			String photo = "https://scontent-b-vie.xx.fbcdn.net/hphotos-xpf1/v/t1.0-9/10157107_1400525340228351_5442709198150233351_n.jpg?oh=6f8928d7f233730c793d263cdec8e566&oe=54E4C586";
-			
-			ExistingContactsModelList contactsModelList = new ExistingContactsModelList();			
-			ArrayList<ExistingContactNumbersModel> numbersModelss = new ArrayList<ExistingContactNumbersModel>();
-			for (int i = 0; i <= 50; i++) {
-				ExistingContactNumbersModel object = new ExistingContactNumbersModel();
-				object.setUserPhoto(photo);
-				object.setFirstName("Togrul");
-				object.setLastName("Seydiov" + i);
-				object.setNumber(i + "8731053");
-				numbersModelss.add(object);
+			ContactOperations contactOperations = new ContactOperations(
+					activity);
+			ExistingContactsModelList contactsModelList = null;
+			try {
+				contactsModelList = contactOperations.getActiveContacts();
+				contactsModelList.setMessageId(MessagesEnum.MI_SUCCESSFUL.getId());
+			} catch (DataBaseException e) {
+				e.printStackTrace();
 			}
-			contactsModelList.setMessageId(MessagesEnum.MI_SUCCESSFUL
-							.getId());
-			contactsModelList.setNumbersModels(numbersModelss );
-			
 			
 			return contactsModelList;
 		}
@@ -97,8 +87,9 @@ public class AddFriendActivity extends ActionBarActivity {
 		@Override
 		protected void onPostExecute(ExistingContactsModelList result) {
 			super.onPostExecute(result);
-
-			if (result != null && result.getMessageId() != null
+			
+			if (result != null
+					&& result.getMessageId() != null
 					&& result.getMessageId() == MessagesEnum.MI_SUCCESSFUL
 							.getId()) {
 

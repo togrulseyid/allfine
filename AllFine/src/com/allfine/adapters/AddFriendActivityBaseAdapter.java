@@ -3,6 +3,7 @@ package com.allfine.adapters;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.allfine.R;
+import com.allfine.models.core.ExistingContactNumbersModel;
 import com.allfine.operations.Utility;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
@@ -64,7 +66,8 @@ public class AddFriendActivityBaseAdapter extends BaseAdapter {
 		}
 
 		model = getItem(position);
-		if (model != null) {
+		Log.d("testA", "model: " + model);
+		if (model.getNumber() != null) {
 
 			if (!Utility.isEmptyOrNull(model.getFirstName())
 					|| !Utility.isEmptyOrNull(model.getLastName())) {
@@ -72,6 +75,8 @@ public class AddFriendActivityBaseAdapter extends BaseAdapter {
 				holder.userFullName.setText(Utility.fullNameMaker(
 						model.getFirstName(), model.getLastName()));
 
+			} else if(!Utility.isEmptyOrNull(model.getDisplayName())) {
+				holder.userFullName.setText(model.getDisplayName());
 			}
 
 			if (model.getNumber() != null) {
@@ -80,9 +85,10 @@ public class AddFriendActivityBaseAdapter extends BaseAdapter {
 			if (model.getUserPhoto() != null) {
 				Picasso.with(activity).load(model.getUserPhoto())
 						.into(holder.userPhoto);
-			} else {
-				holder.userPhoto.setVisibility(View.GONE);
 			}
+//			else {
+//				holder.userPhoto.setVisibility(View.GONE);
+//			}
 
 		} else {
 			view.setVisibility(View.GONE);

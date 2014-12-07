@@ -1,17 +1,29 @@
 package com.allfine.models;
 
 public class UserEventsHistoryModel {
-	private String senderFirtName;
+
+	private Integer senderId;
+	private String senderFirstName;
 	private String senderLastName;
+	private String displayName;
 	private String date;
+	private String historyId;
 	private Integer status;
 
-	public String getSenderFirtName() {
-		return senderFirtName;
+	public Integer getSenderId() {
+		return senderId;
 	}
 
-	public void setSenderFirtName(String senderFirtName) {
-		this.senderFirtName = senderFirtName;
+	public void setSenderId(Integer senderId) {
+		this.senderId = senderId;
+	}
+
+	public String getSenderFirstName() {
+		return senderFirstName;
+	}
+
+	public void setSenderFirstName(String senderFirstName) {
+		this.senderFirstName = senderFirstName;
 	}
 
 	public String getSenderLastName() {
@@ -22,12 +34,28 @@ public class UserEventsHistoryModel {
 		this.senderLastName = senderLastName;
 	}
 
+	public String getDisplayName() {
+		return displayName;
+	}
+
+	public void setDisplayName(String displayName) {
+		this.displayName = displayName;
+	}
+
 	public String getDate() {
 		return date;
 	}
 
 	public void setDate(String date) {
 		this.date = date;
+	}
+
+	public String getHistoryId() {
+		return historyId;
+	}
+
+	public void setHistoryId(String historyId) {
+		this.historyId = historyId;
 	}
 
 	public Integer getStatus() {
@@ -40,9 +68,11 @@ public class UserEventsHistoryModel {
 
 	@Override
 	public String toString() {
-		return "UserEventsHistoryModel [senderFirtName=" + senderFirtName
-				+ ", senderLastName=" + senderLastName + ", date=" + date
-				+ ", status=" + status + "]";
+		return "UserEventsHistoryModel [senderId=" + senderId
+				+ ", senderFirtName=" + senderFirstName + ", senderLastName="
+				+ senderLastName + ", displayName=" + displayName + ", date="
+				+ date + ", historyId=" + historyId + ", status=" + status
+				+ "]";
 	}
 
 }

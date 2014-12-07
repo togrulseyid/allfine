@@ -1,5 +1,7 @@
 package com.allfine.activities;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import android.annotation.SuppressLint;
@@ -7,6 +9,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -22,9 +25,14 @@ import android.widget.Toast;
 
 import com.allfine.R;
 import com.allfine.adapters.MainActivitySlideMenuAdapter;
+import com.allfine.adapters.MainFragmentBaseAdapter;
 import com.allfine.constants.BusinessConstants;
+import com.allfine.db.DBOperations;
+import com.allfine.exceptions.DataBaseException;
 import com.allfine.fragments.MainFragment;
+import com.allfine.models.UserEventsHistoryModel;
 import com.allfine.models.core.EventsModel;
+import com.allfine.models.core.FriendModel;
 import com.allfine.models.core.UserModel;
 import com.allfine.operations.NetworkOperations;
 import com.allfine.operations.Utility;
@@ -39,12 +47,11 @@ public class MainActivity extends ActionBarActivity {
 	private MainActivitySlideMenuAdapter menuAdapter;
 	private Activity activity;
 	private UserModel user;
-
+	private Fragment contentFragment;
 	// Menu
 	private QuickAction customQuickAction;
 	private ListView listViewMenu;
 
-	@SuppressLint("InflateParams")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -69,7 +76,6 @@ public class MainActivity extends ActionBarActivity {
 			footerView.findViewById(R.id.imageButtonMainActivityAddFriend)
 					.setOnClickListener(new MyOnClickListener());
 
-			Log.d("testA", "added footer");
 		}
 
 		listViewMenu.setAdapter(menuAdapter);
@@ -79,8 +85,9 @@ public class MainActivity extends ActionBarActivity {
 				.setOnItemLongClickListener(new MyOnItemLongClickListener());
 
 		if (savedInstanceState == null) {
+			contentFragment = new MainFragment(slidingMenu, user);
 			getSupportFragmentManager().beginTransaction()
-					.add(R.id.container, new MainFragment(slidingMenu, user))
+					.add(R.id.container, contentFragment )
 					.commit();
 		}
 	}
@@ -156,32 +163,33 @@ public class MainActivity extends ActionBarActivity {
 			return networkOperations.sendEvent(params[0]);
 		}
 
-		@SuppressLint("InflateParams")
 		@Override
 		protected void onPostExecute(EventsModel result) {
 			super.onPostExecute(result);
+			if (!isCancelled() && !isDestroyed()) {
+				// Log.d("testA", result.toString());
 
-			Log.d("testA", result.toString());
+				if (!isCancelled() && result != null) {
+					// TODO: Make User Friend Image Border Color Different
+					CircularImageView firendsPhoto = (CircularImageView) view
+							.findViewById(R.id.circularImageViewLISlidingMenuFriend);
 
-			if (result != null) {
-				// TODO: Make User Friend Image Border Color Different
-				CircularImageView firendsPhoto = (CircularImageView) view
-						.findViewById(R.id.circularImageViewLISlidingMenuFriend);
+					firendsPhoto.setBorderColor(getResources().getColor(
+							R.color.color_all_fine_main_color));
 
-				firendsPhoto.setBorderColor(getResources().getColor(
-						R.color.color_all_fine_main_color));
-				
-				Log.d("testA", "firendsPhoto color change");
+					// Log.d("testA", "firendsPhoto color change");
 
-				RelativeLayout customLayout = (RelativeLayout) getLayoutInflater()
-						.inflate(R.layout.popup_reached_layout, null);
+					RelativeLayout customLayout = (RelativeLayout) getLayoutInflater()
+							.inflate(R.layout.popup_reached_layout, null);
 
-				customQuickAction = new QuickAction(activity,
-						R.style.PopupAnimation, R.drawable.popup_background,
-						customLayout);
+					customQuickAction = new QuickAction(activity,
+							R.style.PopupAnimation,
+							R.drawable.popup_background, customLayout);
 
-				customQuickAction.show(view);
+					customQuickAction.show(view);
+				}
 			}
+
 		}
 
 	}
@@ -202,6 +210,11 @@ public class MainActivity extends ActionBarActivity {
 			eventsModel
 					.setToUserId(user.getFriends().get(position).getUserId());
 			eventsModel.setEventId(1);
+
+			// TODO: write to DB
+			new WriteToDB(activity, ((MainFragment) contentFragment).getHistoryList()).execute(
+					user.getFriends().get(position), eventsModel);
+
 			new SendEventAsynTask(activity, view).execute(eventsModel);
 		}
 
@@ -214,7 +227,7 @@ public class MainActivity extends ActionBarActivity {
 		public boolean onItemLongClick(AdapterView<?> adapterView, View view,
 				int position, long id) {
 
-			Log.d("testA", "position: " + position);
+			// Log.d("testA", "position: " + position);
 
 			RelativeLayout customLayout = (RelativeLayout) getLayoutInflater()
 					.inflate(R.layout.popup_friend_settings_layout, null);
@@ -263,4 +276,73 @@ public class MainActivity extends ActionBarActivity {
 		}
 
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+public class WriteToDB extends AsyncTask<Object, Void, Long> {
+	private Activity activity;
+	private MainFragmentBaseAdapter menuAdapter;
+
+//	public WriteToDB(Activity activity) {
+//		this.activity = activity;
+//	}
+
+	public WriteToDB(Activity activity, MainFragmentBaseAdapter menuAdapter) {
+		this.menuAdapter = menuAdapter;
+		this.activity = activity;
+	}
+
+	@Override
+	protected Long doInBackground(Object... params) {
+		FriendModel friendModel = (FriendModel) params[0];
+		EventsModel eventModel = (EventsModel) params[1];
+
+		if (friendModel != null && eventModel != null) {
+			DBOperations dbOperations = DBOperations.instance(activity);
+			UserEventsHistoryModel model = new UserEventsHistoryModel();
+
+			SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
+
+			model.setSenderId(friendModel.getUserId());
+			model.setSenderFirstName(friendModel.getFirstName());
+			model.setSenderLastName(friendModel.getLastName());
+			model.setDisplayName(friendModel.getDisplayName());
+			model.setDate(dateFormat.format(new Date(new Timestamp(Long
+					.parseLong(eventModel.getTimeStmp())).getTime())));
+			model.setHistoryId(eventModel.getTimeStmp()
+					+ Utility.getUserId(activity) + friendModel.getUserId());
+			model.setStatus(1);
+
+			try {
+				return dbOperations.insertIntoEventsHistory(activity, model);
+			} catch (DataBaseException e) {
+				e.printStackTrace();
+			}
+
+		}
+		return (long) -1;
+	}
+
+	@Override
+	protected void onPostExecute(Long result) {
+		super.onPostExecute(result);
+
+		if (!isCancelled() && !result.equals(-1)) {
+			Log.d("menuAdapter", "result: " + result);
+			menuAdapter.notifyDataSetChanged();
+		}
+	}
+
+}
+
 }

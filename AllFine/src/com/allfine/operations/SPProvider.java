@@ -2,19 +2,18 @@ package com.allfine.operations;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 
 import com.allfine.R;
 import com.allfine.models.core.CoreModel;
 
 public class SPProvider {
 
-	private Context context;
-	private Resources resources;
+//	private Context context;
+//	private Resources resources;
 
 	public SPProvider(Context context) {
-		this.context = context;
-		resources = this.context.getResources();
+//		this.context = context;
+//		resources = this.context.getResources();
 	}
 
 	// public UserModel loadUserModel() {
@@ -326,8 +325,13 @@ public class SPProvider {
 					Context.MODE_PRIVATE);
 			model.setToken(sharedPreferences.getString(context.getResources()
 					.getString(R.string._SP_TOKEN), null));
+
 			model.setAppVersion(Integer.parseInt(context.getResources()
 					.getString(R.string._APP_VERSION)));
+			
+			model.setUserId(sharedPreferences.getInt(context.getResources()
+					.getString(R.string._SP_USER_ID), -1));
+			
 			model.setSysLang(context.getResources().getConfiguration().locale
 					.getLanguage());
 		}

@@ -1,22 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    
-    
     <!-- ALLFINE -->
-    
     <!-- PROPERTIES -->
     <string name="_P_APP_REG_ID">pAppRegId</string>
     <string name="_P_APP_VERSION">pAppVersion</string>
     <string name="_P_APP_LAST_SESSION_ID">pAppLastSessionID</string>
-    
     <string name="_SP_VIDEO_APP_IS_GCM_SEND">spVideoAppIsGCMSend</string>
     <string name="_SP_VIDEO_APP_GCM">spVideoAppGCM</string>
-    
-    
-    
-    
-    
+
     <!-- SharedPreferences constants -->
     <string name="_SP_ALL_FINE">spAllFine</string>
     <string name="_SP_USER_MODEL">spAllFineUserModel</string>
@@ -30,12 +22,11 @@
     <string name="_SP_USER_FIRTSNAME">spAllFineUserFirtsname</string>
     <string name="_SP_USER_LASTNAME">spAllFineUserlastname</string>
     <string name="_SP_USER_PHONE_NUMBER">spAllFineUserPhoneNumber</string>
-<!-- ESAS BURA KIMIDI -->
+    <!-- ESAS BURA KIMIDI -->
 
 
-
-<!--     <string name="_SP_CALL_STATE">spCallState</string> -->
-<!--     <string name="_SP_CALL_ANSWER_TIME">spAnswerTime</string> -->
+    <!-- <string name="_SP_CALL_STATE">spCallState</string> -->
+    <!-- <string name="_SP_CALL_ANSWER_TIME">spAnswerTime</string> -->
     <string name="_SP_TOKEN">spToken</string>
     <string name="_SP_USERNAME">spUsername</string>
     <string name="_SP_PHONE_NUMBER">spPhoneNumber</string>
@@ -51,17 +42,11 @@
     <string name="_SP_CITY_NAME">spCity</string>
     <string name="_SP_CITY_ID">spCityId</string>
     <string name="_SP_PROFILE_PERCENTAGE">spProfilePercent</string>
-    <string name="_SP_ADS_SERVICE_CALL_STATUS">spAdsCallStatus</string>
-    <string name="_SP_ADS_SERVICE_PUSH_STATUS">spAdsPush</string>
     <string name="_SP_NETWORK_TYPE">spNetworkType</string>
     <string name="_SP_ADS_SERVICE_CALL_SYNC_STATUS">spAdsCallSyncStatus</string>
-    <string name="_SP_SHOW_NUMBER_STATUS">spShowNumber</string>
-    <string name="_SP_SHOW_NUMBER_SYNC_STATUS">spShowNumberStatus</string>
     <string name="_SP_ACTIVE_ADS_COUNT">spActiveAdsCount</string>
     <string name="_SP_ACTIVE_ADS_CURSOR">spActiveAdsCursor</string>
     <string name="_SP_ACTIVE_ADS_PREPARED_FOR_CALL">spPrepearedAds</string>
-    <string name="_SP_TWITT_TOKEN">spTwittToken</string>
-    <string name="_SP_TWITT_TOKEN_SECRET">spTwittTokenSecret</string>
     <string name="_SP_TEMP_COUNTRY_CODE">tempCountryCode</string>
     <string name="_SP_TEMP_PHONE_NUMBER">tempPhoneNumber</string>
     <string name="_SP_ACTIVITY_ROOTING">soActivityRooting</string>
@@ -72,22 +57,6 @@
     <string name="_SP_USER_COVER_SYNC_STATUS">spUConverSync</string>
     <string name="_SP_USER_PROFILE_IMG_DIRECTORY">spUProfileImgD</string>
     <string name="_SP_GCM_REG_ID">spGCMREGID</string>
-    <string name="_SP_CARD_CALL_ADS_PENDING_MONEY">spCardAdsPenMon</string>
-    <string name="_SP_CARD_EXP_PENDING_MONEY">spCardExpPenMon</string>
-    <string name="_SP_CARD_CALL_ADS_PENDING_POINTS">spCardCallPP</string>
-    <string name="_SP_CARD_EXP_PENDING_POINTS">spCardExpPP</string>
-    <string name="_SP_CARD_CALL_TOTAL_MONEY">spCardCallTM</string>
-    <string name="_SP_CARD_EXP_TOTAL_MONEY">spCardExpTM</string>
-    <string name="_SP_CARD_CALL_TOTAL_POINT">spCardCallTP</string>
-    <string name="_SP_CARD_EXP_TOTAL_POINT">spCardExpTP</string>
-    <string name="_SP_CARD_NUMBER">spCardNumber</string>
-    <string name="_SP_SWITCH_SKIP">spSwitchSkip</string>
-    <string name="_SP_CHANNEL_INTERESTS">spCI</string>
-    <string name="_SP_CHANNEL_CINAME">spC</string>
-    <string name="_SP_CHANNEL_EVENTS">spE</string>
-    <string name="_SP_CHANNEL_CAMPAIGN">spCAPMAIGN</string>
-    <string name="_SP_CHANNEL_NEWS">spNEWS</string>
-    <string name="_SP_CHANNEL_FEED_CACHEING">spCacheing</string>
     <string name="_SP_CACHE_LAST">spCLAST</string>
     <string name="_SP_CACHE_OLDEST">spCOLDEST</string>
     <string name="_SP_CACHE_POST_MODELS">spCACHEMODELS</string>
@@ -99,16 +68,13 @@
     <string name="_ROOTING_START_ACTIVITY">1</string>
     <string name="_ROOTING_ACTIVATION_ACTIVITY">2</string>
     <string name="_ROOTING_MAIN_ACTIVITY">3</string>
-    <string name="_ROOTING_USER_FULL_INFO_DETAILS_ACTIVITY">4</string>
-    <string name="_ROOTING_FORGOT_PASSWORD_ACTIVITY">5</string>
-    <string name="_ROOTING_CHANGE_PHONE_DIALOG">6</string>
-    <string name="_ROOTING_CHANGE_PHONE_ACTIVITY">7</string>
-    <string name="_ROOTING_FORCE_UPDATE_ACTIVITY">8</string>
+    <string name="_ROOTING_CONTACTS_SYNCHRONIZATION_ACTIVITY">4</string>
+    <string name="_ROOTING_FORCE_UPDATE_ACTIVITY">5</string>
+    <string name="_ROOTING_USER_FULL_INFO_DETAILS_ACTIVITY">6</string>
 
     <!-- Bundle constants -->
-    
+
     <string name="_B_NOTIFICATION_OBJECT">spNotificationObject</string>
-    
     <string name="_B_EXPIRE_HOUR">spEH</string>
     <string name="_B_EXPIRE_MINUTE">spEM</string>
     <string name="_B_INCOMING_NUMBER">bIncomingNumber</string>
@@ -126,10 +92,6 @@
     <string name="_B_SELECTED_POST_ITEM">bChannelFeedItemPosition</string>
     <string name="_B_SELECTED_POST_FEELING_ID">bChannelFeedItemFeelingId</string>
     <string name="_B_SELECTED_POST_FEELING_POST_ID">bChannelFeedItemFeelingPostId</string>
-<!--     <string name="_B_LOCAL_CHANNEL_CATEGORY_MODEL_LIST">bLocalChannelCategoryModelList</string> -->
-<!--     <string name="_B_CHANNEL_CATEGORY_CHANGED_BOOL">bChannelCategoryChangedBool</string> -->
-    
-    
 
     <!-- Request constants -->
     <string name="_REQUEST_DEFAULT">0</string>
@@ -146,7 +108,6 @@
     <string name="_REQUEST_CROP_USER_PHOTO">11</string>
     <string name="_REQUEST_CROP_USER_COVER">12</string>
     <string name="_REQUEST_TO_BROW_FROM_NEWS">13</string>
-    <string name="_REQUEST_TO_BROW_FROM_ADS">14</string>
     <string name="_REQUEST_TO_SHOW_PRIVACY_POLICY">15</string>
     <string name="_REQUEST_TO_SHOW_TERM_OF_SERVICE">16</string>
     <string name="_REQUEST_TO_MAIN_ACTIVITY_FROM_NOTIFICATION">17</string>
@@ -160,43 +121,74 @@
 
     <!-- Database constants -->
     <string name="_DB_VERSION">1</string>
-    <string name="_DB_NAME">DB_MANDS</string>
-    <string name="_DB_T_ADS">ADS</string>
-    <string name="_DB_T_ADS_CREATE">CREATE TABLE ADS (
- 			ID INTEGER,
- 			ADS_CONTENT TEXT,
- 			METHOD INTEGER,
- 			STATUS INTEGER,
- 			TYPE INTEGER,
- 			PRIORITY INTEGER,
- 			DAILY_ADS_COUNT INTEGER,
- 			ACTION_METHOD_TYPE INTEGER,
- 			ACTION_METHOD_DATA TEXT,
- 			CAMPAIGN_START_DATE INTEGER,
- 			CAMPAIGN_END_DATE INTEGER,
- 			TITLE TEXT,
- 			DESCRIPTION TEXT,
- 			IS_SPONSORED INTEGER,
- 			HAS_SPECIAL_DATE INTEGER,
- 			INSTALLED_ADS_CONTENT INTEGER,
- 			PRIMARY KEY(ID))</string>
-    <string name="_DB_T_ADS_INSERT">INSERT OR REPLACE INTO ADS 
-       		 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)</string>
+    <string name="_DB_NAME">DB_ALL_FINE</string>
+    <!-- ALL FINE TABLES -->
+    
+    
+    <string name="_DB_STATEMENT_DROB_TABLE_IF_EXIST">DROP TABLE IF EXISTS   </string>
+    
+    <!-- ACTIVE Contacts -->
+    <string name="_DB_TABLE_USER_ACTIVE_CONTACTS_LIST">USER_ACTIVE_CONTACTS_LIST</string>
+    <string name="_DB_CREATE_TABLE_USER_ACTIVE_CONTACTS_LIST">CREATE TABLE USER_ACTIVE_CONTACTS_LIST (
+		ID INTEGER PRIMARY KEY   AUTOINCREMENT,
+	 	USER_ID INTEGER,
+	 	FIRST_NAME TEXT,
+	 	LAST_NAME TEXT,
+	 	DISPLAY_NAME TEXT,
+	 	NUMBER TEXT,
+	 	COUNTRY_CODE TEXT,
+	 	USER_PHOTO  TEXT,
+	 	STATUS INTEGER)	</string>
+    <string name="_DB_Q_INSERT_TABLE_USER_ACTIVE_CONTACTS_LIST">INSERT INTO USER_ACTIVE_CONTACTS_LIST VALUES (?,?,?,?,?,?,?,?,?)</string>
+    <string name="_DB_Q_SELECT_TABLE_USER_ACTIVE_CONTACTS_LIST">SELECT * FROM USER_ACTIVE_CONTACTS_LIST LIMIT 3000 </string>
+    
+    
+<!--     ALL Contacts -->
+    <string name="_DB_TABLE_USER_ALL_CONTACTS_LIST">USER_ALL_CONTACTS_LIST</string>
+    <string name="_DB_CREATE_TABLE_USER_ALL_CONTACTS_LIST">CREATE TABLE USER_ALL_CONTACTS_LIST (
+		ID INTEGER PRIMARY KEY   AUTOINCREMENT,
+ 		USER_ID INTEGER,
+ 		FIRST_NAME TEXT,
+ 		LAST_NAME TEXT,
+ 		DISPLAY_NAME TEXT,
+ 		NUMBER TEXT,
+ 		COUNTRY_CODE TEXT,
+ 		STATUS INTEGER)	</string>
+    <string name="_DB_Q_INSERT_TABLE_USER_ALL_CONTACTS_LIST">INSERT INTO USER_ALL_CONTACTS_LIST VALUES (?,?,?,?,?,?,?)</string>
+    
+    
+    <!-- USER HISTORY -->
+    <string name="_DB_TABLE_USER_EVENTS_HISTORY_LIST">USER_EVENTS_HISTORY_LIST</string>
+    <string name="_DB_CREATE_TABLE_USER_EVENTS_HISTORY_LIST">CREATE TABLE USER_EVENTS_HISTORY_LIST (
+		ID INTEGER PRIMARY KEY AUTOINCREMENT,
+ 		SENDER_USER_ID INTEGER,
+ 		FIRST_NAME TEXT,
+ 		LAST_NAME TEXT,
+ 		DISPLAY_NAME TEXT,
+ 		ACTION_DATE TEXT,
+	 	HISTORY_ID TEXT,
+ 		STATUS INTEGER)
+	</string>
+    <string name="_DB_Q_INSERT_TABLE_USER_EVENTS_HISTORY_LIST">INSERT INTO USER_EVENTS_HISTORY_LIST VALUES (?,?,?,?,?,?,?,?)</string>
+    <string name="_DB_Q_SELECT_TABLE_USER_EVENTS_HISTORY_LIST">SELECT * FROM USER_EVENTS_HISTORY_LIST ORDER BY ID DESC LIMIT 3000 </string>
+    
+    <!-- ALLFINE TABLES END -->
+<!--     <string name="_DB_USER_CONTACT_TABLE_CREATE">CREATE TABLE CONTACT_ACTIVE_USER_LIST ( -->
+<!--  			ID INTEGER PRIMARY KEY AUTOINCREMENT, -->
+<!--  			USER_ID INTEGER, -->
+<!--  			NUMBER STRING, -->
+<!--  			FIRST_NAME STRING, -->
+<!--  			LAST_NAME STRING, -->
+<!--  			DISPLAY_NAME STRING, -->
+<!--  			USER_PHOTO STRING,  -->
+<!--  			STATUS INTEGER)</string> -->
     <string name="_DB_T_ADS_SPECIAL_DATE">ADS_SPECIAL_DATE</string>
-    <string name="_DB_T_ADS_SPECIAL_DATE_CREATE">CREATE TABLE ADS_SPECIAL_DATE (
- 			ID INTEGER PRIMARY KEY AUTOINCREMENT,
- 			ADS_ID INTEGER,
- 			DATE INTEGER,
- 			START_DATE INTEGER,
- 			END_DATE INTEGER)</string>
     <string name="_DB_T_ADS_SPECIAL_DATE_INSERT">INSERT OR REPLACE INTO ADS_SPECIAL_DATE 
       		VALUES (?,?,?,?,?)</string>
     <string name="_DB_T_ACTIVE_ADS">ACTIVE_ADS</string>
-    <string name="_DB_T_ACTIVE_ADS_CREATE">CREATE TABLE ACTIVE_ADS (ADS_ID INTEGER)</string>
     <string name="_DB_T_ACTIVE_ADS_DELETE">DELETE FROM ACTIVE_ADS</string>
     <string name="_DB_T_ACTIVE_ADS_INSERT">INSERT OR REPLACE INTO ACTIVE_ADS VALUES (?)</string>
     <string name="_DB_T_PAUSED_ADS">PAUSED_ADS</string>
-    <string name="_DB_T_PAUSED_ADS_CREATE">CREATE TABLE PAUSED_ADS (ADS_ID INTEGER)</string>
     <string name="_DB_T_PAUSED_ADS_DELETE">DELETE FROM PAUSED_ADS</string>
     <string name="_DB_T_PAUSED_ADS_INSERT">INSERT OR REPLACE INTO PAUSED_ADS VALUES (?)</string>
     <string name="_DB_T_SELECT_STOPPED_ADS">SELECT * FROM ADS WHERE ID NOT IN (SELECT ADS_ID FROM ACTIVE_ADS UNION ALL SELECT * FROM PAUSED_ADS)</string>
@@ -204,12 +196,6 @@
     <string name="_DB_T_DELETE_USED_ADS">DELETE FROM ADS WHERE ID = ?</string>
     <string name="_DB_T_DELETE_ACTIVE_ADS">DELETE FROM ACTIVE_ADS WHERE ADS_ID = ?</string>
     <string name="_DB_T_SELECT_ACTIVE_ADS">SELECT * FROM ACTIVE_ADS</string>
-    <string name="_DB_T_ACTION_INFO_CREATE">CREATE TABLE ACTION_INFO (
-        ADS_ID INTEGER,
-        ADS_METHOD INTEGER,
-        OPERATION_DATE INTEGER,
-        ACTION_METHOD INTEGER,
-        ADS_TYPE INTEGER)</string>
     <string name="_DB_T_ACTION_INFO_INSERT">INSERT OR REPLACE INTO ACTION_INFO VALUES (?,?,?,?,?)</string>
     <string name="_DB_T_ACTION_INFO_DELETE">DELETE FROM ACTION_INFO</string>
     <string name="_DB_T_ACTION_INFO_COUNT">SELECT COUNT(*) FROM ACTION_INFO</string>
@@ -217,7 +203,6 @@
     <string name="_DB_T_ACTION_INFO_SELECT">SELECT * FROM ACTION_INFO</string>
     <string name="_DB_T_SELECT_DAILY_SHOW_COUNT">SELECT COUNT(*) FROM ACTION_INFO WHERE ADS_ID =? AND OPERATION_DATE =?</string>
     <string name="_DB_T_SELECT_UNINSTALLED_ADS">SELECT * FROM ADS WHERE INSTALLED_ADS_CONTENT = 0</string>
-    <string name="_DB_T_CREATE_DAILY_ADS">CREATE TABLE DAILY_ADS (ADS_ID INTEGER, OPERATION_DATE INTEGER)</string>
     <string name="_DB_T_INSERT_DAILY_ADS">INSERT OR REPLACE INTO DAILY_ADS VALUES (?,?)</string>
     <string name="_DB_T_DAILY_ADS_COUNT">SELECT COUNT(*) FROM DAILY_ADS WHERE  ADS_ID = ? AND OPERATION_DATE = ?</string>
     <string name="_DB_T_DAILY_ADS_DELETE">DELETE FROM DAILY_ADS WHERE OPERATION_DATE = ?</string>
@@ -277,8 +262,7 @@
     </string-array>
 
     <!-- Patterns -->
-     <string name="_PATTERN_USER_PROFILE_FRIENDS_COUNT">%1$s friends</string>
-     
+    <string name="_PATTERN_USER_PROFILE_FRIENDS_COUNT">%1$s friends</string>
     <string name="_PATTERN_QUERY_HINT"><Data><![CDATA[<font color = #ffffff>%1$s</font>]]></Data></string>
     <string name="_PATTERN_TWITTER_FOLLOW">Follow @%1$s</string>
     <string name="_PATTERN_TWITTER_TWITT">Tweet: %1$s</string>

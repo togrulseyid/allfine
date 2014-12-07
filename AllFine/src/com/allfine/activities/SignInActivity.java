@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 
 import com.allfine.R;
 import com.allfine.enums.MessagesEnum;
@@ -27,6 +28,7 @@ public class SignInActivity extends ActionBarActivity {
 	private Button signIn;
 	private EditText phoneNumber;
 	private Activity activity;
+	private RelativeLayout relativeLayoutprogressBar;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,7 @@ public class SignInActivity extends ActionBarActivity {
 
 		signIn = (Button) findViewById(R.id.buttonSignInActivitySignIn);
 		phoneNumber = (EditText) findViewById(R.id.editTextignInActivityUserNameOrPhone);
+		relativeLayoutprogressBar = (RelativeLayout) findViewById(R.id.relativeLayoutSignInActivityProgressBar);
 		signIn.setOnClickListener(new MyOnClickListener());
 
 	}
@@ -88,6 +91,7 @@ public class SignInActivity extends ActionBarActivity {
 									getResources().getString(
 											R.string._SP_ALL_FINE),
 									Context.MODE_PRIVATE);
+					
 					String regid = sharedPreferences.getString(getResources()
 							.getString(R.string._SP_GCM_REG_ID), null);
 
@@ -122,6 +126,7 @@ public class SignInActivity extends ActionBarActivity {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
+			relativeLayoutprogressBar.setVisibility(View.VISIBLE);
 			if (dialog == null) {
 				// dialog = new LoadingDialog();
 				// dialog.show(getSupportFragmentManager(), "");
@@ -159,13 +164,19 @@ public class SignInActivity extends ActionBarActivity {
 												R.string._SP_ROOTING_ACTIVITY),
 										getResources()
 												.getString(
-														R.string._ROOTING_MAIN_ACTIVITY))
+														R.string._ROOTING_CONTACTS_SYNCHRONIZATION_ACTIVITY))
 								.commit();
 
-						Intent intent = new Intent(activity, MainActivity.class);
+						
+						Intent intent = new Intent(activity, ContactsSynchronizationActivity.class);
 						startActivity(intent);
 						SignInActivity.this.activity.finish();
 						finish();
+						
+//						Intent intent = new Intent(activity, MainActivity.class);
+//						startActivity(intent);
+//						SignInActivity.this.activity.finish();
+//						finish();
 					}
 
 				} else {

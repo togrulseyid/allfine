@@ -1,8 +1,6 @@
-package com.allfine.adapters;
+package com.allfine.models.core;
 
 import java.util.ArrayList;
-
-import com.allfine.models.core.CoreModel;
 
 public class ExistingContactsModelList extends CoreModel {
 	private ArrayList<ExistingContactNumbersModel> numbersModels;

@@ -1,8 +1,10 @@
-package com.allfine.adapters;
+package com.allfine.models.core;
 
-public class ExistingContactNumbersModel {
+public class ExistingContactNumbersModel extends CoreModel {
+
 	private String firstName;
 	private String lastName;
+	private String displayName;
 	private String number;
 	private String userPhoto;
 
@@ -20,6 +22,14 @@ public class ExistingContactNumbersModel {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public String getDisplayName() {
+		return displayName;
+	}
+
+	public void setDisplayName(String displayName) {
+		this.displayName = displayName;
 	}
 
 	public String getNumber() {
@@ -41,8 +51,8 @@ public class ExistingContactNumbersModel {
 	@Override
 	public String toString() {
 		return "ExistingContactNumbersModel [firstName=" + firstName
-				+ ", lastName=" + lastName + ", number=" + number
-				+ ", userPhoto=" + userPhoto + "]";
+				+ ", lastName=" + lastName + ", displayName=" + displayName
+				+ ", number=" + number + ", userPhoto=" + userPhoto + "]";
 	}
 
 }

@@ -5,6 +5,7 @@ public class FriendModel {
 	private Integer userId;
 	private String firstName;
 	private String lastName;
+	private String displayName;
 	private Integer confirmed;
 	private String userName;
 	private String phoneNumber;
@@ -32,6 +33,14 @@ public class FriendModel {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public String getDisplayName() {
+		return displayName;
+	}
+
+	public void setDisplayName(String displayName) {
+		this.displayName = displayName;
 	}
 
 	public Integer getConfirmed() {
@@ -69,9 +78,9 @@ public class FriendModel {
 	@Override
 	public String toString() {
 		return "FriendModel [userId=" + userId + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", confirmed=" + confirmed
-				+ ", userName=" + userName + ", phoneNumber=" + phoneNumber
-				+ ", photo=" + photo + "]";
+				+ ", lastName=" + lastName + ", displayName=" + displayName
+				+ ", confirmed=" + confirmed + ", userName=" + userName
+				+ ", phoneNumber=" + phoneNumber + ", photo=" + photo + "]";
 	}
 
 }
