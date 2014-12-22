@@ -29,8 +29,10 @@ import com.allfine.enums.MessagesEnum;
 import com.allfine.models.GCMInfoModel;
 import com.allfine.models.core.ContactsModelList;
 import com.allfine.models.core.CoreModel;
+import com.allfine.models.core.DeleteFriendModel;
 import com.allfine.models.core.EventsModel;
 import com.allfine.models.core.ExistingContactsModelList;
+import com.allfine.models.core.FriendRequestModel;
 import com.allfine.models.core.UserModel;
 
 public class NetworkOperations {
@@ -1196,4 +1198,106 @@ public class NetworkOperations {
 		return existingModels;
 
 	}
+
+	public DeleteFriendModel deleteFriend(DeleteFriendModel model) {
+		model = (DeleteFriendModel) SPProvider.initializeObject(model, context);
+
+		if (!Utility.checkNetwork(context)) {
+			model.setMessageId(MessagesEnum.MI_NO_NETWORK_CONNECTION.getId());
+		} else if (!Utility.checkInternetConnection()) {
+			model.setMessageId(MessagesEnum.MI_NO_INTERNET_CONNECTION.getId());
+		} else {
+			try {
+
+				ObjectConvertor<DeleteFriendModel> objectConvertorModel = new ObjectConvertor<DeleteFriendModel>();
+
+				String result = postAndResponseString(
+						objectConvertorModel.getClassString(model),
+						convertHttps(Utility.decrypt(
+								UrlConstants.URL_DELETE_FRIEND,
+								Utility.getAppSignature(context))), 4000, 4000);
+
+				model = objectConvertorModel.getClassObject(result,
+						DeleteFriendModel.class);
+
+				return model;
+
+			} catch (ClientProtocolException ex) {
+				model.setMessageId(MessagesEnum.MI_EXCEPTION_ERROR.getId());
+			} catch (IOException ex) {
+				model.setMessageId(MessagesEnum.MI_EXCEPTION_ERROR.getId());
+			}
+		}
+
+		return model;
+
+	}
+
+	public FriendRequestModel sendFriendRequest(FriendRequestModel model) {
+		model = (FriendRequestModel) SPProvider.initializeObject(model, context);
+
+		if (!Utility.checkNetwork(context)) {
+			model.setMessageId(MessagesEnum.MI_NO_NETWORK_CONNECTION.getId());
+		} else if (!Utility.checkInternetConnection()) {
+			model.setMessageId(MessagesEnum.MI_NO_INTERNET_CONNECTION.getId());
+		} else {
+			try {
+
+				ObjectConvertor<FriendRequestModel> objectConvertorModel = new ObjectConvertor<FriendRequestModel>();
+
+				String result = postAndResponseString(
+						objectConvertorModel.getClassString(model),
+						convertHttps(Utility.decrypt(
+								UrlConstants.URL_ADD_FRIEND,
+								Utility.getAppSignature(context))), 4000, 4000);
+
+				model = objectConvertorModel.getClassObject(result,
+						FriendRequestModel.class);
+
+				return model;
+
+			} catch (ClientProtocolException ex) {
+				model.setMessageId(MessagesEnum.MI_EXCEPTION_ERROR.getId());
+			} catch (IOException ex) {
+				model.setMessageId(MessagesEnum.MI_EXCEPTION_ERROR.getId());
+			}
+		}
+
+		return model;
+	}
+
+	public CoreModel sendFriendRequestAnswer(FriendRequestModel model) {
+		model = (FriendRequestModel) SPProvider
+				.initializeObject(model, context);
+
+		if (!Utility.checkNetwork(context)) {
+			model.setMessageId(MessagesEnum.MI_NO_NETWORK_CONNECTION.getId());
+		} else if (!Utility.checkInternetConnection()) {
+			model.setMessageId(MessagesEnum.MI_NO_INTERNET_CONNECTION.getId());
+		} else {
+			try {
+
+				ObjectConvertor<FriendRequestModel> objectConvertorModel = new ObjectConvertor<FriendRequestModel>();
+
+				String result = postAndResponseString(
+						objectConvertorModel.getClassString(model),
+						convertHttps(Utility.decrypt(
+								UrlConstants.URL_FRIEND_REQ_ANSWER,
+								Utility.getAppSignature(context))), 4000, 4000);
+
+				model = objectConvertorModel.getClassObject(result,
+						FriendRequestModel.class);
+
+				return model;
+
+			} catch (ClientProtocolException ex) {
+				model.setMessageId(MessagesEnum.MI_EXCEPTION_ERROR.getId());
+			} catch (IOException ex) {
+				model.setMessageId(MessagesEnum.MI_EXCEPTION_ERROR.getId());
+			}
+		}
+
+		return model;
+	}
+
 }

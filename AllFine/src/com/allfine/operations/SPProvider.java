@@ -324,7 +324,7 @@ public class SPProvider {
 					context.getResources().getString(R.string._SP_ALL_FINE),
 					Context.MODE_PRIVATE);
 			model.setToken(sharedPreferences.getString(context.getResources()
-					.getString(R.string._SP_TOKEN), null));
+					.getString(R.string._SP_USER_TOKEN), null));
 
 			model.setAppVersion(Integer.parseInt(context.getResources()
 					.getString(R.string._APP_VERSION)));
@@ -357,7 +357,7 @@ public class SPProvider {
 					context.getResources().getString(R.string._SP_ALL_FINE),
 					Context.MODE_PRIVATE);
 			model.setToken(sharedPreferences.getString(context.getResources()
-					.getString(R.string._SP_TOKEN), null));
+					.getString(R.string._SP_USER_TOKEN), null));
 			model.setAppVersion(Integer.parseInt(context.getResources()
 					.getString(R.string._APP_VERSION)));
 		}

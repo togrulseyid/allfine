@@ -144,6 +144,7 @@ public class SignInActivity extends ActionBarActivity {
 		protected void onPostExecute(UserModel result) {
 			super.onPostExecute(result);
 
+			Log.d("onPostExecute",""+ result);
 			if (!isCancelled()) {
 				if (dialog != null) {
 					dialog.dismiss();

@@ -163,35 +163,52 @@ public class DBOperations {
 					.compileStatement(resources
 							.getString(R.string._DB_Q_INSERT_TABLE_USER_ACTIVE_CONTACTS_LIST));
 			// USER_ID INTEGER,
+			// USER_NAME TEXT,
 			// FIRST_NAME TEXT,
 			// LAST_NAME TEXT,
 			// DISPLAY_NAME TEXT,
 			// NUMBER TEXT,
 			// COUNTRY_CODE TEXT,
 			// USER_PHOTO TEXT,
+			// USER_COVER TEXT,
 			// STATUS INTEGER)
 			Log.d("contacts", "list: " + model.toString());
-			// statement.bindNull(1);
-			statement.bindLong(2, 0);
+
+			if (model.getFriendId() != null) {
+				statement.bindLong(2, model.getFriendId());
+			}
+
+			if (model.getFriendUserName() != null) {
+				statement.bindString(3, model.getFriendUserName());
+			}
+
 			if (model.getFirstName() != null) {
-				statement.bindString(3, model.getFirstName());
+				statement.bindString(4, model.getFirstName());
 			}
 			if (model.getLastName() != null) {
-				statement.bindString(4, model.getLastName());
+				statement.bindString(5, model.getLastName());
 			}
 			if (model.getDisplayName() != null) {
-				statement.bindString(5, model.getDisplayName());
+				statement.bindString(6, model.getDisplayName());
 			}
 			if (model.getNumber() != null) {
-				statement.bindString(6, model.getNumber());
+				statement.bindString(7, model.getNumber());
 			}
 			if ("+994" != null) {
-				statement.bindString(7, "+994");
+				statement.bindString(8, "+994");
 			}
 			if (model.getUserPhoto() != null) {
-				statement.bindString(8, model.getUserPhoto());
+				statement.bindString(9, model.getUserPhoto());
 			}
-			statement.bindLong(9, 1);
+
+			if (model.getFriendUserCover() != null) {
+				statement.bindString(10, model.getFriendUserCover());
+			}
+
+			if (model.getStatus() != null) {
+				statement.bindLong(11, model.getStatus());
+			}
+
 			Log.d("statement", "statement: " + statement.executeInsert());
 			statement.close();
 		}
@@ -348,7 +365,7 @@ public class DBOperations {
 		if (model.getHistoryId() != null) {
 			stmt.bindString(7, model.getHistoryId());
 		}
-		
+
 		if (model.getStatus() != null) {
 			stmt.bindLong(8, model.getStatus());
 		}
@@ -359,4 +376,23 @@ public class DBOperations {
 		return status;
 	}
 
+	
+	/**
+	 * @STATEMENT: GET USER_ACTIVE_CONTACTS_LIST BY TYPE
+	 * */
+	public Cursor getUserActiveProfileByType(String type, String value)
+			throws DataBaseException {
+		Log.d("contacts", "DB: getActiveContacts");
+
+		Log.d("testA", "" + isOpen());
+		Log.d("testA", "" + database.getVersion() + database.isOpen());
+		Cursor cursor = database
+				.rawQuery(
+						String.format(
+								resources
+										.getString(R.string._DB_Q_SELECT_TABLE_USER_ACTIVE_CONTACTS_LIST_BY_TYPE),
+								type), new String[] { value });
+		return cursor;
+	}
+	
 }

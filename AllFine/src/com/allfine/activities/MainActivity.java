@@ -1,13 +1,10 @@
 package com.allfine.activities;
 
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
@@ -25,20 +22,19 @@ import android.widget.Toast;
 
 import com.allfine.R;
 import com.allfine.adapters.MainActivitySlideMenuAdapter;
-import com.allfine.adapters.MainFragmentBaseAdapter;
+import com.allfine.asynctask.RemoveFriendAsyncTask;
+import com.allfine.asynctask.SendEventAsynTask;
+import com.allfine.asynctask.WriteToDB;
 import com.allfine.constants.BusinessConstants;
-import com.allfine.db.DBOperations;
-import com.allfine.exceptions.DataBaseException;
 import com.allfine.fragments.MainFragment;
-import com.allfine.models.UserEventsHistoryModel;
 import com.allfine.models.core.EventsModel;
 import com.allfine.models.core.FriendModel;
 import com.allfine.models.core.UserModel;
-import com.allfine.operations.NetworkOperations;
 import com.allfine.operations.Utility;
+import com.allfine.views.ConfirmDialog;
+import com.allfine.views.InfoDialog;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnOpenedListener;
-import com.mikhaellopez.circularimageview.CircularImageView;
 import com.togrulseyid.quickaction.library.QuickAction;
 
 public class MainActivity extends ActionBarActivity {
@@ -52,6 +48,8 @@ public class MainActivity extends ActionBarActivity {
 	private QuickAction customQuickAction;
 	private ListView listViewMenu;
 
+	// private ArrayList<FriendModel> friends;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -59,6 +57,12 @@ public class MainActivity extends ActionBarActivity {
 		activity = this;
 
 		user = Utility.getUserInfo(activity);
+		
+//		Log.d("UserModel","" + user.toString());
+
+		if (user == null) {
+			Utility.finishForToken(activity);
+		}
 
 		makeMenu();
 
@@ -66,7 +70,8 @@ public class MainActivity extends ActionBarActivity {
 
 		menuAdapter = new MainActivitySlideMenuAdapter(this, user.getFriends());
 
-		if (user.getFriends().size() < BusinessConstants.MAX_USER_FRIEND) {
+		if (user.getFriends() == null
+				|| user.getFriends().size() < BusinessConstants.MAX_USER_FRIEND) {
 
 			View footerView = getLayoutInflater().inflate(
 					R.layout.footer_add_friend_layout, null);
@@ -87,8 +92,7 @@ public class MainActivity extends ActionBarActivity {
 		if (savedInstanceState == null) {
 			contentFragment = new MainFragment(slidingMenu, user);
 			getSupportFragmentManager().beginTransaction()
-					.add(R.id.container, contentFragment )
-					.commit();
+					.add(R.id.container, contentFragment).commit();
 		}
 	}
 
@@ -146,54 +150,6 @@ public class MainActivity extends ActionBarActivity {
 
 	}
 
-	private class SendEventAsynTask extends
-			AsyncTask<EventsModel, Void, EventsModel> {
-		private Activity activity;
-		private View view;
-
-		public SendEventAsynTask(Activity activity, View view) {
-			this.activity = activity;
-			this.view = view;
-		}
-
-		@Override
-		protected EventsModel doInBackground(EventsModel... params) {
-			NetworkOperations networkOperations = new NetworkOperations(
-					activity);
-			return networkOperations.sendEvent(params[0]);
-		}
-
-		@Override
-		protected void onPostExecute(EventsModel result) {
-			super.onPostExecute(result);
-			if (!isCancelled() && !isDestroyed()) {
-				// Log.d("testA", result.toString());
-
-				if (!isCancelled() && result != null) {
-					// TODO: Make User Friend Image Border Color Different
-					CircularImageView firendsPhoto = (CircularImageView) view
-							.findViewById(R.id.circularImageViewLISlidingMenuFriend);
-
-					firendsPhoto.setBorderColor(getResources().getColor(
-							R.color.color_all_fine_main_color));
-
-					// Log.d("testA", "firendsPhoto color change");
-
-					RelativeLayout customLayout = (RelativeLayout) getLayoutInflater()
-							.inflate(R.layout.popup_reached_layout, null);
-
-					customQuickAction = new QuickAction(activity,
-							R.style.PopupAnimation,
-							R.drawable.popup_background, customLayout);
-
-					customQuickAction.show(view);
-				}
-			}
-
-		}
-
-	}
-
 	private class MyOnItemClickListener implements OnItemClickListener {
 		private UserModel user;
 
@@ -202,20 +158,35 @@ public class MainActivity extends ActionBarActivity {
 		}
 
 		@Override
-		public void onItemClick(AdapterView<?> arg0, View view, int position,
-				long id) {
+		public void onItemClick(AdapterView<?> adapterView, View view,
+				int position, long id) {
 
-			EventsModel eventsModel = new EventsModel();
-			eventsModel.setTimeStmp("" + new Date().getTime());
-			eventsModel
-					.setToUserId(user.getFriends().get(position).getUserId());
-			eventsModel.setEventId(1);
+			FriendModel friendModel = user.getFriends().get(position);
+			if (friendModel != null
+					&& friendModel.getConfirmed() == BusinessConstants.CONST_FRIEND_ADDED) {
+				EventsModel eventsModel = new EventsModel();
+				eventsModel.setTimeStmp("" + new Date().getTime());
+				eventsModel.setToUserId(friendModel.getUserId());
+				eventsModel.setEventId(1);
 
-			// TODO: write to DB
-			new WriteToDB(activity, ((MainFragment) contentFragment).getHistoryList()).execute(
-					user.getFriends().get(position), eventsModel);
+				// TODO: write to DB
+				new WriteToDB(activity,
+						((MainFragment) contentFragment).getHistoryModels(),
+						((MainFragment) contentFragment).getHistoryList())
+						.execute(user.getFriends().get(position), eventsModel);
 
-			new SendEventAsynTask(activity, view).execute(eventsModel);
+				// new SendEventAsynTask(activity, friends.get(position),
+				// view).execute(eventsModel);
+
+				new SendEventAsynTask(activity,
+						user.getFriends().get(position), view)
+						.execute(eventsModel);
+			} else {
+				InfoDialog infoDialog = new InfoDialog(activity, 0,
+						R.string.message_info_dialog_title,
+						R.string.message_error_not_confirmed_yet);
+				infoDialog.show();
+			}
 		}
 
 	}
@@ -225,23 +196,28 @@ public class MainActivity extends ActionBarActivity {
 		@SuppressLint("InflateParams")
 		@Override
 		public boolean onItemLongClick(AdapterView<?> adapterView, View view,
-				int position, long id) {
-
-			// Log.d("testA", "position: " + position);
+				int position, long id) throws ArrayIndexOutOfBoundsException {
 
 			RelativeLayout customLayout = (RelativeLayout) getLayoutInflater()
 					.inflate(R.layout.popup_friend_settings_layout, null);
 
 			customLayout.findViewById(R.id.imageViewPopUpFrinedSettingsRemove)
-					.setOnClickListener(new MyOnClickListener());
+					.setOnClickListener(
+							new MyOnClickListener(user.getFriends().get(
+									position)));
 			customLayout.findViewById(R.id.imageViewPopUpFrinedSettingsEdit)
-					.setOnClickListener(new MyOnClickListener());
+					.setOnClickListener(
+							new MyOnClickListener(user.getFriends().get(
+									position)));
 
 			// TODO: show friends settings
 			customQuickAction = new QuickAction(activity,
 					R.style.PopupAnimation, R.drawable.popup_background,
 					customLayout);
-			customQuickAction.show(view);
+
+			// customQuickAction.show(view);
+			customQuickAction.show(view, view.getMeasuredWidth(),
+					view.getMeasuredHeight());
 
 			return false;
 		}
@@ -249,15 +225,48 @@ public class MainActivity extends ActionBarActivity {
 	}
 
 	private class MyOnClickListener implements OnClickListener {
+		private FriendModel friendModel;
+		private ConfirmDialog dialogFragment;
+
+		public MyOnClickListener() {
+		}
+
+		public MyOnClickListener(FriendModel friendModel) {
+			this.friendModel = friendModel;
+		}
 
 		@Override
 		public void onClick(View v) {
 			switch (v.getId()) {
 			case R.id.imageViewPopUpFrinedSettingsRemove:
-				Toast.makeText(activity, "remove", Toast.LENGTH_SHORT).show();
+				customQuickAction.dismiss();
+				dialogFragment = new ConfirmDialog(
+						activity,
+						getString(R.string.message_confirm_dialog_title),
+						String.format(
+								getString(R.string.message_confirm_dialog_body),
+								Utility.getFullName(friendModel.getFirstName(),
+										friendModel.getLastName(),
+										friendModel.getDisplayName())));
+				dialogFragment.show();
+
+				dialogFragment.setOnClickListener(new View.OnClickListener() {
+
+					@Override
+					public void onClick(View view) {
+						if (view.getId() == R.id.buttonDialogConfirmOK) {
+							new RemoveFriendAsyncTask(activity, menuAdapter,
+									user).execute(friendModel);
+							dialogFragment.dismiss();
+
+						}
+					}
+				});
+
 				break;
 
 			case R.id.imageViewPopUpFrinedSettingsEdit:
+
 				Toast.makeText(activity, "edit", Toast.LENGTH_SHORT).show();
 				break;
 
@@ -265,8 +274,11 @@ public class MainActivity extends ActionBarActivity {
 
 				Toast.makeText(activity, "Add Friend", Toast.LENGTH_SHORT)
 						.show();
-				Intent intent = new Intent(activity, AddFriendActivity.class);
-				startActivity(intent);
+				Intent intent = new Intent(activity,
+						ActiveUsersListActivity.class);
+				// startActivity(intent);
+				startActivityForResult(intent,
+						BusinessConstants.RESULT_ADD_FRIEND);
 
 				break;
 
@@ -276,73 +288,27 @@ public class MainActivity extends ActionBarActivity {
 		}
 
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-public class WriteToDB extends AsyncTask<Object, Void, Long> {
-	private Activity activity;
-	private MainFragmentBaseAdapter menuAdapter;
-
-//	public WriteToDB(Activity activity) {
-//		this.activity = activity;
-//	}
-
-	public WriteToDB(Activity activity, MainFragmentBaseAdapter menuAdapter) {
-		this.menuAdapter = menuAdapter;
-		this.activity = activity;
-	}
 
 	@Override
-	protected Long doInBackground(Object... params) {
-		FriendModel friendModel = (FriendModel) params[0];
-		EventsModel eventModel = (EventsModel) params[1];
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// Check which request we're responding to
 
-		if (friendModel != null && eventModel != null) {
-			DBOperations dbOperations = DBOperations.instance(activity);
-			UserEventsHistoryModel model = new UserEventsHistoryModel();
+		if (requestCode == BusinessConstants.RESULT_ADD_FRIEND) {
 
-			SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
+			// Make sure the request was successful
+			if (resultCode == RESULT_OK) {
 
-			model.setSenderId(friendModel.getUserId());
-			model.setSenderFirstName(friendModel.getFirstName());
-			model.setSenderLastName(friendModel.getLastName());
-			model.setDisplayName(friendModel.getDisplayName());
-			model.setDate(dateFormat.format(new Date(new Timestamp(Long
-					.parseLong(eventModel.getTimeStmp())).getTime())));
-			model.setHistoryId(eventModel.getTimeStmp()
-					+ Utility.getUserId(activity) + friendModel.getUserId());
-			model.setStatus(1);
+				if (data.getExtras()
+						.getBoolean(
+								getString(R.string.INTENT_REQ_IS_FRIEND_REQUEST_CHANGED))) {
+					// TODO: Friend Added refresh that
 
-			try {
-				return dbOperations.insertIntoEventsHistory(activity, model);
-			} catch (DataBaseException e) {
-				e.printStackTrace();
+					user.addFriends(Utility.getUserInfo(activity).getFriends());
+
+					menuAdapter.notifyDataSetChanged();
+
+				}
 			}
-
-		}
-		return (long) -1;
-	}
-
-	@Override
-	protected void onPostExecute(Long result) {
-		super.onPostExecute(result);
-
-		if (!isCancelled() && !result.equals(-1)) {
-			Log.d("menuAdapter", "result: " + result);
-			menuAdapter.notifyDataSetChanged();
 		}
 	}
-
-}
-
 }

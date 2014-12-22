@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.allfine.R;
 import com.allfine.models.UserEventsHistoryModel;
+import com.allfine.models.core.FriendModel;
 import com.allfine.models.core.UserModel;
 import com.allfine.operations.Utility;
 import com.mikhaellopez.circularimageview.CircularImageView;
@@ -92,9 +93,12 @@ public class MainFragmentBaseAdapter extends BaseAdapter {
 				holder.userFullName.setText(model.getDisplayName());
 			}
 
-			Picasso.with(activity)
-					.load(user.userGetFriendById(model.getSenderId())
-							.getPhoto()).into(holder.userPhoto);
+			FriendModel friendModel = user.userGetFriendById(model
+					.getSenderId());
+			if (friendModel != null) {
+				Picasso.with(activity).load(friendModel.getPhoto())
+						.into(holder.userPhoto);
+			}
 
 			if (model.getStatus() != null) {
 				holder.imageViewStatus.setImageResource(Utility

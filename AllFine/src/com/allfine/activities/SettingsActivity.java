@@ -21,14 +21,14 @@ public class SettingsActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_settings);
-		
+
 		try {
 			inserdd();
 		} catch (DataBaseException e) {
-			Log.d("cursor","error2: " + e.getMessage());
+			Log.d("cursor", "error2: " + e.getMessage());
 			e.printStackTrace();
 		}
-		
+
 		SQLiteHelper.exportDB();
 	}
 
@@ -46,28 +46,23 @@ public class SettingsActivity extends ActionBarActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
-	
-	
-	
-	
+
 	private void inserdd() throws DataBaseException {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
-		
+
 		// insertIntoEventsHistory
 		DBOperations dbOperations = DBOperations.instance(this);
 		Log.d("cursor", "inserdd: " + dbOperations.isOpen());
 		UserEventsHistoryModel model = new UserEventsHistoryModel();
 		model.setDate(dateFormat.format(new Date()));
-		
+
 		model.setSenderFirstName("Togrul");
 		model.setSenderLastName("Seyidov");
 		model.setSenderId(1);
 		model.setStatus(1);
 		long cursor = dbOperations.insertIntoEventsHistory(this, model);
 		Log.d("cursor", "id: " + cursor);
-		
-		
+
 		dbOperations = DBOperations.instance(this);
 		model = new UserEventsHistoryModel();
 		model.setDate(dateFormat.format(new Date()));
@@ -77,8 +72,7 @@ public class SettingsActivity extends ActionBarActivity {
 		model.setStatus(1);
 		cursor = dbOperations.insertIntoEventsHistory(this, model);
 		Log.d("cursor", "id: " + cursor);
-		
-		
+
 		dbOperations = DBOperations.instance(this);
 		model = new UserEventsHistoryModel();
 		model.setDate(dateFormat.format(new Date()));

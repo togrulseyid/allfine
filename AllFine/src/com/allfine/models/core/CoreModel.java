@@ -1,6 +1,9 @@
 package com.allfine.models.core;
 
-public class CoreModel {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class CoreModel implements Serializable{
 
 	private Integer userId;
 	private String message;

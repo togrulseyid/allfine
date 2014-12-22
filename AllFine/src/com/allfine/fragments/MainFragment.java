@@ -48,7 +48,7 @@ public class MainFragment extends Fragment {
 	private RelativeLayout complexViewUserCover;
 	private ListView listView;
 	private MainFragmentBaseAdapter adapter;
-	//history of call
+	// history of call
 	private ArrayList<UserEventsHistoryModel> historyModels;
 
 	public MainFragment(SlidingMenu slidingMenu, UserModel user) {
@@ -84,7 +84,8 @@ public class MainFragment extends Fragment {
 		imageButtonMenuOpener.setOnClickListener(new MyOnClickListener());
 
 		historyModels = new ArrayList<UserEventsHistoryModel>();
-		adapter = new MainFragmentBaseAdapter(getActivity(), historyModels, user);
+		adapter = new MainFragmentBaseAdapter(getActivity(), historyModels,
+				user);
 		listView.setAdapter(adapter);
 
 		fillUserInfo(user);
@@ -181,7 +182,7 @@ public class MainFragment extends Fragment {
 			HistoryOperations historyOperations = new HistoryOperations(
 					activity);
 			try {
-				Log.d("cursor","status start");
+				Log.d("cursor", "status start");
 				return historyOperations.getUserEventsHistory();
 			} catch (DataBaseException e) {
 				Log.d("cursor", "Cursor error: " + e.getMessage());
@@ -193,7 +194,7 @@ public class MainFragment extends Fragment {
 		@Override
 		protected void onPostExecute(UserEventsHistoryModelList result) {
 			super.onPostExecute(result);
-			Log.d("history","history: " + result);
+			Log.d("history", "history: " + result);
 
 			if (result != null) {
 				for (UserEventsHistoryModel eventsHistoryModel : result
@@ -205,9 +206,12 @@ public class MainFragment extends Fragment {
 			}
 		}
 	}
-	
-	
+
 	public MainFragmentBaseAdapter getHistoryList() {
 		return adapter;
+	}
+	
+	public ArrayList<UserEventsHistoryModel> getHistoryModels() {
+		return historyModels;
 	}
 }

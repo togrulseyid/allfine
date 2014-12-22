@@ -25,8 +25,8 @@
     <integer name="num_cols">1</integer>
 
     <!-- TextView -->
-    <dimen name="dimen_textview_main_fragment_fullname">18sp</dimen>
-    <dimen name="dimen_textview_main_fragment_number_email">14sp</dimen>
+    <dimen name="dimen_textview_main_fragment_fullname">20sp</dimen>
+    <dimen name="dimen_textview_main_fragment_number_email">16sp</dimen>
     <dimen name="dimen_listview_divider_height">1dp</dimen>
     <!-- TRASH -->
 

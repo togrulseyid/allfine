@@ -104,7 +104,7 @@
 
             <TextView
                 android:id="@+id/textViewMainActivityCallListNoData"
-                style="@style/Manads.EmptyList.TextView.Style"
+                style="@style/AllFine.EmptyList.TextView.Style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/message_listview_below_activity_no_activity"

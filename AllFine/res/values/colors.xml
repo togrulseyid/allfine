@@ -5,7 +5,11 @@
     <color name="color_background_actoinbar">#6857c9</color>
     <color name="color_background_actoinbar_red">#685ff9</color>
     <color name="color_all_fine_main_color">#6857c9</color>
+    <color name="color_all_fine_main_blur_color">#806857c9</color>
     <color name="color_background_seperator">#e3e3e7</color>
+    <color name="color_disabled_button_background">#aeaeae</color>
+    <color name="color_selected_button_background">#8777e0</color>
+    <color name="color_drawable_button_selector_gradient">#e5e5e5</color>
 
     <!-- TRASH -->
 
@@ -13,9 +17,9 @@
     <color name="side_navigation_background_with_opacity_alpha">#443d3d3d</color>
     <color name="side_navigation_background_with_opacity_alpha_2">#8832353a</color>
     <color name="side_navigation_edittext_background">#4f4f4f</color>
-    <color name="background_action_bar">#42abed</color>
+    <!-- <color name="background_action_bar">#42abed</color> -->
     <color name="background_twitter">#55acee</color>
-    <color name="background_action_bar_light">#88caf4</color>
+
     <!-- Default Colors -->
     <color name="listViewCacheColorHint">#00000000</color>
     <!-- 59b5ef -->
@@ -46,9 +50,7 @@
     <color name="drawableBlueButtonSolidColor">#449def</color>
     <color name="drawableBlueButtonStrokeColor">#2f6699</color>
     <color name="drawableButtonSelectorSolidColor">#ececee</color>
-    <color name="drawableButtonSelectorGradientColor">#e5e5e5</color>
     <color name="relative_layout_idle_activity_footer_background">#e5e5e5</color>
-    <color name="disabled_button_background_color">#aeaeae</color>
     <color name="tab_unselected">#42abed</color>
     <color name="tab_selected">#FFFFFF</color>
     <color name="tab_unselected_focused">#7dc8f8</color>

@@ -17,6 +17,29 @@
     <!-- Buttons -->
     <string name="button_text_sign_in">Sign In</string>
     <string name="button_text_sign_up">Sign Up</string>
+    <string name="button_text_cancel">Cancel</string>
+    <string name="button_text_ok">OK</string>
+    <string name="button_text_approve">Approve</string>
+    <string name="button_text_cancel_friend_request_remove_req">Remove Request</string>
+    <string name="button_text_send_friend_request_accept_req">Accept</string>
+    
+
+    <!-- Messages -->
+    <string name="message_confirm_dialog_title">Attention</string>
+    <string name="message_confirm_dialog_body">Do you really want to delete %1$s from friends?</string>
+    <string name="message_info_dialog_title">Info</string>
+    <string name="message_error_no_internet_connection">Do you have internet connection Qaqas?</string>
+    <string name="message_error_app_version_incorrect">App version incorrect?</string>
+    <string name="message_error_token">Token error?</string>
+    
+    <string name="message_error_exception">Error Occured?</string>
+    <string name="message_error_no_network_connection">no network connection?</string>
+    <string name="message_error_no_internet_connection">no internet connection?</string>
+    <string name="message_error_server_connection_problem">connection problem?</string>
+    <string name="message_error_already_friend_request_send">already friend request send?</string>
+    
+    
+    <string name="message_error_not_confirmed_yet">Not Confirmed Yet?</string>
 
     <!-- EditTexts -->
     <string name="edittext_hint_number_or_username">Number or Username</string>

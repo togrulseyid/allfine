@@ -39,6 +39,8 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.Signature;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -48,7 +50,6 @@ import android.os.Environment;
 import android.provider.ContactsContract;
 import android.telephony.TelephonyManager;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -60,6 +61,7 @@ import com.allfine.activities.RootActivity;
 import com.allfine.constants.BusinessConstants;
 import com.allfine.models.core.ContactNumbersModel;
 import com.allfine.models.core.FriendModel;
+import com.allfine.models.core.FriendRequestModel;
 import com.allfine.models.core.UserModel;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -521,10 +523,20 @@ public class Utility {
 		}
 	}
 
-	@SuppressLint("NewApi")
 	@SuppressWarnings("deprecation")
 	public static void setRelativeLayoutBackground(
 			RelativeLayout relativeLayout, Drawable drawable) {
+		if (Build.VERSION.SDK_INT >= 16) {
+			relativeLayout.setBackground(drawable);
+		} else {
+			relativeLayout.setBackgroundDrawable(drawable);
+		}
+	}
+
+	@SuppressWarnings("deprecation")
+	public static void setRelativeLayoutBitmapBackground(Context context,
+			RelativeLayout relativeLayout, Bitmap bitmap) {
+		Drawable drawable = new BitmapDrawable(context.getResources(), bitmap);
 		if (Build.VERSION.SDK_INT >= 16) {
 			relativeLayout.setBackground(drawable);
 		} else {
@@ -819,15 +831,17 @@ public class Utility {
 				if (Integer
 						.parseInt(cursor.getString(cursor
 								.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))) > 0) {
-					
+
 					Cursor pCur = cr.query(
-							ContactsContract.CommonDataKinds.Phone.CONTENT_URI, //Uri uri
-							null, //String[] projection
-							ContactsContract.CommonDataKinds.Phone.CONTACT_ID //String selection
-									+ " = ?",
-							new String[] { id }, //String[] selectionArgs
-							null); //String sortOrder
-					
+							ContactsContract.CommonDataKinds.Phone.CONTENT_URI, // Uri
+																				// uri
+							null, // String[] projection
+							ContactsContract.CommonDataKinds.Phone.CONTACT_ID // String
+																				// selection
+									+ " = ?", new String[] { id }, // String[]
+																	// selectionArgs
+							null); // String sortOrder
+
 					while (pCur.moveToNext()) {
 						String contactNumber = pCur
 								.getString(pCur
@@ -836,19 +850,20 @@ public class Utility {
 						String contactDisplayName = pCur
 								.getString(pCur
 										.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
-						
-						
-//						String contactName = pCur.getString(pCur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DATA3));
-//						String contactLastName = pCur.getString(pCur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DATA3));
-						
+
+						// String contactName =
+						// pCur.getString(pCur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DATA3));
+						// String contactLastName =
+						// pCur.getString(pCur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DATA3));
+
 						ContactNumbersModel number = new ContactNumbersModel();
 						number.setDisplayName(contactDisplayName);
-//						number.setFirstName(contactName);
-//						number.setLastName(contactLastName);
-							ArrayList<String> numbers = new ArrayList<String>();
-							numbers.add(contactNumber);
+						// number.setFirstName(contactName);
+						// number.setLastName(contactLastName);
+						ArrayList<String> numbers = new ArrayList<String>();
+						numbers.add(contactNumber);
 						number.setNumbers(numbers);
-						
+
 						contactNumbersModels.add(number);
 						break;
 					}
@@ -867,12 +882,87 @@ public class Utility {
 
 		return preference.getInt(context.getString(R.string._SP_USER_ID), 0);
 	}
-	
+
 	public static int getImageResourceById(Activity activity,
 			Integer statusTypeId) {
 		return activity.getResources().getIdentifier(
 				"ic_user_event_history_status_" + statusTypeId, "drawable",
 				activity.getPackageName());
+	}
+
+	public static String getFullName(String firstName, String lastName,
+			String displayName) {
+
+		if (!isEmptyOrNull(firstName)) {
+
+			return firstName;
+
+		} else if (!isEmptyOrNull(lastName)) {
+
+			return lastName;
+		}
+
+		return displayName;
+	}
+
+	public static String maxStringLength(String string, int length) {
+		if (string.length() > length) {
+			return string.substring(0, length);
+		}
+		return string;
+	}
+
+	public static void updateFriendReq(Activity activity, FriendRequestModel userData) {
+
+		UserModel result = getUserInfo(activity);
+		
+		ArrayList<FriendModel> friends = result.getFriends();
+		
+		if (friends == null) {
+			friends = new ArrayList<FriendModel>();
+		}
+		FriendModel friendModel = new FriendModel();
+		
+		friendModel.setConfirmed(userData.getConfirmed());
+		friendModel.setUserId(userData.getUserData().getUdmUserId());
+		friendModel.setFirstName(userData.getUserData().getUdmFirstName());
+		friendModel.setLastName(userData.getUserData().getUdmLastName());
+		friendModel.setDisplayName(userData.getUserData().getUdmDisplayName());
+		friendModel.setConfirmed(userData.getConfirmed());
+		friendModel.setUserName(userData.getUserData().getUdmUserName());
+		friendModel.setPhoneNumber(userData.getUserData().getUdmPhone());
+		friendModel.setPhoto(userData.getUserData().getUdmPhoto());
+		friendModel.setCover(userData.getUserData().getUdmCover());
+		
+		friends.add(friendModel);
+
+		result.setFriends(friends);
+		
+		
+		SharedPreferences sharedPreferences = activity
+				.getSharedPreferences(
+						activity.getString(R.string._SP_ALL_FINE),
+						Context.MODE_PRIVATE);
+		Editor edit = sharedPreferences.edit();
+
+		// Put Entire Model to Preference
+		ObjectConvertor<UserModel> userModelConvertor = new ObjectConvertor<UserModel>();
+		try {
+			edit.putString(activity.getString(R.string._SP_USER_MODEL),
+					userModelConvertor.getClassString(result)).commit();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		ObjectConvertor<ArrayList<FriendModel>> objectConvertor = new ObjectConvertor<ArrayList<FriendModel>>();
+		try {
+			edit.putString(activity.getString(R.string._SP_USER_FRIENDS),
+					objectConvertor.getClassString(result.getFriends())).commit();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+
 	}
 
 }

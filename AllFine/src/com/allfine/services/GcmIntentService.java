@@ -1,7 +1,5 @@
 package com.allfine.services;
 
-import java.io.IOException;
-
 import android.app.IntentService;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -13,10 +11,16 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.allfine.R;
+import com.allfine.activities.ActiveUserProfileActivity;
 import com.allfine.activities.MainActivity;
+import com.allfine.enums.ObjectTypeEnum;
 import com.allfine.models.NotificationModel;
+import com.allfine.models.core.FriendRequestModel;
+import com.allfine.models.core.GoogleCloudMessagingModel;
+import com.allfine.models.core.SerializableObject;
 import com.allfine.operations.ObjectConvertor;
 import com.allfine.operations.Utility;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 /**
@@ -30,7 +34,9 @@ public class GcmIntentService extends IntentService {
 	public static final int NOTIFICATION_ID = 1;
 	private NotificationManager mNotificationManager;
 	public static final String TAG = "GCM Demo";
-	private NotificationModel model = null;
+	// private NotificationModel model = null;
+	GoogleCloudMessaging gcm;
+	private int objectType = -1;
 
 	public GcmIntentService() {
 		super("GcmIntentService");
@@ -39,10 +45,9 @@ public class GcmIntentService extends IntentService {
 	@Override
 	protected void onHandleIntent(Intent intent) {
 		Bundle extras = intent.getExtras();
-		GoogleCloudMessaging gcm = GoogleCloudMessaging.getInstance(this);
+		gcm = GoogleCloudMessaging.getInstance(this);
 		// The getMessageType() intent parameter must be the intent you received
 		// in your BroadcastReceiver.
-		String messageType = gcm.getMessageType(intent);
 
 		if (!extras.isEmpty()) { // has effect of unparcelling Bundle
 			/*
@@ -52,49 +57,114 @@ public class GcmIntentService extends IntentService {
 			 * don't recognize.
 			 */
 
-			ObjectConvertor<NotificationModel> objectConvertor = new ObjectConvertor<NotificationModel>();
+			ObjectConvertor<GoogleCloudMessagingModel> googleCloudMessagingModelConvertor = new ObjectConvertor<GoogleCloudMessagingModel>();
+			String dataX = Utility.decrypt(extras.get("data").toString(),
+					Utility.getAppSignature(getApplicationContext()));
 
 			try {
-				String data = Utility.decrypt(extras.get("data").toString(),
-						Utility.getAppSignature(getApplicationContext()));
+				GoogleCloudMessagingModel googleCloudMessagingModel = googleCloudMessagingModelConvertor
+						.getClassObject(dataX, GoogleCloudMessagingModel.class);
+				objectType = googleCloudMessagingModel.getObjectType();
 
-				Log.i("extrasX", "data: " + data);
+				ObjectNode objectNode = googleCloudMessagingModelConvertor
+						.getObjectNode();
+				
+				if (googleCloudMessagingModel.getObjectType() == ObjectTypeEnum.FRIEND_REQUEST_MODEL
+						.getId()) {
 
-				model = objectConvertor.getClassObject(data,
-						NotificationModel.class);
+					ObjectConvertor<FriendRequestModel> objectConvertor = new ObjectConvertor<FriendRequestModel>();
+					
+					FriendRequestModel model = objectConvertor.getClassObject(
+							objectNode.get("object").toString(),
+							FriendRequestModel.class);
+					
+					Log.d("testA", "data1: " + model.toString());
+					
+					friendRequestReceiver(model, intent);
+				} else if (googleCloudMessagingModel.getObjectType() == ObjectTypeEnum.NOTIFICATION_MODEL
+						.getId()) {
 
-				String message = model.getUserId() + " sent " + model.getEventId();
-				model.setMessage(message);
+					ObjectConvertor<NotificationModel> objectConvertor = new ObjectConvertor<NotificationModel>();
+					
+					NotificationModel model = objectConvertor.getClassObject(
+							objectNode.get("object").toString(),
+							NotificationModel.class);
+					
+					Log.d("testA", "data1: " + model.toString());
+					
+					notificationRequestReceiver(model, intent);
+					
+				}
 
-			} catch (IOException e) {
-				model.setMessage("Error Occured");
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 
-			if (GoogleCloudMessaging.MESSAGE_TYPE_SEND_ERROR
-					.equals(messageType)) {
-				model.setMessage("Send error");
-				sendNotification(model);
-				// sendNotification("Send error: " + extras.toString());
-			} else if (GoogleCloudMessaging.MESSAGE_TYPE_DELETED
-					.equals(messageType)) {
-
-				model.setMessage("Deleted messages on server: "
-						+ model.getMessage());
-				sendNotification(model);
-				// sendNotification("Deleted messages on server: " +
-				// extras.toString());
-				// If it's a regular GCM message, do some work.
-			} else if (GoogleCloudMessaging.MESSAGE_TYPE_MESSAGE
-					.equals(messageType)) {
-
-				// This loop represents the service doing some work.
-
-				sendNotification(model); // Received e message
-			}
 		}
 		// Release the wake lock provided by the WakefulBroadcastReceiver.
 		GcmBroadcastReceiver.completeWakefulIntent(intent);
+	}
+
+	private void notificationRequestReceiver(
+			NotificationModel notificationModel, Intent intent) {
+		String messageType = gcm.getMessageType(intent);
+
+		String message = notificationModel.getUserId() + " sent "
+				+ notificationModel.getEventId();
+		notificationModel.setMessage(message);
+
+		if (GoogleCloudMessaging.MESSAGE_TYPE_SEND_ERROR.equals(messageType)) {
+			notificationModel.setMessage("Send error");
+			sendNotification(notificationModel);
+			// sendNotification("Send error: " + extras.toString());
+		} else if (GoogleCloudMessaging.MESSAGE_TYPE_DELETED
+				.equals(messageType)) {
+
+			notificationModel.setMessage("Deleted messages on server: "
+					+ notificationModel.getMessage());
+			sendNotification(notificationModel);
+			// sendNotification("Deleted messages on server: " +
+			// extras.toString());
+			// If it's a regular GCM message, do some work.
+		} else if (GoogleCloudMessaging.MESSAGE_TYPE_MESSAGE
+				.equals(messageType)) {
+
+			// This loop represents the service doing some work.
+
+			sendNotification(notificationModel); // Received e message
+		}
+
+	}
+
+	private void friendRequestReceiver(FriendRequestModel model, Intent intent) {
+		String messageType = gcm.getMessageType(intent);
+
+		// String message = model.getUserId() + " sent friend request";
+		String message = model.getUserName() + " sent friend request";
+
+		if (GoogleCloudMessaging.MESSAGE_TYPE_SEND_ERROR.equals(messageType)) {
+			 model.setMessage("Send error");
+			 sendNotification( R.drawable.ic_launcher, "Send error: " , message, null);
+		} else if (GoogleCloudMessaging.MESSAGE_TYPE_DELETED
+				.equals(messageType)) {
+
+			 model.setMessage("Deleted messages on server: "  + model.getMessage());
+			 sendNotification(R.drawable.ic_launcher, "Deleted messages on server", message, null);
+			 // sendNotification("Deleted messages on server: " +
+			 // extras.toString());
+			 // If it's a regular GCM message, do some work.
+		} else if (GoogleCloudMessaging.MESSAGE_TYPE_MESSAGE
+				.equals(messageType)) {
+
+			// This loop represents the service doing some work.
+
+			// sendNotification(model); // Received e message
+
+			SerializableObject<FriendRequestModel> obj = new SerializableObject<FriendRequestModel>();
+			obj.setObj(model);
+			sendNotification(R.drawable.ic_launcher, "Friend Request", message, obj);
+		}
+
 	}
 
 	// Put the message into a notification and post it.
@@ -106,12 +176,22 @@ public class GcmIntentService extends IntentService {
 		// .getLocalSettingModel(getApplicationContext());
 		// Log.i("Utility", localModel.toString());
 
-		long[] vibrationPattern = { 0, 100, 1000, 1000, 2000 };
+//		long[] vibrationPattern = { 0, 100, 1000, 1000, 2000 };
 
 		mNotificationManager = (NotificationManager) this
 				.getSystemService(Context.NOTIFICATION_SERVICE);
 
 		Intent intent = new Intent(this, MainActivity.class);
+		
+		if(objectType == ObjectTypeEnum.FRIEND_REQUEST_MODEL.getId()) {
+			intent = new Intent(this, ActiveUserProfileActivity.class);
+
+		} else if(objectType == ObjectTypeEnum.NOTIFICATION_MODEL.getId()) {
+			intent = new Intent(this, MainActivity.class);
+		}
+		
+		
+		
 		Bundle bundle = new Bundle();
 		bundle.putSerializable(
 				getResources().getString(R.string._B_NOTIFICATION_OBJECT),
@@ -134,7 +214,62 @@ public class GcmIntentService extends IntentService {
 				.setStyle(
 						new NotificationCompat.InboxStyle()
 								.setBigContentTitle(model.getMessage()));
-		mBuilder.setVibrate(vibrationPattern);
+//		mBuilder.setVibrate(vibrationPattern);
+		// if (localModel.isNotification() && localModel.isVibrate()) {
+		// mBuilder.setVibrate(vibrationPattern);
+		// }
+
+		mBuilder.setContentIntent(pendingIntent);
+		mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
+
+	}
+
+	// Put the message into a notification and post it.
+	// This is just one simple example of what you might choose to do with
+	// a GCM message.
+	private void sendNotification(int icon, String title, String message, SerializableObject obj) {//, int type
+
+		// LocalSettingModel localModel = Utility
+		// .getLocalSettingModel(getApplicationContext());
+		// Log.i("Utility", localModel.toString());
+
+//		long[] vibrationPattern = { 0, 100, 1000, 1000, 2000 };
+
+		mNotificationManager = (NotificationManager) this
+				.getSystemService(Context.NOTIFICATION_SERVICE);
+
+		Intent notificationIntent = new Intent(this, ActiveUserProfileActivity.class);
+		
+		Bundle bundle = new Bundle();
+		
+		bundle.putSerializable(
+				getResources().getString(R.string._B_NOTIFICATION_OBJECT), obj);
+		
+		bundle.putInt(getResources().getString(R.string._B_TYPE_OF_REQUEST),
+				ObjectTypeEnum.FRIEND_REQUEST_MODEL.getId());
+		
+		
+		notificationIntent.putExtras(bundle);
+		
+		notificationIntent.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+
+		PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
+				notificationIntent, 0);
+
+		NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(
+				this)
+				.setSmallIcon(icon)
+				.setContentTitle(title)
+				.setContentText(message)
+				.setAutoCancel(true)
+				.setWhen(System.currentTimeMillis())
+				.setSound(
+						RingtoneManager
+								.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+				.setStyle(
+						new NotificationCompat.InboxStyle()
+								.setBigContentTitle(message));
+//		mBuilder.setVibrate(vibrationPattern);
 		// if (localModel.isNotification() && localModel.isVibrate()) {
 		// mBuilder.setVibrate(vibrationPattern);
 		// }

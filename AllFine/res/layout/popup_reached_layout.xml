@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@android:id/content"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content" >
+    android:layout_height="wrap_content"
+    android:background="@drawable/img_quick_action_notification_menu_reached" >
 
-    <RelativeLayout
-        android:id="@android:id/content"
+    <ImageView
+        android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/img_quick_action_notification_menu_reached"
-        tools:ignore="UselessParent" >
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/app_name"
+        android:padding="5dp"
+        android:src="@drawable/ic_checked" />
 
-        <TextView
-            android:id="@+id/textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="You reached to Kamran"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp" />
+    <TextView
+        android:id="@+id/textViewPopupReachedLayoutFriendName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/imageView1"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp" />
 
-        <ImageView
-            android:id="@+id/imageView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/textview"
-            android:contentDescription="@string/app_name"
-            android:padding="5dp"
-            android:src="@drawable/ic_checked" />
-    </RelativeLayout>
+    <View
+        android:layout_width="20dp"
+        android:layout_height="10dp"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/textViewPopupReachedLayoutFriendName" >
+    </View>
 
 </RelativeLayout>

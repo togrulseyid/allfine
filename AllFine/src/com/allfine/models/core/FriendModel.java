@@ -1,6 +1,9 @@
 package com.allfine.models.core;
 
-public class FriendModel {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class FriendModel implements Serializable, Comparable<FriendModel> {
 
 	private Integer userId;
 	private String firstName;
@@ -10,6 +13,7 @@ public class FriendModel {
 	private String userName;
 	private String phoneNumber;
 	private String photo;
+	private String cover;
 
 	public Integer getUserId() {
 		return userId;
@@ -75,12 +79,37 @@ public class FriendModel {
 		this.photo = photo;
 	}
 
+	public String getCover() {
+		return cover;
+	}
+
+	public void setCover(String cover) {
+		this.cover = cover;
+	}
+
 	@Override
 	public String toString() {
 		return "FriendModel [userId=" + userId + ", firstName=" + firstName
 				+ ", lastName=" + lastName + ", displayName=" + displayName
 				+ ", confirmed=" + confirmed + ", userName=" + userName
-				+ ", phoneNumber=" + phoneNumber + ", photo=" + photo + "]";
+				+ ", phoneNumber=" + phoneNumber + ", photo=" + photo
+				+ ", cover=" + cover + "]";
+	}
+
+	@Override
+	public int compareTo(FriendModel friendModel) {
+		if (friendModel != null) {
+			return friendModel.getUserId().compareTo(getUserId());
+		}
+		return -1;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (o instanceof FriendModel) {
+			return ((FriendModel) o).getUserId().equals(getUserId());
+		}
+		return false;
 	}
 
 }

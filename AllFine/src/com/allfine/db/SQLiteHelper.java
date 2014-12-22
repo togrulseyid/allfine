@@ -96,7 +96,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 			if (sd.canWrite()) {
 				String currentDBPath = "//data//" + "com.allfine"
 						+ "//databases//" + "DB_ALL_FINE";
-				String backupDBPath = "/BackupFolder/DatabaseName" + UUID.randomUUID() + ".db";
+				String backupDBPath = "/BackupFolder/DatabaseName"
+						+ UUID.randomUUID() + ".db";
 				File currentDB = new File(data, currentDBPath);
 				File backupDB = new File(sd, backupDBPath);
 

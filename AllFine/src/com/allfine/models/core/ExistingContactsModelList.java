@@ -1,8 +1,12 @@
 package com.allfine.models.core;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ExistingContactsModelList extends CoreModel {
+@SuppressWarnings("serial")
+public class ExistingContactsModelList extends CoreModel implements
+		Serializable {
+
 	private ArrayList<ExistingContactNumbersModel> numbersModels;
 
 	public ArrayList<ExistingContactNumbersModel> getNumbersModels() {

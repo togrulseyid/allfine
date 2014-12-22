@@ -93,7 +93,11 @@
             android:label="@string/title_activity_settings" >
         </activity>
         <activity
-            android:name=".activities.AddFriendActivity"
+            android:name=".activities.ActiveUsersListActivity"
+            android:label="@string/title_activity_add_friend" >
+        </activity>
+        <activity
+            android:name=".activities.ActiveUserProfileActivity"
             android:label="@string/title_activity_add_friend" >
         </activity>
         <activity

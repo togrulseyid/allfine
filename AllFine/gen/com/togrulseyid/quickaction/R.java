@@ -255,10 +255,10 @@ public final class R {
 		public static final int abc_textfield_searchview_holo_light = 0x7f020057;
 		public static final int abc_textfield_searchview_right_holo_dark = 0x7f020058;
 		public static final int abc_textfield_searchview_right_holo_light = 0x7f020059;
-		public static final int ic_launcher = 0x7f020082;
-		public static final int icon = 0x7f02008e;
-		public static final int icon_arrow_up = 0x7f02008f;
-		public static final int popup_background = 0x7f02009c;
+		public static final int ic_launcher = 0x7f020084;
+		public static final int icon = 0x7f020090;
+		public static final int icon_arrow_up = 0x7f020091;
+		public static final int popup_background = 0x7f02009e;
 	}
 	public static final class id {
 		public static final int action_bar = 0x7f050024;
@@ -272,7 +272,7 @@ public final class R {
 		public static final int action_menu_divider = 0x7f050016;
 		public static final int action_menu_presenter = 0x7f050017;
 		public static final int action_mode_close_button = 0x7f05002c;
-		public static final int action_settings = 0x7f050074;
+		public static final int action_settings = 0x7f05008b;
 		public static final int activity_chooser_view_content = 0x7f05002d;
 		public static final int always = 0x7f05000b;
 		public static final int beginning = 0x7f050011;
@@ -351,13 +351,13 @@ public final class R {
 		public static final int abc_search_dropdown_item_icons_2line = 0x7f030015;
 		public static final int abc_search_view = 0x7f030016;
 		public static final int abc_simple_decor = 0x7f030017;
-		public static final int activity_main = 0x7f03001b;
-		public static final int activity_main_layout = 0x7f03001c;
-		public static final int popup_custom_layout = 0x7f03002c;
-		public static final int support_simple_spinner_dropdown_item = 0x7f030030;
+		public static final int activity_main = 0x7f03001c;
+		public static final int activity_main_layout = 0x7f03001d;
+		public static final int popup_custom_layout = 0x7f030030;
+		public static final int support_simple_spinner_dropdown_item = 0x7f030034;
 	}
 	public static final class menu {
-		public static final int main = 0x7f0d0002;
+		public static final int main = 0x7f0c0002;
 	}
 	public static final class string {
 		public static final int abc_action_bar_home_description = 0x7f0a0001;

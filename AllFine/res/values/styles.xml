@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <style name="AppBaseTheme" parent="Theme.AppCompat.Light">
         <item name="android:actionBarStyle">@style/AllFineCustomActionBar</item>
@@ -22,48 +22,76 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 
-    <!-- ZIBILLIK -->
-    <style name="Manads.EmptyList.TextView.Style" parent="@android:style/Widget.TextView">
-        <item name="android:textColor">@color/disabled_button_background_color</item>
+    <!-- Buttons styles -->
+    <style name="AllFine.Button.Style" parent="@android:style/Widget.Button">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@drawable/button_selector</item>
+        <item name="android:textSize">@dimen/manads_button_style_text_size</item>
+        <item name="android:padding">@dimen/manads_button_style_paddings</item>
+    </style>
+
+    <style name="AllFine.Button.Style.White" parent="@android:style/Widget.Button">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:background">@drawable/button_selector_white</item>
+        <item name="android:textSize">@dimen/manads_button_style_text_size</item>
+        <item name="android:padding">@dimen/manads_button_style_paddings</item>
+    </style>
+
+    <!--  -->
+
+    <style name="AllFine.Button.EmptyList.Style" parent="@android:style/Widget.TextView">
+        <item name="android:textColor">@color/color_disabled_button_background</item>
+        <item name="android:background">@color/color_background_seperator</item>
         <item name="android:padding">12dp</item>
         <item name="android:textSize">18sp</item>
         <item name="android:gravity">center</item>
         <item name="android:layout_gravity">center</item>
     </style>
-    
-    <!--  Contacts List Styles  -->
-    <style name="ContactListView">
-        <item name="android:verticalScrollbarPosition">right</item>
-        <item name="android:fastScrollAlwaysVisible">true</item>
-        <item name="android:scrollbarStyle">outsideInset</item>
+    <!-- ZIBILLIK -->
+    <style name="AllFine.EmptyList.TextView.Style" parent="@android:style/Widget.TextView">
+        <item name="android:textColor">@color/color_disabled_button_background</item>
+        <item name="android:background">@color/color_background_seperator</item>
+        <item name="android:padding">12dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
     </style>
 
-    <style name="listViewActivatedStyle"/>
+    <!-- Contacts List Styles -->
+<!--     <style name="ContactListView"> -->
+<!--         <item name="android:verticalScrollbarPosition">right</item> -->
+<!--         <item name="android:fastScrollAlwaysVisible">true</item> -->
+<!--         <item name="android:scrollbarStyle">outsideInset</item> -->
+<!--     </style> -->
 
-    <style name="quickContactBadgeStyle">
-<!--         <item name="android:background">@drawable/quickcontact_badge_small</item> -->
-    </style>
+<!--     <style name="listViewActivatedStyle" /> -->
 
-    <style name="searchTextHiglight">
-<!--         <item name="android:textColor">@color/holo_blue</item> -->
-        <item name="android:textStyle">bold</item>
-    </style>
+<!--     <style name="quickContactBadgeStyle"> -->
+        <!-- <item name="android:background">@drawable/quickcontact_badge_small</item> -->
+<!--     </style> -->
 
-    <style name="addressHeader" parent="@android:style/TextAppearance.Small">
-        <item name="android:textAllCaps">true</item>
-        <item name="android:textStyle">bold</item>
-    </style>
+<!--     <style name="searchTextHiglight"> -->
 
-    <style name="addressDetail" parent="@android:style/TextAppearance.Medium">
-        <item name="android:fontFamily">sans-serif-light</item>
-        <item name="android:textIsSelectable">true</item>
-    </style>
+        <!-- <item name="android:textColor">@color/holo_blue</item> -->
+<!--         <item name="android:textStyle">bold</item> -->
+<!--     </style> -->
 
-    <style name="contactNameTitle" parent="@android:style/TextAppearance.Large">
-        <item name="android:textSize">38sp</item>
-        <item name="android:fontFamily">sans-serif</item>
-        <item name="android:textIsSelectable">true</item>
-    </style>
+<!--     <style name="addressHeader" parent="@android:style/TextAppearance.Small"> -->
+<!--         <item name="android:textAllCaps">true</item> -->
+<!--         <item name="android:textStyle">bold</item> -->
+<!--     </style> -->
 
-    <style name="addressButton"/>
+<!--     <style name="addressDetail" parent="@android:style/TextAppearance.Medium"> -->
+<!--         <item name="android:fontFamily">sans-serif-light</item> -->
+<!--         <item name="android:textIsSelectable">true</item> -->
+<!--     </style> -->
+
+<!--     <style name="contactNameTitle" parent="@android:style/TextAppearance.Large"> -->
+<!--         <item name="android:textSize">38sp</item> -->
+<!--         <item name="android:fontFamily">sans-serif</item> -->
+<!--         <item name="android:textIsSelectable">true</item> -->
+<!--     </style> -->
+
+<!--     <style name="addressButton" /> -->
+
 </resources>

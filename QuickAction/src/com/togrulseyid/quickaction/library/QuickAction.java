@@ -4,11 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Matrix;
-import android.graphics.Point;
-import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
-import android.view.Display;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -28,14 +24,14 @@ public class QuickAction implements PopupWindow.OnDismissListener {
 
 	private static final int CONTENT_VIEW = android.R.id.content;
 
-	private static final String PARAM_STATUS_BAR_HEIGHT = "status_bar_height";
-	private static final String PARAM_DIMEN = "dimen";
-	private static final String PARAM_ANDROID = "android";
+//	private static final String PARAM_STATUS_BAR_HEIGHT = "status_bar_height";
+//	private static final String PARAM_DIMEN = "dimen";
+//	private static final String PARAM_ANDROID = "android";
 	private static final float PADDING_DP = 4;
 
 	private Context context;
-	private int screenWidth;
-	private int screenHeight;
+//	private int screenWidth;
+//	private int screenHeight;
 	private int popupBackgroundResource;
 	private int textAppearanceStyle;
 	private int padding;
@@ -65,7 +61,7 @@ public class QuickAction implements PopupWindow.OnDismissListener {
 		windowManager = (WindowManager) context
 				.getSystemService(Context.WINDOW_SERVICE);
 
-		initScreen();
+//		initScreen();
 
 		if (rootLayout == null) {
 			this.padding = (int) (PADDING_DP * context.getResources()
@@ -81,19 +77,19 @@ public class QuickAction implements PopupWindow.OnDismissListener {
 		initPopupWindow(animationStyle);
 	}
 
-	@SuppressWarnings("deprecation")
-	private void initScreen() {
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
-			Display display = windowManager.getDefaultDisplay();
-			Point size = new Point();
-			display.getSize(size);
-			screenWidth = size.x;
-			screenHeight = size.y;
-		} else {
-			screenWidth = windowManager.getDefaultDisplay().getWidth();
-			screenHeight = windowManager.getDefaultDisplay().getHeight();
-		}
-	}
+//	@SuppressWarnings("deprecation")
+//	private void initScreen() {
+//		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
+//			Display display = windowManager.getDefaultDisplay();
+//			Point size = new Point();
+//			display.getSize(size);
+//			screenWidth = size.x;
+//			screenHeight = size.y;
+//		} else {
+//			screenWidth = windowManager.getDefaultDisplay().getWidth();
+//			screenHeight = windowManager.getDefaultDisplay().getHeight();
+//		}
+//	}
 
 	private void initPopupWindow(int animationStyle) {
 		popupWindow = new PopupWindow(context);
@@ -185,66 +181,77 @@ public class QuickAction implements PopupWindow.OnDismissListener {
 	}
 
 	public void show(View anchor) {
+//		View mainXY = anchor;
 		int[] location = new int[2];
 		anchor.getLocationOnScreen(location);
+//
+//		Rect anchorRect = new Rect(location[0], location[1], location[0]
+//				+ anchor.getWidth(), location[1] + anchor.getHeight());
+//
+//		rootLayout.measure(View.MeasureSpec.UNSPECIFIED,
+//				View.MeasureSpec.UNSPECIFIED);
+//
+//		int rootHeight = rootLayout.getMeasuredHeight();
+//		int rootWidth = rootLayout.getMeasuredWidth();
+//		int offsetTop = anchorRect.top;
+//		int offsetBottom = screenHeight - anchorRect.bottom;
+//		boolean onTop = offsetTop > offsetBottom;
+//
+//		int x = calculateHorizontalPosition(anchor, anchorRect, rootWidth,
+//				screenWidth - 100);
+//		int y = calculateVerticalPosition(anchor, anchorRect, rootHeight,
+//				onTop, offsetTop, offsetBottom);
 
-		Rect anchorRect = new Rect(location[0], location[1], location[0]
-				+ anchor.getWidth(), location[1] + anchor.getHeight());
-
-		rootLayout.measure(View.MeasureSpec.UNSPECIFIED,
-				View.MeasureSpec.UNSPECIFIED);
-
-		int rootHeight = rootLayout.getMeasuredHeight();
-		int rootWidth = rootLayout.getMeasuredWidth();
-		int offsetTop = anchorRect.top;
-		int offsetBottom = screenHeight - anchorRect.bottom;
-		boolean onTop = offsetTop > offsetBottom;
-
-		int x = calculateHorizontalPosition(anchor, anchorRect, rootWidth,
-				screenWidth - 100);
-		int y = calculateVerticalPosition(anchor, anchorRect, rootHeight,
-				onTop, offsetTop, offsetBottom);
-
-		popupWindow.showAtLocation(anchor, Gravity.NO_GRAVITY, x, y);
+//		popupWindow.showAtLocation(anchor, Gravity.NO_GRAVITY, x, y);
+		
+//		int[] locationX = new int[2];
+//		mainXY.getLocationOnScreen(locationX);
+//		popupWindow.showAtLocation(anchor, Gravity.NO_GRAVITY, location[0] - (anchor.getWidth() + anchor.getWidth()/2), location[1]);
+		
+		popupWindow.showAtLocation(anchor, Gravity.NO_GRAVITY, location[0] , location[1]);
+	}
+	
+	public void show(View view, int x, int y) {
+		popupWindow.showAtLocation(view, Gravity.NO_GRAVITY, x, y);
 	}
 
-	private int calculateVerticalPosition(View anchor, Rect anchorRect,
-			int rootHeight, boolean onTop, int offsetTop, int offsetBottom) {
-		int y;
+//	private int calculateVerticalPosition(View anchor, Rect anchorRect,
+//			int rootHeight, boolean onTop, int offsetTop, int offsetBottom) {
+//		int y;
+//
+//		if (onTop)
+//			if (rootHeight > offsetTop) {
+//				scrollView.getLayoutParams().height = offsetTop
+//						- anchor.getHeight();
+//				y = getStatusBarHeight();
+//			} else
+//				y = anchorRect.top - rootHeight;
+//		else {
+//			y = anchorRect.bottom;
+//			if (rootHeight > offsetBottom)
+//				scrollView.getLayoutParams().height = offsetBottom;
+//		}
+//
+//		return y;
+//	}
 
-		if (onTop)
-			if (rootHeight > offsetTop) {
-				scrollView.getLayoutParams().height = offsetTop
-						- anchor.getHeight();
-				y = getStatusBarHeight();
-			} else
-				y = anchorRect.top - rootHeight;
-		else {
-			y = anchorRect.bottom;
-			if (rootHeight > offsetBottom)
-				scrollView.getLayoutParams().height = offsetBottom;
-		}
-
-		return y;
-	}
-
-	private int calculateHorizontalPosition(View anchor, Rect anchorRect,
-			int rootWidth, int screenWidth) {
-		int x;
-
-		if ((anchorRect.left + rootWidth) > screenWidth) {
-			x = anchorRect.left - (rootWidth - anchor.getWidth());
-			if (x < 0)
-				x = 0;
-		} else {
-			if (anchor.getWidth() > rootWidth)
-				x = anchorRect.centerX() - (rootWidth / 2);
-			else
-				x = anchorRect.left;
-		}
-
-		return x;
-	}
+//	private int calculateHorizontalPosition(View anchor, Rect anchorRect,
+//			int rootWidth, int screenWidth) {
+//		int x;
+//
+//		if ((anchorRect.left + rootWidth) > screenWidth) {
+//			x = anchorRect.left - (rootWidth - anchor.getWidth());
+//			if (x < 0)
+//				x = 0;
+//		} else {
+//			if (anchor.getWidth() > rootWidth)
+//				x = anchorRect.centerX() - (rootWidth / 2);
+//			else
+//				x = anchorRect.left;
+//		}
+//
+//		return x;
+//	}
 
 	public static Bitmap rotateBitmap(int rotate, Bitmap bitmap) {
 		Matrix matrix = new Matrix();
@@ -253,15 +260,15 @@ public class QuickAction implements PopupWindow.OnDismissListener {
 				bitmap.getHeight(), matrix, false);
 	}
 
-	private int getStatusBarHeight() {
-		int result = 0;
-		int resourceId = context.getResources().getIdentifier(
-				PARAM_STATUS_BAR_HEIGHT, PARAM_DIMEN, PARAM_ANDROID);
-		if (resourceId > 0)
-			result = context.getResources().getDimensionPixelSize(resourceId);
-
-		return result;
-	}
+//	private int getStatusBarHeight() {
+//		int result = 0;
+//		int resourceId = context.getResources().getIdentifier(
+//				PARAM_STATUS_BAR_HEIGHT, PARAM_DIMEN, PARAM_ANDROID);
+//		if (resourceId > 0)
+//			result = context.getResources().getDimensionPixelSize(resourceId);
+//
+//		return result;
+//	}
 
 	@Override
 	public void onDismiss() {
