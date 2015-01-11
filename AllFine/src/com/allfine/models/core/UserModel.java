@@ -2,7 +2,6 @@ package com.allfine.models.core;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
@@ -15,7 +14,7 @@ import android.util.Log;
 public class UserModel extends CoreModel implements Serializable {
 
 	private String userName;
-	private String firtsName;
+	private String firstName;
 	private String lastName;
 	private String email;
 	private String phoneNumber;
@@ -99,12 +98,12 @@ public class UserModel extends CoreModel implements Serializable {
 		this.userName = userName;
 	}
 
-	public String getFirtsName() {
-		return firtsName;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setFirtsName(String firtsName) {
-		this.firtsName = firtsName;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
 	public String getLastName() {
@@ -209,7 +208,7 @@ public class UserModel extends CoreModel implements Serializable {
 
 	@Override
 	public String toString() {
-		return "UserModel [userName=" + userName + ", firtsName=" + firtsName
+		return "UserModel [userName=" + userName + ", firtsName=" + firstName
 				+ ", lastName=" + lastName + ", email=" + email
 				+ ", phoneNumber=" + phoneNumber + ", countryCode="
 				+ countryCode + ", friends=" + friends + ", eventId=" + eventId

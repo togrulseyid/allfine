@@ -861,8 +861,11 @@ public class NetworkOperations {
 	// BusinessConstants.CONNECTION_TIMEOUT,
 	// BusinessConstants.BUSINESS_DATA_TIMEOUT);
 	//
-	// ObjectConvertor<RatingInviteModelArrayList> objectConvertorUserModel = new ObjectConvertor<RatingInviteModelArrayList>();
-	// ratingPointModelArrayList = objectConvertorUserModel.getClassObject(result, RatingInviteModelArrayList.class);
+	// ObjectConvertor<RatingInviteModelArrayList> objectConvertorUserModel =
+	// new ObjectConvertor<RatingInviteModelArrayList>();
+	// ratingPointModelArrayList =
+	// objectConvertorUserModel.getClassObject(result,
+	// RatingInviteModelArrayList.class);
 	//
 	// } catch (ClientProtocolException ex) {
 	// ratingPointModelArrayList.setMessageId(MessageConstants.UN_SUCCESSFUL);
@@ -1101,7 +1104,7 @@ public class NetworkOperations {
 				ObjectConvertor<UserModel> objectConvertor = new ObjectConvertor<UserModel>();
 				String result = postAndResponseString(
 						objectConvertor.getClassString(model),
-						Utility.decrypt(UrlConstants.URL_LOGIN,
+						Utility.decrypt(UrlConstants.URL_SIGN_IN,
 								Utility.getAppSignature(context)),
 						BusinessConstants.CONNECTION_TIMEOUT,
 						BusinessConstants.BUSINESS_DATA_TIMEOUT);
@@ -1162,15 +1165,17 @@ public class NetworkOperations {
 
 	public ExistingContactsModelList sendContactsAndGetUsers(Activity context,
 			ContactsModelList model) {
-		
+
 		model = (ContactsModelList) SPProvider.initializeObject(model, context);
-		
+
 		ExistingContactsModelList existingModels = new ExistingContactsModelList();
-		
+
 		if (!Utility.checkNetwork(context)) {
-			existingModels.setMessageId(MessagesEnum.MI_NO_NETWORK_CONNECTION.getId());
+			existingModels.setMessageId(MessagesEnum.MI_NO_NETWORK_CONNECTION
+					.getId());
 		} else if (!Utility.checkInternetConnection()) {
-			existingModels.setMessageId(MessagesEnum.MI_NO_INTERNET_CONNECTION.getId());
+			existingModels.setMessageId(MessagesEnum.MI_NO_INTERNET_CONNECTION
+					.getId());
 		} else {
 			try {
 
@@ -1185,13 +1190,15 @@ public class NetworkOperations {
 						BusinessConstants.BUSINESS_DATA_TIMEOUT);
 
 				ObjectConvertor<ExistingContactsModelList> objectConvertorUserModel = new ObjectConvertor<ExistingContactsModelList>();
-				existingModels = objectConvertorUserModel.getClassObject(result,
-						ExistingContactsModelList.class);
+				existingModels = objectConvertorUserModel.getClassObject(
+						result, ExistingContactsModelList.class);
 
 			} catch (ClientProtocolException ex) {
-				existingModels.setMessageId(MessagesEnum.MI_EXCEPTION_ERROR.getId());
+				existingModels.setMessageId(MessagesEnum.MI_EXCEPTION_ERROR
+						.getId());
 			} catch (IOException ex) {
-				existingModels.setMessageId(MessagesEnum.MI_EXCEPTION_ERROR.getId());
+				existingModels.setMessageId(MessagesEnum.MI_EXCEPTION_ERROR
+						.getId());
 			}
 		}
 
@@ -1234,7 +1241,8 @@ public class NetworkOperations {
 	}
 
 	public FriendRequestModel sendFriendRequest(FriendRequestModel model) {
-		model = (FriendRequestModel) SPProvider.initializeObject(model, context);
+		model = (FriendRequestModel) SPProvider
+				.initializeObject(model, context);
 
 		if (!Utility.checkNetwork(context)) {
 			model.setMessageId(MessagesEnum.MI_NO_NETWORK_CONNECTION.getId());
@@ -1298,6 +1306,39 @@ public class NetworkOperations {
 		}
 
 		return model;
+	}
+
+	public UserModel createNewUser(UserModel model) {
+		model = (UserModel) SPProvider.initializeObject(model, context);
+
+		if (!Utility.checkNetwork(context)) {
+			model.setMessageId(MessagesEnum.MI_NO_NETWORK_CONNECTION.getId());
+		} else if (!Utility.checkInternetConnection()) {
+			model.setMessageId(MessagesEnum.MI_NO_INTERNET_CONNECTION.getId());
+		} else {
+
+			try {
+				ObjectConvertor<UserModel> objectConvertor = new ObjectConvertor<UserModel>();
+				String result = postAndResponseString(
+						objectConvertor.getClassString(model),
+						Utility.decrypt(UrlConstants.URL_SIGN_UP,
+								Utility.getAppSignature(context)),
+						BusinessConstants.CONNECTION_TIMEOUT,
+						BusinessConstants.BUSINESS_DATA_TIMEOUT);
+
+				model = objectConvertor.getClassObject(result, UserModel.class);
+				return model;
+			} catch (ClientProtocolException ex) {
+				model.setMessageId(MessagesEnum.MI_SERVER_CONNECTION_PROBLEM
+						.getId());
+			} catch (IOException ex) {
+				model.setMessageId(MessagesEnum.MI_SERVER_CONNECTION_PROBLEM
+						.getId());
+			}
+
+		}
+		return model;
+
 	}
 
 }

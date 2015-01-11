@@ -37,10 +37,17 @@
     <string name="message_error_no_internet_connection">no internet connection?</string>
     <string name="message_error_server_connection_problem">connection problem?</string>
     <string name="message_error_already_friend_request_send">already friend request send?</string>
-    
-    
     <string name="message_error_not_confirmed_yet">Not Confirmed Yet?</string>
 
+    <string name="message_info_dialog_null_first_name">First name is null</string>
+    <string name="message_info_dialog_null_last_name">Last name is null</string>
+    <string name="message_info_dialog_different_passwords">passwords are not same</string>
+    <string name="message_info_dialog_null_country_code">Null country code</string>
+    <string name="message_info_dialog_null_number">Null Number</string>
+    <string name="message_info_dialog_null_username">Null User name</string>
+    <string name="message_info_dialog_null_or_different_password">Null password or not equal</string>
+    
+    
     <!-- EditTexts -->
     <string name="edittext_hint_number_or_username">Number or Username</string>
 

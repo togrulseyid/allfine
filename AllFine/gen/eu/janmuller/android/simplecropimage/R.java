@@ -12,31 +12,31 @@ public final class R {
 		public static final int btn_crop_pressed = 0x7f020060;
 		public static final int camera_crop_height = 0x7f020063;
 		public static final int camera_crop_width = 0x7f020064;
-		public static final int ic_rotate_left = 0x7f02008b;
-		public static final int ic_rotate_right = 0x7f02008c;
-		public static final int indicator_autocrop = 0x7f020099;
-		public static final int selector_crop_button = 0x7f0200a6;
+		public static final int ic_rotate_left = 0x7f020184;
+		public static final int ic_rotate_right = 0x7f020185;
+		public static final int indicator_autocrop = 0x7f020192;
+		public static final int selector_crop_button = 0x7f0201a0;
 	}
 	public static final class id {
-		public static final int discard = 0x7f050059;
-		public static final int image = 0x7f05002f;
-		public static final int rotateLeft = 0x7f05005a;
-		public static final int rotateRight = 0x7f05005b;
-		public static final int save = 0x7f05005c;
+		public static final int discard = 0x7f0b0063;
+		public static final int image = 0x7f0b002f;
+		public static final int rotateLeft = 0x7f0b0064;
+		public static final int rotateRight = 0x7f0b0065;
+		public static final int save = 0x7f0b0066;
 	}
 	public static final class layout {
-		public static final int cropimage = 0x7f030024;
-		public static final int main = 0x7f03002f;
+		public static final int cropimage = 0x7f030025;
+		public static final int main = 0x7f030030;
 	}
 	public static final class string {
-		public static final int cancel = 0x7f0a0010;
-		public static final int no_storage_card = 0x7f0a0014;
-		public static final int not_enough_space = 0x7f0a0015;
-		public static final int preparing_card = 0x7f0a0013;
-		public static final int save = 0x7f0a0011;
-		public static final int saving_image = 0x7f0a0012;
+		public static final int cancel = 0x7f060012;
+		public static final int no_storage_card = 0x7f060016;
+		public static final int not_enough_space = 0x7f060017;
+		public static final int preparing_card = 0x7f060015;
+		public static final int save = 0x7f060013;
+		public static final int saving_image = 0x7f060014;
 	}
 	public static final class style {
-		public static final int CropButton = 0x7f0b008f;
+		public static final int CropButton = 0x7f07008f;
 	}
 }

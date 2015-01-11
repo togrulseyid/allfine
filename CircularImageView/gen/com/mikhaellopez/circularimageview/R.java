@@ -127,7 +127,7 @@ theme attribute (in the form
 containing a value of this type.
           @attr name com.mikhaellopez.circularimageview:border
         */
-        public static final int CircularImageView_border = 0;
+        public static int CircularImageView_border = 0;
         /**
           <p>This symbol is the offset where the {@link com.mikhaellopez.circularimageview.R.attr#border_color}
           attribute's value can be found in the {@link #CircularImageView} array.
@@ -142,7 +142,7 @@ theme attribute (in the form
 containing a value of this type.
           @attr name com.mikhaellopez.circularimageview:border_color
         */
-        public static final int CircularImageView_border_color = 2;
+        public static int CircularImageView_border_color = 2;
         /**
           <p>This symbol is the offset where the {@link com.mikhaellopez.circularimageview.R.attr#border_width}
           attribute's value can be found in the {@link #CircularImageView} array.
@@ -158,7 +158,7 @@ theme attribute (in the form
 containing a value of this type.
           @attr name com.mikhaellopez.circularimageview:border_width
         */
-        public static final int CircularImageView_border_width = 1;
+        public static int CircularImageView_border_width = 1;
         /**
           <p>This symbol is the offset where the {@link com.mikhaellopez.circularimageview.R.attr#shadow}
           attribute's value can be found in the {@link #CircularImageView} array.
@@ -172,7 +172,7 @@ theme attribute (in the form
 containing a value of this type.
           @attr name com.mikhaellopez.circularimageview:shadow
         */
-        public static final int CircularImageView_shadow = 3;
+        public static int CircularImageView_shadow = 3;
         /** Attributes that can be used with a RoundedImageView.
            <p>Includes the following attributes:</p>
            <table>
@@ -202,7 +202,7 @@ containing a value of this type.
           attribute's value can be found in the {@link #RoundedImageView} array.
           @attr name android:scaleType
         */
-        public static final int RoundedImageView_android_scaleType = 0;
+        public static int RoundedImageView_android_scaleType = 0;
         /**
           <p>This symbol is the offset where the {@link com.mikhaellopez.circularimageview.R.attr#border_color2}
           attribute's value can be found in the {@link #RoundedImageView} array.
@@ -217,7 +217,7 @@ theme attribute (in the form
 containing a value of this type.
           @attr name com.mikhaellopez.circularimageview:border_color2
         */
-        public static final int RoundedImageView_border_color2 = 3;
+        public static int RoundedImageView_border_color2 = 3;
         /**
           <p>This symbol is the offset where the {@link com.mikhaellopez.circularimageview.R.attr#border_width2}
           attribute's value can be found in the {@link #RoundedImageView} array.
@@ -233,7 +233,7 @@ theme attribute (in the form
 containing a value of this type.
           @attr name com.mikhaellopez.circularimageview:border_width2
         */
-        public static final int RoundedImageView_border_width2 = 2;
+        public static int RoundedImageView_border_width2 = 2;
         /**
           <p>This symbol is the offset where the {@link com.mikhaellopez.circularimageview.R.attr#corner_radius}
           attribute's value can be found in the {@link #RoundedImageView} array.
@@ -249,7 +249,7 @@ theme attribute (in the form
 containing a value of this type.
           @attr name com.mikhaellopez.circularimageview:corner_radius
         */
-        public static final int RoundedImageView_corner_radius = 1;
+        public static int RoundedImageView_corner_radius = 1;
         /**
           <p>This symbol is the offset where the {@link com.mikhaellopez.circularimageview.R.attr#mutate_background}
           attribute's value can be found in the {@link #RoundedImageView} array.
@@ -263,7 +263,7 @@ theme attribute (in the form
 containing a value of this type.
           @attr name com.mikhaellopez.circularimageview:mutate_background
         */
-        public static final int RoundedImageView_mutate_background = 4;
+        public static int RoundedImageView_mutate_background = 4;
         /**
           <p>This symbol is the offset where the {@link com.mikhaellopez.circularimageview.R.attr#oval}
           attribute's value can be found in the {@link #RoundedImageView} array.
@@ -277,7 +277,7 @@ theme attribute (in the form
 containing a value of this type.
           @attr name com.mikhaellopez.circularimageview:oval
         */
-        public static final int RoundedImageView_oval = 5;
+        public static int RoundedImageView_oval = 5;
         /** Attributes that can be used with a Theme.
            <p>Includes the following attributes:</p>
            <table>
@@ -300,6 +300,6 @@ containing a value of this type.
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           @attr name com.mikhaellopez.circularimageview:circularImageViewStyle
         */
-        public static final int Theme_circularImageViewStyle = 0;
+        public static int Theme_circularImageViewStyle = 0;
     };
 }

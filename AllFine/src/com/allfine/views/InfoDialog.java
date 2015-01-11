@@ -71,4 +71,37 @@ public class InfoDialog extends Dialog {
 		textViewMessageTitle.setText(title);
 	}
 
+	/* Getters and Setters */
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public void setTitle(int title) {
+		this.title = context.getString(title);
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public void setMessage(int message) {
+		this.message = context.getString(message);
+	}
+
+	public void setIcon(int icon) {
+		this.icon = icon;
+	}
+
+	public int getIcon() {
+		return icon;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public String getTitle() {
+		return title;
+	}
 }

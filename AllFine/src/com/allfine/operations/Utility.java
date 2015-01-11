@@ -661,7 +661,7 @@ public class Utility {
 				result.getUserName()).commit();
 
 		edit.putString(context.getString(R.string._SP_USER_FIRTSNAME),
-				result.getFirtsName()).commit();
+				result.getFirstName()).commit();
 
 		edit.putString(context.getString(R.string._SP_USER_LASTNAME),
 				result.getLastName()).commit();

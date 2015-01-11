@@ -96,7 +96,7 @@ public class MainFragment extends Fragment {
 	}
 
 	private void fillUserInfo(UserModel user) {
-		String fullName = Utility.fullNameMaker(user.getFirtsName(),
+		String fullName = Utility.fullNameMaker(user.getFirstName(),
 				user.getLastName());
 		if (fullName != null) {
 			textViewUserProfileUserFullName.setText(fullName);
